@@ -714,7 +714,7 @@ export default function App() {
               </div>
               <div className="quality-intro">
                 <div className="quality-intro-icon">
-                  <i className="fa-solid fa-handshake-angle" />
+                    👍
                 </div>
                 <div>
                   <h2>Relacionamentos de longo prazo</h2>

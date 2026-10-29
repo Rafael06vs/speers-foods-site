@@ -1790,7 +1790,7 @@ img {
   grid-template-columns: 56% 44%;
   min-height: 610px;
   background: var(--green-900);
-  color: #fff;
+  color: var(--green-900);
 }
 .careers-visual {
   min-height: 610px;
@@ -1853,10 +1853,15 @@ img {
 .careers-cta .fa-whatsapp {
   font-size: 20px;
 }
+/* CONTATO DO RH */
+
 .careers-phone {
-  margin-top: 18px;
-  font-size: 13px;
-  color: #d3e7dc;
+    display: block;
+    color: #063F2F;
+    font-size: 16px;
+    font-weight: 800;
+    opacity: 1;
+    margin-top: 15px;
 }
 @media (max-width: 900px) {
   .about-numbers-grid {
@@ -1936,4 +1941,1392 @@ img {
     max-height: none;
     object-fit: cover;
     object-position: center;
+}
+
+/* =========================================
+   SPEERS FOODS — VISUAL MAIS COLORIDO
+   ========================================= */
+
+/* FUNDO GERAL */
+
+body {
+    background: #fbfaf7;
+}
+
+/* TÍTULOS E DETALHES */
+
+.section-kicker {
+    color: #e67816;
+    font-weight: 900;
+}
+
+.section-heading h2,
+.page-heading h1 {
+    color: #063f2f;
+}
+
+/* LINHA DECORATIVA NOS TÍTULOS */
+
+.section-heading::before {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 5px;
+    background: linear-gradient(90deg, #ff8a24, #b9d84c);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* SEÇÃO DAS MARCAS */
+
+.brand-section {
+    background: linear-gradient(
+        135deg,
+        #f0f7f1 0%,
+        #ffffff 55%,
+        #fff5e9 100%
+    );
+}
+
+/* CAIXAS DAS MARCAS */
+
+.featured-brand {
+    background: #ffffff;
+    border: 1px solid #dce8df;
+    box-shadow: 0 8px 22px rgba(6, 63, 47, 0.05);
+    transition: all 0.3s ease;
+}
+
+.featured-brand:hover {
+    border-color: #ff8a24;
+    background: #fffaf3;
+    transform: translateY(-6px);
+    box-shadow: 0 16px 35px rgba(6, 63, 47, 0.12);
+}
+
+/* SEÇÃO DE QUALIDADE */
+
+.quality-page {
+    background: linear-gradient(
+        180deg,
+        #fbfaf7 0%,
+        #edf6ef 100%
+    );
+}
+
+/* CARDS DE QUALIDADE */
+
+.quality-brand-card {
+    background: #ffffff;
+    border: 1px solid #dce8df;
+    box-shadow: 0 8px 24px rgba(6, 63, 47, 0.04);
+    transition: all 0.3s ease;
+}
+
+.quality-brand-card:hover {
+    border-color: #ff8a24;
+    background: #fffaf4;
+    transform: translateY(-5px);
+}
+
+/* DESTAQUE DO RELACIONAMENTO */
+
+.quality-intro {
+    background: linear-gradient(
+        120deg,
+        #063f2f,
+        #08734c
+    );
+    border-left: 6px solid #ff8a24;
+    box-shadow: 0 15px 35px rgba(6, 63, 47, 0.12);
+}
+
+/* EMOJI DE JOINHA */
+
+.quality-intro-icon {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* CATÁLOGO DE PRODUTOS */
+
+.catalog-toolbar {
+    background: #f0f7f1;
+    border: 1px solid #d8e8dc;
+}
+
+/* CARDS DOS PRODUTOS */
+
+.product-card {
+    border: 1px solid #dce8df;
+    box-shadow: 0 8px 22px rgba(6, 63, 47, 0.04);
+}
+
+.product-card:hover {
+    border-color: #ff8a24;
+    box-shadow: 0 15px 35px rgba(6, 63, 47, 0.12);
+}
+
+/* ÁREA SUPERIOR DOS PRODUTOS */
+
+.product-card-art {
+    background: linear-gradient(
+        135deg,
+        #e8f3ec,
+        #fff0dc
+    );
+}
+
+/* BOTÃO CONSULTAR PRODUTO */
+
+.product-action {
+    background: #e8f3ec;
+    color: #063f2f;
+}
+
+.product-action:hover {
+    background: #08734c;
+    color: #ffffff;
+}
+
+/* BOTÕES PRINCIPAIS */
+
+.button-green,
+.careers-cta {
+    background: #08734c;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.button-green:hover,
+.careers-cta:hover {
+    background: #ff8a24;
+    color: #063f2f;
+    transform: translateY(-3px);
+}
+
+/* RODAPÉ */
+
+.site-footer {
+    background: linear-gradient(
+        120deg,
+        #052f25,
+        #07513c
+    );
+    border-top: 5px solid #ff8a24;
+}
+
+/* ANIMAÇÕES SUAVES */
+
+.featured-brand,
+.quality-brand-card,
+.product-card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+    .featured-brand,
+    .quality-brand-card,
+    .product-card,
+    .careers-cta {
+        transition: none;
+    }
+}
+
+/* =========================================
+   SPEERS FOODS — DEGRADÊ MODERNO
+   ========================================= */
+
+/* FUNDO GERAL DO SITE */
+
+body {
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f2f8f3 50%,
+        #fff5e9 100%
+    );
+}
+
+/* SEÇÃO DAS MARCAS */
+
+.brand-section {
+    background: linear-gradient(
+        120deg,
+        #e8f3ec 0%,
+        #ffffff 55%,
+        #fff0dc 100%
+    );
+}
+
+/* SEÇÃO DE QUALIDADE */
+
+.quality-page {
+    background: linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #edf7ef 50%,
+        #fff3e4 100%
+    );
+}
+
+/* CARDS DE QUALIDADE */
+
+.quality-brand-card {
+    background: linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #f5faf5 100%
+    );
+}
+
+/* CARDS DE PRODUTOS */
+
+.product-card {
+    background: linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #f1f8f2 100%
+    );
+}
+
+/* FUNDO DOS PRODUTOS */
+
+.product-card-art {
+    background: linear-gradient(
+        135deg,
+        #e2f1e5 0%,
+        #fff0dc 100%
+    );
+}
+
+/* RELACIONAMENTOS DE LONGO PRAZO */
+
+.quality-intro {
+    background: linear-gradient(
+        115deg,
+        #063f2f 0%,
+        #08734c 65%,
+        #119263 100%
+    );
+}
+
+/* TRABALHE CONOSCO */
+
+.careers-page {
+    background: linear-gradient(
+        120deg,
+        #e8f3ec 0%,
+        #ffffff 55%,
+        #fff0dc 100%
+    );
+}
+
+/* BOTÕES VERDES */
+
+.button-green {
+    background: linear-gradient(
+        120deg,
+        #08734c,
+        #0b9664
+    );
+}
+
+.button-green:hover {
+    background: linear-gradient(
+        120deg,
+        #ff8a24,
+        #ffb347
+    );
+}
+
+/* RODAPÉ */
+
+.site-footer {
+    background: linear-gradient(
+        120deg,
+        #052f25 0%,
+        #07513c 60%,
+        #08734c 100%
+    );
+}
+
+/* =========================================
+   TRABALHE CONOSCO — CORES MAIS VIVAS
+   ========================================= */
+
+/* FUNDO DA SEÇÃO */
+
+.careers-page {
+    background: linear-gradient(
+        125deg,
+        #e4f5e9 0%,
+        #ffffff 45%,
+        #fff0d9 100%
+    );
+}
+
+/* ÁREA DOS TEXTOS */
+
+.careers-content {
+    color: #063f2f;
+}
+
+/* TEXTO PEQUENO SUPERIOR */
+
+.careers-kicker {
+    color: #e66b00;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* TÍTULO TRABALHE CONOSCO */
+
+.careers-content h1 {
+    color: #005c3b;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+/* PALAVRA CONOSCO */
+
+.careers-content h1 span {
+    color: #79b900;
+}
+
+/* TEXTO DESCRITIVO */
+
+.careers-content p {
+    color: #234c3e;
+    font-size: 17px;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+/* BOTÃO DO RH */
+
+.careers-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        120deg,
+        #008a54,
+        #00a86b
+    );
+
+    color: #ffffff;
+    border: 2px solid #ff8a00;
+    border-radius: 50px;
+
+    font-weight: 800;
+
+    box-shadow: 0 8px 22px rgba(0, 138, 84, 0.22);
+
+    transition: all 0.3s ease;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+
+.careers-cta:hover {
+    background: linear-gradient(
+        120deg,
+        #ff8500,
+        #ffad33
+    );
+
+    color: #063f2f;
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 12px 28px rgba(255, 138, 0, 0.3);
+}
+
+/* NÚMERO DO RH */
+
+.careers-contact,
+.careers-contact a {
+    color: #08734c;
+    font-weight: 700;
+}
+
+/* FOTO TRABALHE CONOSCO */
+
+.careers-visual {
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(0, 105, 65, 0.05),
+            rgba(0, 105, 65, 0.15)
+        ),
+        url("/trabalhe-conosco.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* =========================================
+   SPEERS FOODS — IDENTIDADE VISUAL MODERNA
+   ========================================= */
+
+:root {
+  --speers-dark: #005c3b;
+  --speers-green: #008a54;
+  --speers-lime: #79b900;
+  --speers-orange: #ff8a00;
+  --speers-text: #234c3e;
+}
+
+/* TIPOGRAFIA DOS TÍTULOS */
+
+.section-heading h2,
+.page-heading h1,
+.quality-intro h2 {
+  color: var(--speers-dark);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.12;
+}
+
+/* TÍTULOS PRINCIPAIS */
+
+.section-heading h2 {
+  font-size: clamp(32px, 3.5vw, 48px);
+}
+
+.page-heading h1 {
+  font-size: clamp(36px, 4vw, 56px);
+}
+
+/* PEQUENOS TÍTULOS SUPERIORES */
+
+.section-kicker,
+.quality-brand-card .eyebrow {
+  color: #d96500;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* TEXTOS DESCRITIVOS */
+
+.section-heading p,
+.page-heading p {
+  color: var(--speers-text);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+/* =========================================
+   QUEM SOMOS
+   ========================================= */
+
+.brand-section {
+  background: linear-gradient(
+    125deg,
+    #e4f5e9 0%,
+    #ffffff 50%,
+    #fff0d9 100%
+  );
+}
+
+/* DESTAQUE NAS MARCAS */
+
+.featured-brand {
+  border: 1px solid #dce8df;
+  box-shadow: 0 8px 22px rgba(0, 92, 59, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-brand:hover {
+  transform: translateY(-5px);
+  border-color: var(--speers-orange);
+  box-shadow: 0 15px 30px rgba(0, 92, 59, 0.13);
+}
+
+/* =========================================
+   PRODUTOS
+   ========================================= */
+
+.product-card {
+  border: 1px solid #dce8df;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--speers-orange);
+  box-shadow: 0 15px 30px rgba(0, 92, 59, 0.12);
+}
+
+/* NOMES DOS PRODUTOS */
+
+.product-card h3 {
+  color: var(--speers-dark);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* ÁREA DAS IMAGENS DOS PRODUTOS */
+
+.product-card-art {
+  background: linear-gradient(
+    135deg,
+    #e4f5e9 0%,
+    #fff0d9 100%
+  );
+}
+
+/* =========================================
+   QUALIDADE
+   ========================================= */
+
+.quality-page {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #edf7ef 55%,
+    #fff0d9 100%
+  );
+}
+
+/* TÍTULOS DOS CARDS */
+
+.quality-brand-card h3 {
+  color: var(--speers-dark);
+  font-weight: 850;
+  letter-spacing: -0.5px;
+}
+
+/* RELACIONAMENTOS DE LONGO PRAZO */
+
+.quality-intro {
+  background: linear-gradient(
+    115deg,
+    #063f2f 0%,
+    #08734c 65%,
+    #119263 100%
+  );
+  border-left: 5px solid var(--speers-orange);
+}
+
+/* =========================================
+   BOTÕES E INTERAÇÕES
+   ========================================= */
+
+.button-green {
+  background: linear-gradient(
+    120deg,
+    #008a54,
+    #00a86b
+  );
+  color: #ffffff;
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.button-green:hover {
+  background: linear-gradient(
+    120deg,
+    #ff8500,
+    #ffad33
+  );
+  color: #063f2f;
+  transform: translateY(-3px);
+}
+
+/* =========================================
+   DETALHES DECORATIVOS
+   ========================================= */
+
+.section-heading::before {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #ff8a00,
+    #79b900
+  );
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .section-heading h2 {
+    font-size: 32px;
+  }
+
+  .page-heading h1 {
+    font-size: 36px;
+  }
+
+  .section-heading p,
+  .page-heading p {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-brand,
+  .product-card,
+  .button-green {
+    transition: none;
+  }
+}
+
+/* =========================================
+   SPEERS FOODS — NOSSA TRAJETÓRIA
+   ========================================= */
+
+/* FUNDO DA SEÇÃO */
+
+.history-section {
+    background: linear-gradient(
+        120deg,
+        #e4f5e9 0%,
+        #ffffff 50%,
+        #fff0d9 100%
+    );
+}
+
+/* TÍTULO PRINCIPAL */
+
+.history-section h2 {
+    color: #005c3b;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.12;
+}
+
+/* DESTAQUE NO TÍTULO */
+
+.history-section h2 span {
+    color: #79b900;
+}
+
+/* TEXTO DESCRITIVO */
+
+.history-section p {
+    color: #234c3e;
+    font-weight: 500;
+    line-height: 1.8;
+}
+
+/* INFORMAÇÕES DA DIREITA */
+
+.history-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+}
+
+/* CADA INDICADOR */
+
+.history-stat {
+    background: linear-gradient(
+        120deg,
+        #ffffff 0%,
+        #e8f7eb 100%
+    );
+
+    border-left: 5px solid #ff8a00;
+    border-radius: 16px;
+
+    padding: 24px 28px;
+
+    box-shadow: 0 8px 22px rgba(0, 92, 59, 0.07);
+
+    transition: all 0.3s ease;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+
+.history-stat:hover {
+    transform: translateX(5px);
+
+    background: linear-gradient(
+        120deg,
+        #e4f5e9,
+        #fff0d9
+    );
+
+    box-shadow: 0 12px 28px rgba(0, 92, 59, 0.12);
+}
+
+/* NÚMEROS GRANDES */
+
+.history-stat strong {
+    color: #008a54;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+}
+
+/* TEXTO ABAIXO DOS NÚMEROS */
+
+.history-stat p {
+    color: #47695b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* TERCEIRO INDICADOR */
+
+.history-stat:nth-child(3) {
+    border-left-color: #79b900;
+}
+
+/* BOTÃO */
+
+.history-section .button {
+    border: 2px solid #ff8a00;
+    color: #005c3b;
+    font-weight: 800;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.history-section .button:hover {
+    background: #ff8a00;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* CELULAR */
+
+@media (max-width: 768px) {
+    .history-stats {
+        padding: 15px;
+    }
+
+    .history-stat {
+        padding: 20px;
+    }
+
+    .history-stat strong {
+        font-size: 24px;
+    }
+}
+
+/* =========================================
+   SPEERS FOODS — NOSSA TRAJETÓRIA
+   ========================================= */
+
+/* ÁREA DA NOSSA TRAJETÓRIA */
+
+.about-numbers-grid {
+  background: linear-gradient(
+    120deg,
+    #e4f5e9 0%,
+    #ffffff 48%,
+    #fff0d9 100%
+  );
+
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* ÁREA DO TEXTO */
+
+.about-numbers-copy {
+  padding: 55px 45px;
+}
+
+/* NOSSA TRAJETÓRIA */
+
+.about-numbers-copy .section-kicker {
+  color: #e66b00;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* TÍTULO PRINCIPAL */
+
+.about-numbers-copy h2 {
+  color: #005c3b;
+  font-weight: 900;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -2px;
+}
+
+/* DESTAQUE NOS 20 ANOS */
+
+.about-numbers-copy h2 span {
+  color: #79b900;
+}
+
+/* TEXTO DESCRITIVO */
+
+.about-numbers-copy p {
+  color: #234c3e;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+/* BOTÃO CONHEÇA NOSSO COMPROMISSO */
+
+.about-numbers-copy .button {
+  border: 2px solid #ff8a00;
+  color: #005c3b;
+  font-weight: 800;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.about-numbers-copy .button:hover {
+  background: #ff8a00;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
+  .about-numbers-copy {
+    padding: 35px 25px;
+  }
+
+  .about-numbers-copy h2 {
+    font-size: 36px;
+  }
+}
+
+/* =========================================
+   NOSSA TRAJETÓRIA — LARGURA TOTAL
+   ========================================= */
+
+.about-numbers-grid {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    overflow: visible;
+
+    background: linear-gradient(
+        110deg,
+        #e4f5e9 0%,
+        #ffffff 52%,
+        #fff0d9 100%
+    );
+}
+
+/* MANTÉM O TEXTO BEM DISTRIBUÍDO */
+
+.about-numbers-copy {
+    padding: 65px 55px;
+}
+
+/* TÍTULO GRANDE */
+
+.about-numbers-copy h2 {
+    font-size: clamp(40px, 4vw, 60px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+/* DESTAQUE DOS 20 ANOS */
+
+.about-numbers-copy h2 span {
+    color: #79b900;
+}
+
+/* CELULAR */
+
+@media (max-width: 768px) {
+    .about-numbers-copy {
+        padding: 35px 24px;
+    }
+
+    .about-numbers-copy h2 {
+        font-size: 36px;
+    }
+}
+
+/* ============================================
+   SPEERS FOODS — LAYOUT AMPLO E MODERNO
+   ============================================ */
+
+:root {
+  --sf-dark: #005c3b;
+  --sf-green: #008a54;
+  --sf-lime: #79b900;
+  --sf-orange: #ff8a00;
+  --sf-text: #234c3e;
+  --sf-border: #dce8df;
+}
+
+/* ============================================
+   1. ESTRUTURA GERAL
+   ============================================ */
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  overflow-x: clip;
+}
+
+body {
+  background: #fbfcf9;
+}
+
+/* APROVEITAR MELHOR A LARGURA */
+
+.container {
+  width: calc(100% - 80px);
+  max-width: 1680px;
+  margin-inline: auto;
+}
+
+/* ESPAÇAMENTO PADRONIZADO */
+
+section {
+  scroll-margin-top: 90px;
+}
+
+.section-heading,
+.page-heading {
+  max-width: 1100px;
+  margin-bottom: 36px;
+  text-align: left;
+}
+
+/* TÍTULOS GRANDES */
+
+.section-heading h2,
+.page-heading h1 {
+  font-size: clamp(36px, 3.8vw, 60px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1.8px;
+  color: var(--sf-dark);
+}
+
+/* TEXTOS MAIS LEGÍVEIS */
+
+.section-heading p,
+.page-heading p {
+  max-width: 850px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--sf-text);
+}
+
+/* ============================================
+   2. QUEM SOMOS — NOSSA TRAJETÓRIA
+   ============================================ */
+
+.about-numbers-grid {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+
+  border-radius: 0;
+
+  background: linear-gradient(
+    115deg,
+    #e1f4e6 0%,
+    #ffffff 48%,
+    #fff0da 100%
+  );
+}
+
+/* TEXTO DA TRAJETÓRIA */
+
+.about-numbers-copy {
+  padding: clamp(40px, 5vw, 85px);
+}
+
+/* TÍTULO */
+
+.about-numbers-copy h2 {
+  font-size: clamp(40px, 4.2vw, 66px);
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.about-numbers-copy h2 span {
+  color: var(--sf-lime);
+}
+
+/* DESCRIÇÃO */
+
+.about-numbers-copy p {
+  max-width: 800px;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* ============================================
+   3. MARCAS PARCEIRAS
+   ============================================ */
+
+.brand-section {
+  padding: 65px 0 75px;
+
+  background: linear-gradient(
+    120deg,
+    #edf8ef 0%,
+    #ffffff 55%,
+    #fff5e8 100%
+  );
+}
+
+/* GRADE DE MARCAS */
+
+.featured-brands {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* CAIXAS */
+
+.featured-brand {
+  min-width: 0;
+  min-height: 135px;
+  padding: 12px;
+
+  border: 1px solid var(--sf-border);
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+/* LOGOS */
+
+.featured-brand img {
+  display: block;
+  width: 100%;
+  height: 105px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+
+.featured-brand:hover {
+  transform: translateY(-5px);
+  border-color: var(--sf-orange);
+
+  box-shadow: 0 15px 30px rgba(0, 92, 59, 0.12);
+}
+
+/* ============================================
+   4. PRODUTOS
+   ============================================ */
+
+/* ÁREA DO CATÁLOGO */
+
+.catalog-toolbar {
+  width: 100%;
+  padding: 22px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    120deg,
+    #e8f5eb,
+    #fff4e5
+  );
+}
+
+/* CARDS DOS PRODUTOS */
+
+.product-card {
+  min-width: 0;
+
+  border-radius: 18px;
+  border: 1px solid var(--sf-border);
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--sf-orange);
+
+  box-shadow: 0 15px 35px rgba(0, 92, 59, 0.12);
+}
+
+/* IMAGENS DOS PRODUTOS */
+
+.product-card-art {
+  background: linear-gradient(
+    135deg,
+    #e7f5eb,
+    #fff0dc
+  );
+}
+
+/* TÍTULOS */
+
+.product-card h3 {
+  color: var(--sf-dark);
+  font-weight: 850;
+}
+
+/* ============================================
+   5. QUALIDADE
+   ============================================ */
+
+.quality-page {
+  background: linear-gradient(
+    125deg,
+    #ffffff 0%,
+    #edf8ef 55%,
+    #fff4e5 100%
+  );
+}
+
+/* CARDS DAS MARCAS */
+
+.quality-brand-card {
+  min-width: 0;
+
+  border-radius: 18px;
+  border: 1px solid var(--sf-border);
+
+  background: #ffffff;
+
+  transition: all 0.3s ease;
+}
+
+.quality-brand-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--sf-orange);
+
+  box-shadow: 0 15px 35px rgba(0, 92, 59, 0.12);
+}
+
+/* RELACIONAMENTOS */
+
+.quality-intro {
+  background: linear-gradient(
+    115deg,
+    #063f2f,
+    #08734c,
+    #119263
+  );
+
+  border-left: 5px solid var(--sf-orange);
+}
+
+/* ============================================
+   6. TRABALHE CONOSCO
+   ============================================ */
+
+.careers-page {
+  width: 100%;
+
+  background: linear-gradient(
+    120deg,
+    #e4f5e9 0%,
+    #ffffff 48%,
+    #fff0d9 100%
+  );
+}
+
+/* TEXTO */
+
+.careers-content {
+  padding: clamp(35px, 4vw, 75px);
+}
+
+.careers-content h1 {
+  font-size: clamp(44px, 5vw, 76px);
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.careers-content h1 span {
+  color: var(--sf-lime);
+}
+
+.careers-content p {
+  max-width: 650px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--sf-text);
+}
+
+/* BOTÃO RH */
+
+.careers-cta {
+  background: linear-gradient(
+    120deg,
+    #008a54,
+    #00a86b
+  );
+
+  color: #ffffff;
+
+  border: 2px solid var(--sf-orange);
+  border-radius: 50px;
+
+  font-weight: 800;
+
+  transition: all 0.3s ease;
+}
+
+.careers-cta:hover {
+  background: linear-gradient(
+    120deg,
+    #ff8500,
+    #ffad33
+  );
+
+  color: var(--sf-dark);
+  transform: translateY(-3px);
+}
+
+/* ============================================
+   7. BOTÕES
+   ============================================ */
+
+.button {
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   8. RESPONSIVIDADE
+   ============================================ */
+
+/* NOTEBOOKS */
+
+@media (max-width: 1200px) {
+
+  .container {
+    width: calc(100% - 56px);
+  }
+
+  .featured-brands {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+}
+
+/* TABLETS */
+
+@media (max-width: 900px) {
+
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .featured-brands {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-numbers-copy {
+    padding: 45px 35px;
+  }
+
+}
+
+/* CELULARES */
+
+@media (max-width: 600px) {
+
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  .section-heading h2,
+  .page-heading h1 {
+    font-size: 34px;
+  }
+
+  .featured-brands {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .featured-brand {
+    min-height: 110px;
+    padding: 8px;
+  }
+
+  .featured-brand img {
+    height: 85px;
+  }
+
+  .about-numbers-copy {
+    padding: 35px 22px;
+  }
+
+  .about-numbers-copy h2 {
+    font-size: 38px;
+  }
+
+  .careers-content {
+    padding: 35px 24px;
+  }
+
+  .careers-content h1 {
+    font-size: 42px;
+  }
+
+  .careers-content p {
+    font-size: 15px;
+  }
+
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .featured-brand,
+  .product-card,
+  .quality-brand-card,
+  .careers-cta,
+  .button {
+    transition: none;
+  }
+
+}
+
+/* CONTATO DO RH — TEXTO MAIS ESCURO */
+
+.careers-contact,
+.careers-contact a {
+    color: #005c3b !important;
+    font-size: 15px;
+    font-weight: 800;
 }
