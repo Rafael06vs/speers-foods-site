@@ -228,7 +228,7 @@ export default function App() {
                   <h2>Marcas que fazem parte da nossa história</h2>
                   <p>Explore as marcas presentes no catálogo da Speers Foods.</p>
                 </div>
-                                <div className="featured-brands">
+                      <div className="featured-brands">
                   {FEATURED_BRANDS.map((brand) => (
                     <button className="featured-brand" key={brand.label} onClick={() => showBrandProducts(brand.search)} aria-label={`Ver produtos ${brand.label}`}>
                       <img src={brand.logo} alt={brand.label} />
@@ -242,12 +242,10 @@ export default function App() {
             <section className="intro-band">
               <div className="container intro-band-inner">
                 <div><span className="section-kicker section-kicker-light">Speers Foods</span><h2>Conectando marcas, produtos e negócios.</h2></div>
-                <p>Conheça nosso catálogo e encontre produtos por nome, código ou marca.</p>
               </div>
             </section>
           </>
         )}
-
         {activeTab === "fornecedores" && (
           <section className="page-section">
             <div className="container">
