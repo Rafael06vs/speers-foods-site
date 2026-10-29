@@ -58,8 +58,8 @@ img {
 }
 
 .container {
-  width: min(1320px, calc(100% - 64px));
-  margin-inline: auto;
+    width: min(1480px, calc(100% - 80px));
+    margin-inline: auto;
 }
 
 .topbar {
