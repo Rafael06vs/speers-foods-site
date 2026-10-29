@@ -385,7 +385,7 @@ export default function App() {
                       <i className="fa-solid fa-truck-fast" />
                     </span>
                     <div>
-                      <strong>Zona Leste de SP</strong>
+                      <strong>São Paulo e Região</strong>
                       <span>Referência em distribuição de congelados</span>
                     </div>
                   </div>
@@ -431,7 +431,7 @@ export default function App() {
                   <article className="community-card">
                     <div className="community-image community-image-sif">
                       <img
-                        src="/selo-sif.jpg"
+                        src="/selo-s.i.f.png"
                         alt="Exemplo de selo do Serviço de Inspeção Federal (SIF), com número 3551"
                       />
                     </div>
