@@ -207,7 +207,6 @@ export default function App() {
                     <button className="button button-outline" onClick={() => document.getElementById("marcas")?.scrollIntoView({ behavior: "smooth" })}>
                       Conheça nossas marcas <i className="fa-solid fa-arrow-right" />
                     </button>
-                    <button className="button button-orange" onClick={() => goToTab("produtos")}>Ver catálogo</button>
                   </div>
                   <div className="hero-note"><i className="fa-solid fa-snowflake" /> Um portfólio pensado para diferentes necessidades do mercado.</div>
                 </div>
@@ -244,7 +243,6 @@ export default function App() {
               <div className="container intro-band-inner">
                 <div><span className="section-kicker section-kicker-light">Speers Foods</span><h2>Conectando marcas, produtos e negócios.</h2></div>
                 <p>Conheça nosso catálogo e encontre produtos por nome, código ou marca.</p>
-                <button className="button button-white" onClick={() => goToTab("produtos")}>Consultar produtos <i className="fa-solid fa-arrow-right" /></button>
               </div>
             </section>
           </>
