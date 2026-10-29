@@ -232,7 +232,6 @@ export default function App() {
                   {FEATURED_BRANDS.map((brand) => (
                     <button className="featured-brand" key={brand.label} onClick={() => showBrandProducts(brand.search)} aria-label={`Ver produtos ${brand.label}`}>
                       <img src={brand.logo} alt={brand.label} />
-                      <span>Ver produtos <i className="fa-solid fa-arrow-up-right-from-square" /></span>
                     </button>
                   ))}
                 </div>
