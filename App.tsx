@@ -54,7 +54,7 @@ const normalize = (value = "") =>
   value.toLocaleLowerCase("pt-BR").normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 
 const tabLabels: Record<Tab, string> = {
-  speers: "A Speers",
+  speers: "Quem somos",
   fornecedores: "Fornecedores",
   produtos: "Produtos",
   qualidade: "Qualidade",
@@ -185,9 +185,11 @@ export default function App() {
             <button className="search-shortcut" aria-label="Pesquisar produtos" onClick={() => goToTab("produtos")}>
               <i className="fa-solid fa-magnifying-glass" />
             </button>
-            <button className="button button-green header-quote" onClick={() => goToTab("produtos")}>
-              Explorar catálogo <i className="fa-solid fa-arrow-right" />
-            </button>
+            <a
+              className="button button-green"
+                href="tel:+5511913682491"
+                  >Fale conosco
+            </a>
           </div>
         </div>
       </header>
@@ -206,6 +208,9 @@ export default function App() {
                   <div className="hero-actions">
                     <button className="button button-outline" onClick={() => document.getElementById("marcas")?.scrollIntoView({ behavior: "smooth" })}>
                       Conheça nossas marcas <i className="fa-solid fa-arrow-right" />
+                      <button className="button button-orange" onClick={() => goToTab("produtos")}>
+                           Ver produtos
+                      </button>
                     </button>
                   </div>
                   <div className="hero-note"><i className="fa-solid fa-snowflake" /> Um portfólio pensado para diferentes necessidades do mercado.</div>
@@ -397,7 +402,6 @@ export default function App() {
         <div className="container footer-main">
           <div className="footer-brand"><img src="/speers-logo.png" alt="Speers Foods" /><p>Distribuição de alimentos congelados e perecíveis.</p></div>
           <div className="footer-nav"><span>Explore</span>{(Object.keys(tabLabels) as Tab[]).map((tab) => <button key={tab} onClick={() => goToTab(tab)}>{tabLabels[tab]}</button>)}</div>
-          <div className="footer-contact"><span>Catálogo</span><p>Consulte os produtos por nome, código ou marca.</p><button className="button button-orange" onClick={() => goToTab("produtos")}>Ver produtos <i className="fa-solid fa-arrow-right" /></button></div>
         </div>
         <div className="footer-bottom"><div className="container"><span>© {new Date().getFullYear()} Speers Foods</span><span>Conteúdo institucional e catálogo de produtos.</span></div></div>
       </footer>

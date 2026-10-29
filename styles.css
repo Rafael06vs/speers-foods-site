@@ -129,8 +129,8 @@ img {
 }
 
 .site-logo {
-    width: 240px;
-    max-height: 100px;
+    width: 140px;
+    max-height: 200px;
     object-fit: contain;
     object-position: left center;
 }
@@ -671,7 +671,7 @@ img {
 /* Títulos dos fornecedores */
 .supplier-card h2,
 .supplier-card h3 {
-    font-size: px;
+    font-size: 24px;
     line-height: 1.3;
     font-weight: 750;
     margin-top: 0;
@@ -1580,4 +1580,17 @@ img {
         flex-direction: column;
         gap: 5px;
     }
+}
+
+.intro-band-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.intro-band-inner h2 {
+    text-align: center;
 }
