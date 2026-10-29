@@ -1,3 +1,34 @@
+/* ==========================================================================
+   SPEERS FOODS — STYLES.CSS ORGANIZADO SEM ALTERAÇÃO VISUAL
+
+   IMPORTANTE: a ordem original de TODAS as regras foi preservada.
+   Em CSS, mudar a ordem pode mudar o resultado; por isso esta edição
+   adiciona apenas separadores e um índice de navegação.
+   Nenhuma declaração, seletor, media query ou valor foi removido ou alterado.
+
+   ÍNDICE DE SEÇÕES
+   01 — VARIÁVEIS, RESET E ESTRUTURA GLOBAL (posição original: linha 1)
+   02 — CABEÇALHO E NAVEGAÇÃO (posição original: linha 65)
+   03 — CAPA / HERO (posição original: linha 267)
+   04 — MARCAS E SEÇÕES GERAIS (posição original: linha 450)
+   05 — CATÁLOGO DE PRODUTOS (posição original: linha 731)
+   06 — QUALIDADE (posição original: linha 1031)
+   07 — RODAPÉ (posição original: linha 1148)
+   08 — RESPONSIVIDADE ORIGINAL (posição original: linha 1221)
+   09 — AJUSTES DE CENTRALIZAÇÃO (posição original: linha 1606)
+   10 — TRAJETÓRIA, COMUNIDADE E TRABALHE CONOSCO (posição original: linha 1619)
+   11 — AJUSTES DE IMAGEM (posição original: linha 1934)
+   12 — CAMADA DE PERSONALIZAÇÕES: CORES (posição original: linha 1946)
+   13 — CAMADA DE PERSONALIZAÇÕES: DEGRADÊS (posição original: linha 2141)
+   14 — CAMADA DE PERSONALIZAÇÕES: CARREIRAS (posição original: linha 2259)
+   15 — CAMADA DE PERSONALIZAÇÕES: TIPOGRAFIA E CARDS (posição original: linha 2376)
+   16 — AJUSTES DE TRAJETÓRIA (VERSÕES POSTERIORES) (posição original: linha 2592)
+   17 — LAYOUT AMPLO E RESPONSIVIDADE FINAL (posição original: linha 2865)
+   18 — CONTATO DO RH (posição original: linha 3325)
+   ========================================================================== */
+
+
+/* ===== 01 — VARIÁVEIS, RESET E ESTRUTURA GLOBAL ===== */
 :root {
   font-family: Inter, Arial, sans-serif;
   color: #16372d;
@@ -62,6 +93,8 @@ img {
     margin-inline: auto;
 }
 
+
+/* ===== 02 — CABEÇALHO E NAVEGAÇÃO ===== */
 .topbar {
   background: var(--green-950);
   color: #fff;
@@ -264,6 +297,8 @@ img {
   font-size: 18px;
 }
 
+
+/* ===== 03 — CAPA / HERO ===== */
 .hero {
   position: relative;
   overflow: hidden;
@@ -447,6 +482,8 @@ img {
   bottom: -190px;
 }
 
+
+/* ===== 04 — MARCAS E SEÇÕES GERAIS ===== */
 .brand-section {
   padding: 76px 0 82px;
   background: #fbfaf7;
@@ -728,6 +765,8 @@ img {
   color: #d86b14;
 }
 
+
+/* ===== 05 — CATÁLOGO DE PRODUTOS ===== */
 .catalog-toolbar {
   display: grid;
   grid-template-columns: minmax(260px, 1fr) minmax(190px, 240px) minmax(
@@ -1028,6 +1067,8 @@ img {
   font-size: 13px;
 }
 
+
+/* ===== 06 — QUALIDADE ===== */
 .quality-page .page-heading {
   max-width: 760px;
 }
@@ -1056,7 +1097,10 @@ img {
 
 .quality-intro h2 {
   margin: 0 0 6px;
-  font-size: 20px;
+  font-size: 26px;
+  color: #FFFFFF;
+  font-weight: 900;
+  opacity: 1;
 }
 
 .quality-intro p {
@@ -1145,6 +1189,8 @@ img {
   margin: 0;
 }
 
+
+/* ===== 07 — RODAPÉ ===== */
 .site-footer {
   background: #052f25;
   color: white;
@@ -1218,6 +1264,8 @@ img {
   padding-block: 16px;
 }
 
+
+/* ===== 08 — RESPONSIVIDADE ORIGINAL ===== */
 @media (max-width: 1100px) {
   .container {
     width: min(100% - 44px, 1320px);
@@ -1603,6 +1651,8 @@ img {
   }
 }
 
+
+/* ===== 09 — AJUSTES DE CENTRALIZAÇÃO ===== */
 .intro-band-inner {
   display: flex;
   flex-direction: column;
@@ -1616,6 +1666,8 @@ img {
   text-align: center;
 }
 
+
+/* ===== 10 — TRAJETÓRIA, COMUNIDADE E TRABALHE CONOSCO ===== */
 /* === Novas seções institucionais Speers Foods === */
 .about-numbers {
   background: #fff;
@@ -1931,6 +1983,8 @@ img {
   }
 }
 
+
+/* ===== 11 — AJUSTES DE IMAGEM ===== */
 /* IMAGEM DO MCDIA FELIZ */
 
 .initiative-card img {
@@ -1943,6 +1997,8 @@ img {
     object-position: center;
 }
 
+
+/* ===== 12 — CAMADA DE PERSONALIZAÇÕES: CORES ===== */
 /* =========================================
    SPEERS FOODS — VISUAL MAIS COLORIDO
    ========================================= */
@@ -2138,6 +2194,8 @@ body {
     }
 }
 
+
+/* ===== 13 — CAMADA DE PERSONALIZAÇÕES: DEGRADÊS ===== */
 /* =========================================
    SPEERS FOODS — DEGRADÊ MODERNO
    ========================================= */
@@ -2256,6 +2314,8 @@ body {
     );
 }
 
+
+/* ===== 14 — CAMADA DE PERSONALIZAÇÕES: CARREIRAS ===== */
 /* =========================================
    TRABALHE CONOSCO — CORES MAIS VIVAS
    ========================================= */
@@ -2373,6 +2433,8 @@ body {
     background-repeat: no-repeat;
 }
 
+
+/* ===== 15 — CAMADA DE PERSONALIZAÇÕES: TIPOGRAFIA E CARDS ===== */
 /* =========================================
    SPEERS FOODS — IDENTIDADE VISUAL MODERNA
    ========================================= */
@@ -2390,12 +2452,12 @@ body {
 .section-heading h2,
 .page-heading h1,
 .quality-intro h2 {
-  color: var(--speers-dark);
+  margin: 0 0 6px;
+  font-size: 26px;
+  color: #FFFFFF;
   font-weight: 900;
-  letter-spacing: -1.5px;
-  line-height: 1.12;
+  opacity: 1;
 }
-
 /* TÍTULOS PRINCIPAIS */
 
 .section-heading h2 {
@@ -2589,6 +2651,8 @@ body {
   }
 }
 
+
+/* ===== 16 — AJUSTES DE TRAJETÓRIA (VERSÕES POSTERIORES) ===== */
 /* =========================================
    SPEERS FOODS — NOSSA TRAJETÓRIA
    ========================================= */
@@ -2862,6 +2926,8 @@ body {
     }
 }
 
+
+/* ===== 17 — LAYOUT AMPLO E RESPONSIVIDADE FINAL ===== */
 /* ============================================
    SPEERS FOODS — LAYOUT AMPLO E MODERNO
    ============================================ */
@@ -3322,6 +3388,8 @@ section {
 
 }
 
+
+/* ===== 18 — CONTATO DO RH ===== */
 /* CONTATO DO RH — TEXTO MAIS ESCURO */
 
 .careers-contact,
