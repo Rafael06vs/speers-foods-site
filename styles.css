@@ -671,7 +671,7 @@ img {
 /* Títulos dos fornecedores */
 .supplier-card h2,
 .supplier-card h3 {
-    font-size: 24px;
+    font-size: px;
     line-height: 1.3;
     font-weight: 750;
     margin-top: 0;
