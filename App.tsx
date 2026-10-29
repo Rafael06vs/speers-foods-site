@@ -494,7 +494,7 @@ export default function App() {
             <div
               className="careers-visual"
               role="img"
-              aria-label="Operação logística da Speers Foods"
+              aria-label="Equipe unindo as mãos, representando união e trabalho em equipe"
             />
             <div className="careers-content">
               <span className="careers-kicker">Faça parte da nossa equipe</span>
