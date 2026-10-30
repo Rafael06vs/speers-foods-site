@@ -149,13 +149,24 @@ export default function App() {
     });
 
     return result.sort((a, b) => {
-      if (sortOrder === "code")
-        return String(a.id).localeCompare(String(b.id), "pt-BR", {
-          numeric: true,
-        });
-      if (sortOrder === "brand") return a.brand.localeCompare(b.brand, "pt-BR");
-      return a.name.localeCompare(b.name, "pt-BR");
+  if (sortOrder === "code") {
+    return String(a.id).localeCompare(String(b.id), "pt-BR", {
+      numeric: true,
     });
+  }
+
+  if (sortOrder === "brand") {
+    return a.brand.localeCompare(b.brand, "pt-BR", {
+      sensitivity: "base",
+    });
+  }
+
+  // Ordenação alfabética pelo nome do produto
+  return a.name.trim().localeCompare(b.name.trim(), "pt-BR", {
+    sensitivity: "base",
+    ignorePunctuation: true,
+  });
+});
   }, [search, brandFilter, sortOrder]);
 
   const totalPages = Math.max(
@@ -250,18 +261,45 @@ export default function App() {
               </button>
             ))}
           </nav>
-          <div className="header-actions">
-            <button
-              className="search-shortcut"
-              aria-label="Pesquisar produtos"
-              onClick={() => goToTab("produtos")}
-            >
-              <i className="fa-solid fa-magnifying-glass" />
-            </button>
-            <a className="button button-green" href="tel:+5511913682491">
-              Fale conosco
-            </a>
-          </div>
+         <div className="header-actions">
+  <button
+    className="search-shortcut"
+    aria-label="Pesquisar produtos"
+    onClick={() => goToTab("produtos")}
+  >
+    <i className="fa-solid fa-magnifying-glass" />
+  </button>
+
+  <a
+  className="instagram-header-button"
+  href="https://www.instagram.com/speersfoods/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Instagram da Speers Foods"
+  title="Siga a Speers Foods no Instagram"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="30"
+    height="30"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+  </svg>
+</a>
+
+  <a className="button button-green" href="tel:+5511913682491">
+    Fale conosco
+  </a>
+</div>
         </div>
       </header>
 

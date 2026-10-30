@@ -3499,3 +3499,95 @@ section {
 .product-card .product-action:hover {
   background: #bddbc7;
 }
+
+/* ===== INSTAGRAM NO CABEÇALHO ===== */
+
+/* Instagram — apenas a logo */
+.instagram-header-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  color: #08734c;
+  text-decoration: none;
+
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.instagram-header-button i {
+  font-size: 30px;
+  line-height: 1;
+}
+
+/* Efeito ao passar o mouse */
+.instagram-header-button:hover {
+  color: #e4405f;
+  transform: scale(1.1);
+}
+
+/* Ajuste para celular */
+@media (max-width: 768px) {
+  .instagram-header-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .instagram-header-button i {
+    font-size: 26px;
+  }
+}
+
+/* Instagram no cabeçalho */
+.instagram-header-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0;
+
+  color: #08734c !important;
+  text-decoration: none;
+
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.instagram-header-button svg {
+  display: block;
+  width: 30px;
+  height: 30px;
+  stroke: currentColor;
+}
+
+.instagram-header-button:hover {
+  color: #e4405f !important;
+  transform: scale(1.1);
+}
+
+/* Celular */
+@media (max-width: 768px) {
+  .instagram-header-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .instagram-header-button svg {
+    width: 26px;
+    height: 26px;
+  }
+}
