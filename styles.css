@@ -3428,3 +3428,74 @@ section {
     min-width: 0;
   }
 }
+
+/* Diminuir a área da imagem */
+.product-card-art {
+  height: 170px;
+  min-height: 170px;
+  overflow: hidden;
+}
+
+/* Mostrar a imagem inteira, sem cortes */
+.product-card-art .product-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+}
+
+/* ===== CARDS DE PRODUTOS — NOVAS CORES ===== */
+
+/* Fundo branco na área da fotografia */
+.product-card-art {
+  background: #ffffff !important;
+}
+
+/* Remover círculos decorativos */
+.product-card-art::before,
+.product-card-art::after {
+  display: none !important;
+}
+
+/* Imagem inteira, sem cortes */
+.product-card-art .product-photo {
+  object-fit: contain;
+}
+
+/* Fundo verde-claro na descrição */
+.product-card-content {
+  background: #e8f0e9;
+}
+
+/* Cor do nome do produto */
+.product-card h2 {
+  color: #063f2f;
+}
+
+/* Cor da marca */
+.product-brand {
+  color: #c66a1e;
+}
+
+/* Cor das informações */
+.product-card-content p {
+  color: #536b5d;
+}
+
+/* Fundo do botão */
+.product-card .product-action {
+  background: #d2e5d8;
+  color: #063f2f;
+  margin: 0;
+  border-radius: 0;
+  padding: 13px 15px;
+}
+
+/* Efeito ao passar o mouse */
+.product-card .product-action:hover {
+  background: #bddbc7;
+}

@@ -621,12 +621,22 @@ export default function App() {
                       key={`${product.id}-${product.name}`}
                     >
                       <div className="product-card-art">
-                        <span className="product-art-icon">
-                          <i className="fa-solid fa-box-open" />
-                        </span>
-                        <span className="product-code">Cód. {product.id}</span>
-                        <span className="product-unit">{product.unit}</span>
-                      </div>
+  {product.image?.startsWith("/") ? (
+    <img
+      src={product.image}
+      alt={product.name}
+      className="product-photo"
+      loading="lazy"
+    />
+  ) : (
+    <span className="product-art-icon">
+      <i className="fa-solid fa-box-open" />
+    </span>
+  )}
+
+  <span className="product-code">Cód. {product.id}</span>
+  <span className="product-unit">{product.unit}</span>
+</div>
                       <div className="product-card-content">
                         <span className="product-brand">{product.brand}</span>
                         <h2>{product.name}</h2>
