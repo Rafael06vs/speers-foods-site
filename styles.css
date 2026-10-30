@@ -1949,41 +1949,7 @@ img {
 @media (max-width: 600px) {
   .about-numbers-copy h2 {
     font-size: 36px;
-    /* =====================================
-   CORREÇÃO DA LARGURA — SOMENTE CELULAR
-   ===================================== */
-
-html,
-body,
-#root {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-/* NOSSA TRAJETÓRIA */
-
-.about-numbers-grid {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  border-radius: 0;
-  box-sizing: border-box;
-}
-
-/* CONTEÚDO DA TRAJETÓRIA */
-
-.about-numbers-copy {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* EVITA QUE ELEMENTOS INTERNOS
-   ULTRAPASSEM A LARGURA */
-
-.about-numbers-grid > * {
-  min-width: 0;
-}
+    
   }
   .about-numbers-copy p {
     font-size: 14px;
@@ -3432,4 +3398,33 @@ section {
     color: #005c3b !important;
     font-size: 15px;
     font-weight: 800;
+}
+
+/* ===== CORREÇÃO MOBILE — NOSSA TRAJETÓRIA SEM FAIXAS LATERAIS =====
+   A seção usa .container, que no celular reserva 14px de cada lado.
+   O fundo do gradiente estava no elemento interno, deixando faixas brancas.
+   Esta alteração é restrita a celulares e não afeta o desktop. */
+@media (max-width: 600px) {
+  .about-numbers > .container {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .about-numbers-grid {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-numbers-copy {
+    min-width: 0;
+    padding: 35px 22px;
+  }
+
+  .about-numbers-stats {
+    min-width: 0;
+  }
 }
