@@ -296,7 +296,7 @@ export default function App() {
   </svg>
 </a>
 
-  <a className="button button-green" href="tel:+5511913682491">
+  <a className="button button-green" href="tel:+551125237171">
     Fale conosco
   </a>
 </div>
@@ -691,12 +691,26 @@ export default function App() {
                       </div>
                       <button
                         className="product-action"
-                        onClick={() =>
-                          (window.location.href = `mailto:?subject=${encodeURIComponent(`Consulta de produto ${product.id}`)}&body=${encodeURIComponent(`Olá, gostaria de consultar disponibilidade e condições para o produto:\n${product.name}\nCódigo: ${product.id}\nMarca: ${product.brand}`)}`)
-                        }
+                        type="button"
+                        aria-label={`Solicitar orçamento pelo WhatsApp: ${product.name}`}
+                        onClick={() => {
+                          const message = [
+                            "Olá! Gostaria de solicitar um orçamento para o seguinte produto:",
+                            "",
+                            `Produto: ${product.name}`,
+                            `Código: ${product.id}`,
+                            `Marca: ${product.brand}`,
+                            `Unidade: ${product.unit}`,
+                            "",
+                            "Poderiam informar o preço, a disponibilidade e as condições comerciais?",
+                          ].join("\n");
+
+                          const whatsappUrl = `https://wa.me/5511913682491?text=${encodeURIComponent(message)}`;
+                          window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+                        }}
                       >
-                        Consultar produto{" "}
-                        <i className="fa-solid fa-arrow-right" />
+                        Solicitar orçamento{" "}
+                        <i className="fa-brands fa-whatsapp" aria-hidden="true" />
                       </button>
                     </article>
                   ))}
