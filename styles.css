@@ -1949,6 +1949,41 @@ img {
 @media (max-width: 600px) {
   .about-numbers-copy h2 {
     font-size: 36px;
+    /* =====================================
+   CORREÇÃO DA LARGURA — SOMENTE CELULAR
+   ===================================== */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* NOSSA TRAJETÓRIA */
+
+.about-numbers-grid {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+/* CONTEÚDO DA TRAJETÓRIA */
+
+.about-numbers-copy {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* EVITA QUE ELEMENTOS INTERNOS
+   ULTRAPASSEM A LARGURA */
+
+.about-numbers-grid > * {
+  min-width: 0;
+}
   }
   .about-numbers-copy p {
     font-size: 14px;
