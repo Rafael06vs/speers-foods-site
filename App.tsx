@@ -1,5 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import productsData from "./data/products.json";
+import {
+  trackEvent,
+  submitReview,
+  fetchAdminStats,
+  signInAdmin,
+  analyticsConfigured,
+  type AdminStats,
+} from "./analytics";
 
 type Product = {
   id: string;
@@ -14,7 +22,7 @@ type Product = {
   image?: string;
 };
 
-type Tab = "speers" | "fornecedores" | "produtos" | "qualidade";
+type Tab = "speers" | "fornecedores" | "produtos" | "solucoes" | "avaliacoes";
 
 const PRODUCTS = (productsData as Product[]).filter(
   (product) => product.available !== false,
@@ -27,10 +35,10 @@ const BRAND_LOGOS: Record<string, string> = {
   franuí: "/franui-logo.png",
   minerva: "/minerva-foods-logo.jpg",
   "minerva s/a": "/minerva-foods-logo.jpg",
-  "bmg foods": "/bmg foods.png",
+
   bimbo: "/bimbo-logo.jpg",
   grano: "/grano foods.jpg",
-  golden: "/golden imex.png",
+
   "bimbo do brasil": "/bimbo-logo.jpg",
   "lar cooperativa": "/lar cooperativa agroindustrial.png",
   "grupo bimbo": "/bimbo-logo.jpg",
@@ -44,14 +52,14 @@ const FEATURED_BRANDS = [
     logo: "/forno-de-minas-logo.jpg",
     search: "forno de minas",
   },
-  { label: "bmg Foods", logo: "/bmg foods.png", search: "bmg foods" },
+
   { label: "Grano Foods", logo: "/grano foods.jpg", search: "grano" },
   {
     label: "Lar Cooperativa",
     logo: "/lar cooperativa agroindustrial.png",
     search: "lar cooperativa",
   },
-  { label: "Golden Imex", logo: "/golden imex.png", search: "golden" },
+
   { label: "McCain", logo: "/mccain-logo.png", search: "mccain" },
   { label: "Franui", logo: "/franui-logo.png", search: "franui" },
   { label: "Minerva", logo: "/minerva-foods-logo.jpg", search: "minerva" },
@@ -75,7 +83,8 @@ const tabLabels: Record<Tab, string> = {
   speers: "Quem somos",
   fornecedores: "Trabalhe conosco",
   produtos: "Produtos",
-  qualidade: "Qualidade",
+  solucoes: "Soluções para seu negócio",
+  avaliacoes: "Avalie-nos",
 };
 
 export default function App() {
@@ -86,7 +95,66 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [supplierSearch, setSupplierSearch] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [customerType, setCustomerType] = useState("Restaurante");
+  const [customerRegion, setCustomerRegion] = useState("");
+  const [customerNeed, setCustomerNeed] = useState("");
+  const [siteRating, setSiteRating] = useState(0);
+  const [purchaseRating, setPurchaseRating] = useState(0);
+  const [reviewStatus, setReviewStatus] = useState("");
+  const [adminOpen, setAdminOpen] = useState(false);
+  const [adminEmail, setAdminEmail] = useState("");
+  const [adminPassword, setAdminPassword] = useState("");
+  const [adminToken, setAdminToken] = useState("");
+  const [adminStats, setAdminStats] = useState<AdminStats | null>(null);
+  const [adminError, setAdminError] = useState("");
   const itemsPerPage = 24;
+
+  useEffect(() => {
+    void trackEvent("visit");
+  }, []);
+  const sendCustomerRequest = () => {
+    void trackEvent("contact_request", {
+      source: "solucoes",
+      customer_type: customerType,
+    });
+    const message = `Olá! Gostaria de atendimento comercial da Speers Foods.\nTipo de cliente: ${customerType}\nCidade ou bairro: ${customerRegion.trim()}\nO que preciso: ${customerNeed.trim()}`;
+    window.open(
+      `https://wa.me/5511913682491?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+  const sendReview = async () => {
+    setReviewStatus("Enviando...");
+    try {
+      await submitReview(siteRating, purchaseRating);
+      setReviewStatus("Obrigado! Sua avaliação foi registrada.");
+      setSiteRating(0);
+      setPurchaseRating(0);
+    } catch {
+      setReviewStatus(
+        "Não foi possível registrar. Tente novamente mais tarde.",
+      );
+    }
+  };
+  const loadAdmin = async (token: string) => {
+    try {
+      setAdminStats(await fetchAdminStats(token));
+      setAdminError("");
+    } catch {
+      setAdminError("Acesso negado ou erro ao carregar os dados.");
+    }
+  };
+  const loginAdmin = async () => {
+    try {
+      const token = await signInAdmin(adminEmail, adminPassword);
+      setAdminToken(token);
+      setAdminPassword("");
+      await loadAdmin(token);
+    } catch {
+      setAdminError("Não foi possível entrar. Confira o usuário e a senha.");
+    }
+  };
 
   const suppliers = useMemo(() => {
     const supplierMap = new Map<
@@ -149,24 +217,24 @@ export default function App() {
     });
 
     return result.sort((a, b) => {
-  if (sortOrder === "code") {
-    return String(a.id).localeCompare(String(b.id), "pt-BR", {
-      numeric: true,
-    });
-  }
+      if (sortOrder === "code") {
+        return String(a.id).localeCompare(String(b.id), "pt-BR", {
+          numeric: true,
+        });
+      }
 
-  if (sortOrder === "brand") {
-    return a.brand.localeCompare(b.brand, "pt-BR", {
-      sensitivity: "base",
-    });
-  }
+      if (sortOrder === "brand") {
+        return a.brand.localeCompare(b.brand, "pt-BR", {
+          sensitivity: "base",
+        });
+      }
 
-  // Ordenação alfabética pelo nome do produto
-  return a.name.trim().localeCompare(b.name.trim(), "pt-BR", {
-    sensitivity: "base",
-    ignorePunctuation: true,
-  });
-});
+      // Ordenação alfabética pelo nome do produto
+      return a.name.trim().localeCompare(b.name.trim(), "pt-BR", {
+        sensitivity: "base",
+        ignorePunctuation: true,
+      });
+    });
   }, [search, brandFilter, sortOrder]);
 
   const totalPages = Math.max(
@@ -261,45 +329,51 @@ export default function App() {
               </button>
             ))}
           </nav>
-         <div className="header-actions">
-  <button
-    className="search-shortcut"
-    aria-label="Pesquisar produtos"
-    onClick={() => goToTab("produtos")}
-  >
-    <i className="fa-solid fa-magnifying-glass" />
-  </button>
+          <div className="header-actions">
+            <button
+              className="search-shortcut"
+              aria-label="Pesquisar produtos"
+              onClick={() => goToTab("produtos")}
+            >
+              <i className="fa-solid fa-magnifying-glass" />
+            </button>
 
-  <a
-  className="instagram-header-button"
-  href="https://www.instagram.com/speersfoods/"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Instagram da Speers Foods"
-  title="Siga a Speers Foods no Instagram"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="30"
-    height="30"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <rect x="2" y="2" width="20" height="20" rx="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-  </svg>
-</a>
+            <a
+              className="instagram-header-button"
+              href="https://www.instagram.com/speersfoods/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram da Speers Foods"
+              title="Siga a Speers Foods no Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </a>
 
-  <a className="button button-green" href="tel:+551125237171">
-    Fale conosco
-  </a>
-</div>
+            <a className="button button-green" href="tel:+551125237171">
+              Fale conosco
+            </a>
+          </div>
         </div>
       </header>
 
@@ -394,9 +468,9 @@ export default function App() {
                   </p>
                   <button
                     className="about-numbers-button"
-                    onClick={() => goToTab("qualidade")}
+                    onClick={() => goToTab("solucoes")}
                   >
-                    <span aria-hidden="true">＋</span> CONHEÇA NOSSO COMPROMISSO
+                    <span aria-hidden="true">＋</span> CONHEÇA NOSSAS SOLUÇÕES
                   </button>
                 </div>
                 <div className="about-numbers-stats">
@@ -659,22 +733,22 @@ export default function App() {
                       key={`${product.id}-${product.name}`}
                     >
                       <div className="product-card-art">
-  {product.image?.startsWith("/") ? (
-    <img
-      src={product.image}
-      alt={product.name}
-      className="product-photo"
-      loading="lazy"
-    />
-  ) : (
-    <span className="product-art-icon">
-      <i className="fa-solid fa-box-open" />
-    </span>
-  )}
+                        {product.image?.startsWith("/") ? (
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="product-photo"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span className="product-art-icon">
+                            <i className="fa-solid fa-box-open" />
+                          </span>
+                        )}
 
-  <span className="product-code">Cód. {product.id}</span>
-  <span className="product-unit">{product.unit}</span>
-</div>
+                        <span className="product-code">Cód. {product.id}</span>
+                        <span className="product-unit">{product.unit}</span>
+                      </div>
                       <div className="product-card-content">
                         <span className="product-brand">{product.brand}</span>
                         <h2>{product.name}</h2>
@@ -706,11 +780,22 @@ export default function App() {
                           ].join("\n");
 
                           const whatsappUrl = `https://wa.me/5511913682491?text=${encodeURIComponent(message)}`;
-                          window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+                          void trackEvent("quote_click", {
+                            product_id: product.id,
+                            product_name: product.name,
+                          });
+                          window.open(
+                            whatsappUrl,
+                            "_blank",
+                            "noopener,noreferrer",
+                          );
                         }}
                       >
                         Solicitar orçamento{" "}
-                        <i className="fa-brands fa-whatsapp" aria-hidden="true" />
+                        <i
+                          className="fa-brands fa-whatsapp"
+                          aria-hidden="true"
+                        />
                       </button>
                     </article>
                   ))}
@@ -761,266 +846,378 @@ export default function App() {
           </section>
         )}
 
-        {activeTab === "qualidade" && (
-          <section className="page-section quality-page">
-            <div className="container">
-              <div className="page-heading">
-                <span className="section-kicker">
-                  Compromisso no relacionamento
-                </span>
-                <h1>Qualidade construída em parceria</h1>
+        {activeTab === "solucoes" && (
+          <section className="page-section solutions-page">
+            <div className="container solutions-container">
+              <header className="solutions-hero">
+                <span className="section-kicker">Atendimento sob medida</span>
+                <h1>
+                  Soluções para <span>o seu negócio</span>
+                </h1>
                 <p>
-                  Há mais de 20 anos, a Speers Foods conecta clientes a marcas e
-                  produtos para o mercado de alimentos.
+                  Conte o que você procura. Nossa equipe comercial ajuda a
+                  encontrar as opções mais adequadas para sua necessidade.
                 </p>
-              </div>
-              <div className="quality-intro">
-                <div className="quality-intro-icon">
-                    👍
+              </header>
+              <div className="customer-form-layout">
+                <div className="customer-form-intro">
+                  <span className="section-kicker">Vamos conversar?</span>
+                  <h2>O que podemos fazer por você?</h2>
+                  <p>
+                    Em poucos passos, você conta o que precisa e inicia uma
+                    conversa diretamente com nossa equipe.
+                  </p>
+                  <div className="customer-steps">
+                    <span>01 · Seu perfil</span>
+                    <span>02 · Sua região</span>
+                    <span>03 · Sua necessidade</span>
+                  </div>
                 </div>
-                <div>
-                  <h2>Relacionamentos de longo prazo</h2>
-                  <p>
-                    Nosso trabalho aproxima clientes, fornecedores e marcas, com
-                    atenção à escolha dos produtos e às necessidades de cada
-                    operação.
-                  </p>
-                </div>
-              </div>
-              <div className="quality-brand-grid">
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/franui-logo.png" alt="Franui" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Franui</h2>
-                  <p>
-                    Conheça as maravilhosas framboesas com diversos sabores no catálogo da Speers Foods, oferecidas pela marca Franui.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("franui")}
+                <form
+                  className="customer-form"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    sendCustomerRequest();
+                  }}
+                >
+                  <label htmlFor="customer-type">
+                    Você compra para qual tipo de estabelecimento?
+                  </label>
+                  <select
+                    id="customer-type"
+                    value={customerType}
+                    onChange={(e) => setCustomerType(e.target.value)}
+                    required
                   >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
+                    {[
+                      "Restaurante",
+                      "Mercado ou minimercado",
+                      "Padaria ou cafeteria",
+                      "Cozinha industrial",
+                      "Grande rede",
+                      "Comércio de bairro",
+                      "Uso pessoal",
+                      "Outro estabelecimento",
+                    ].map((value) => (
+                      <option key={value}>{value}</option>
+                    ))}
+                  </select>
+                  <label htmlFor="customer-region">
+                    Qual é sua cidade ou bairro?
+                  </label>
+                  <input
+                    id="customer-region"
+                    value={customerRegion}
+                    onChange={(e) => setCustomerRegion(e.target.value)}
+                    placeholder="Ex.: São Paulo — Tatuapé"
+                    maxLength={120}
+                    required
+                  />
+                  <label htmlFor="customer-need">O que você precisa?</label>
+                  <textarea
+                    id="customer-need"
+                    value={customerNeed}
+                    onChange={(e) => setCustomerNeed(e.target.value)}
+                    placeholder="Conte quais produtos, quantidades ou frequência de abastecimento procura."
+                    maxLength={1200}
+                    rows={5}
+                    required
+                  />
+                  <button type="submit" className="button button-green">
+                    <i className="fa-brands fa-whatsapp" aria-hidden="true" />{" "}
+                    Solicitar atendimento
                   </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/mccain-logo.png" alt="McCain" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>McCain</h2>
-                  <p>Conheça as batatas mais famosas do mercado oferecidas pela McCain, disponíveis no catálogo da Speers Foods.</p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("mccain")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/golden imex.png" alt="Golden Imex" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Golden Imex</h2>
-                  <p>
-                    Experimente as carnes de qualidade superior oferecidas pela Golden Imex, disponíveis no catálogo da Speers Foods.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("golden")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/grano foods.jpg" alt="Grano Foods" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Grano Foods</h2>
-                  <p>Uma vida mais saudável com os vegetais da Grano Foods, disponíveis no catálogo da Speers Foods.</p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("grano")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img
-                      src="/lar cooperativa agroindustrial.png"
-                      alt="Lar Cooperativa"
-                    />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Lar Cooperativa</h2>
-                  <p>
-                    Frango de qualidade e confiança, oferecido pela Lar Cooperativa, disponível no catálogo da Speers Foods.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("lar cooperativa")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/minerva-foods-logo.jpg" alt="Minerva" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Minerva</h2>
-                  <p>
-                    Carne de qualidade e confiança, oferecida pela Minerva, disponível no catálogo da Speers Foods.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("minerva")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/bimbo-logo.jpg" alt="Bimbo" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Bimbo</h2>
-                  <p>
-                    Pães e produtos de panificação de qualidade, oferecidos pela Bimbo, disponíveis no catálogo da Speers Foods.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("bimbo")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/bmg foods.png" alt="bmg Foods" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Bmg Foods</h2>
-                  <p>
-                    Carne de porco de qualidade, oferecida pela Bmg Foods, disponível no catálogo da Speers Foods.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("bmg foods")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/frooty-logo.png" alt="Frooty" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Frooty</h2>
-                  <p>
-                    Açaí para se refrescar e se deliciar, oferecido pela Frooty, disponível no catálogo da Speers Foods.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("frooty")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/fazenda futuro.png" alt="Fazenda Futuro" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Fazenda Futuro</h2>
-                  <p>
-                    Carnes e frangos de origem vegetal, oferecidos pela Fazenda Futuro, disponíveis no catálogo da Speers Foods.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("fazenda futuro")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-                <article className="quality-brand-card">
-                  <div>
-                    <img src="/forno-de-minas-logo.jpg" alt="Forno de Minas" />
-                  </div>
-                  <span className="quality-label">
-                    Marca presente no catálogo
-                  </span>
-                  <h2>Forno de Minas</h2>
-                  <p>
-                    Gostinho mineiro ? A Forno de Minas oferece produtos tradicionais e saborosos, disponíveis no catálogo da Speers Foods.
-                  </p>
-                  <button
-                    className="text-link"
-                    onClick={() => showBrandProducts("forno de minas")}
-                  >
-                    Ver produtos <i className="fa-solid fa-arrow-right" />
-                  </button>
-                </article>
-              </div>
-              <div className="quality-note">
-                <i className="fa-solid fa-circle-info" />
-                <p>
-                  As informações desta página apresentam o relacionamento
-                  comercial e as marcas do catálogo. Não são declaradas
-                  certificações ou garantias técnicas não confirmadas.
-                </p>
+                  <small>
+                    Você será direcionado ao WhatsApp. O atendimento e a
+                    disponibilidade são confirmados pela equipe comercial.
+                  </small>
+                </form>
               </div>
             </div>
           </section>
         )}
       </main>
 
+      {activeTab === "avaliacoes" && (
+        <section
+          className="page-section customer-review-section review-page"
+          aria-labelledby="review-heading"
+        >
+          <div className="container review-page-container">
+            <header className="review-page-hero">
+              <span className="section-kicker">Sua voz faz a diferença</span>
+              <h1 id="review-heading">
+                Avalie-nos,<span></span> sua opinião nos faz evoluir.
+              </h1>
+              <p>
+                Na Speers Foods, cada experiência importa. Sua avaliação nos
+                ajuda a identificar o que funciona bem, entender o que precisa
+                melhorar e tornar sua jornada cada vez mais simples, segura e
+                agradável.
+              </p>
+            </header>
+            <div
+              className="review-benefits"
+              aria-label="Por que sua avaliação é importante"
+            >
+              <article>
+                
+                <h2>Queremos ouvir você</h2>
+                <p>
+                  Seu ponto de vista nos mostra como é navegar pelo site e
+                  entrar em contato com nossa equipe.
+                </p>
+              </article>
+              <article>
+                
+                <h2>Melhoria contínua</h2>
+                <p>
+                  Usamos as avaliações para orientar melhorias na experiência
+                  digital e nos processos de atendimento.
+                </p>
+              </article>
+              <article>
+                
+                <h2>Mais confiança e qualidade</h2>
+                <p>
+                  Nosso compromisso é evoluir para oferecer informações claras e
+                  uma experiência de compra mais confortável.
+                </p>
+              </article>
+            </div>
+            <div className="review-form-card">
+              <div className="review-form-intro">
+                <span className="section-kicker">Leva menos de um minuto</span>
+                <h2>Como foi sua experiência?</h2>
+                <p>
+                  Avalie de 1 a 5 estrelas. Suas respostas nos ajudam a definir
+                  nossas próximas melhorias.
+                </p>
+              </div>
+              <div className="review-controls">
+                <div className="star-rating">
+                  <span>Facilidade de uso do site</span>
+                  <div role="group" aria-label="Nota de facilidade de uso">
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <button
+                        type="button"
+                        key={n}
+                        onClick={() => setSiteRating(n)}
+                        aria-label={`${n} estrela${n > 1 ? "s" : ""} para o site`}
+                        aria-pressed={siteRating === n}
+                        className={n <= siteRating ? "selected" : ""}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="star-rating">
+                  <span>Você se sentiu confortável para comprar conosco?</span>
+                  <div role="group" aria-label="Nota de confiança para comprar">
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <button
+                        type="button"
+                        key={n}
+                        onClick={() => setPurchaseRating(n)}
+                        aria-label={`${n} estrela${n > 1 ? "s" : ""} para confiança`}
+                        aria-pressed={purchaseRating === n}
+                        className={n <= purchaseRating ? "selected" : ""}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  className="review-submit"
+                  type="button"
+                  disabled={
+                    !siteRating || !purchaseRating || !analyticsConfigured
+                  }
+                  onClick={() => void sendReview()}
+                >
+                  Enviar avaliação
+                </button>
+                <small role="status">
+                  {reviewStatus ||
+                    (!analyticsConfigured
+                      ? "Para enviar avaliações, é necessário configurar o banco de dados."
+                      : "Sua avaliação é anônima e não exige dados pessoais.")}
+                </small>
+              </div>
+            </div>
+            <p className="review-page-closing">
+              Obrigado por fazer parte da nossa evolução. Cada estrela é uma
+              oportunidade de melhorar para você.
+            </p>
+          </div>
+        </section>
+      )}
       <footer className="site-footer">
-        <div className="container footer-main">
+        <div className="container footer-main footer-main-expanded">
           <div className="footer-brand">
             <img src="/speers-logo.png" alt="Speers Foods" />
             <p>Distribuição de alimentos congelados e perecíveis.</p>
           </div>
           <div className="footer-nav">
-            <span>Explore</span>
+            <span>Navegue</span>
             {(Object.keys(tabLabels) as Tab[]).map((tab) => (
               <button key={tab} onClick={() => goToTab(tab)}>
                 {tabLabels[tab]}
               </button>
             ))}
           </div>
+          <div className="footer-nav">
+            <span>Conheça mais</span>
+            <button onClick={() => goToTab("speers")}>Nossa história</button>
+            <button onClick={() => goToTab("speers")}>Marcas parceiras</button>
+            <button onClick={() => goToTab("produtos")}>
+              Catálogo de produtos
+            </button>
+            <button onClick={() => goToTab("solucoes")}>
+              Atendimento comercial
+            </button>
+            <button onClick={() => goToTab("fornecedores")}>
+              Faça parte da equipe
+            </button>
+            <button onClick={() => goToTab("avaliacoes")}>
+              Compartilhe sua avaliação
+            </button>
+          </div>
+          <div className="footer-contact">
+            <span>Contato e localização</span>
+            <p>
+              <i className="fa-solid fa-location-dot" aria-hidden="true" /> São
+              Paulo — SP · R. John Speers, 270 - Fazenda Caguaçu, São Paulo - SP, 08265-040
+            </p>
+            <p>
+              <i className="fa-solid fa-phone" aria-hidden="true" />{" "}
+              <a href="tel:+551125237171">(11) 2523-7171</a>
+            </p>
+            <p>
+              <i className="fa-brands fa-whatsapp" aria-hidden="true" />{" "}
+              <a
+                href="https://wa.me/5511913682491"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Atendimento pelo WhatsApp
+              </a>
+            </p>
+          </div>
         </div>
         <div className="footer-bottom">
           <div className="container">
             <span>© {new Date().getFullYear()} Speers Foods</span>
-            <span>Conteúdo institucional e catálogo de produtos.</span>
+            <button className="admin-link" onClick={() => setAdminOpen(true)}>
+              Área administrativa
+            </button>
           </div>
         </div>
       </footer>
+      {adminOpen && (
+        <div
+          className="admin-overlay"
+          role="presentation"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) setAdminOpen(false);
+          }}
+        >
+          <section
+            className="admin-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Painel administrativo"
+          >
+            <button
+              className="admin-close"
+              onClick={() => setAdminOpen(false)}
+              aria-label="Fechar"
+            >
+              ×
+            </button>
+            <h2>Painel administrativo</h2>
+            {!analyticsConfigured ? (
+              <p>
+                Configure o Supabase conforme o arquivo INSTRUCOES.md para
+                ativar as métricas.
+              </p>
+            ) : !adminToken ? (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  void loginAdmin();
+                }}
+              >
+                <label>
+                  E-mail de administrador
+                  <input
+                    type="email"
+                    required
+                    value={adminEmail}
+                    onChange={(e) => setAdminEmail(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Senha
+                  <input
+                    type="password"
+                    required
+                    value={adminPassword}
+                    onChange={(e) => setAdminPassword(e.target.value)}
+                  />
+                </label>
+                <button type="submit" className="button button-green">
+                  Entrar
+                </button>
+              </form>
+            ) : (
+              <>
+                <button
+                  className="button button-green"
+                  onClick={() => void loadAdmin(adminToken)}
+                >
+                  Atualizar dados
+                </button>
+                {adminStats && (
+                  <div className="admin-stats">
+                    <div>
+                      <strong>{adminStats.visits}</strong>
+                      <span>Visitas registradas</span>
+                    </div>
+                    <div>
+                      <strong>{adminStats.unique_sessions}</strong>
+                      <span>Sessões distintas</span>
+                    </div>
+                    <div>
+                      <strong>{adminStats.quote_clicks}</strong>
+                      <span>Cliques em solicitar orçamento</span>
+                    </div>
+                    <div>
+                      <strong>{adminStats.review_count}</strong>
+                      <span>Avaliações recebidas</span>
+                    </div>
+                    <div>
+                      <strong>{adminStats.site_avg ?? "—"}</strong>
+                      <span>Média do site (1–5)</span>
+                    </div>
+                    <div>
+                      <strong>{adminStats.purchase_avg ?? "—"}</strong>
+                      <span>Média da confiança (1–5)</span>
+                    </div>
+                  </div>
+                )}
+                <p>
+                  As métricas representam eventos registrados desde a ativação
+                  do banco. Não identificam pessoas individualmente.
+                </p>
+              </>
+            )}
+            {adminError && <p role="alert">{adminError}</p>}
+          </section>
+        </div>
+      )}
     </div>
   );
 }
