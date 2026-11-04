@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import productsData from "./data/products.json";
-import AdminDashboard from "./AdminDashboard";
+import productsData from "../data/products.json";
+import AdminDashboard from "./components/AdminDashboard";
 import {
   trackEvent,
   submitReview,
@@ -8,7 +8,7 @@ import {
   signInAdmin,
   analyticsConfigured,
   type AdminStats,
-} from "./analytics";
+} from "../analytics";
 
 type Product = {
   id: string;

@@ -1,14 +1,6 @@
-# Dependências
 node_modules/
-
-# Compilação
 dist/
-
-# Variáveis de ambiente
 .env
 .env.local
 .env.*.local
-
-# Arquivos temporários
-.vite/
-.vite-temp/
+*.tsbuildinfo

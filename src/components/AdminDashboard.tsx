@@ -1,4 +1,4 @@
-import type { AdminStats } from "./analytics";
+import type { AdminStats } from "../../analytics";
 
 type Props = {
   stats: AdminStats | null;
