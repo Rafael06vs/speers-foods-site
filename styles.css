@@ -106,13 +106,15 @@ img {
   margin-right: 6px;
 }
 
+/* ===== MENU FIXO AO ROLAR A PÁGINA ===== */
+
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 20;
-  background: rgba(255, 255, 255, 0.97);
-  border-bottom: 1px solid rgba(6, 63, 47, 0.08);
-  backdrop-filter: blur(14px);
+  z-index: 1000;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .header-inner {
@@ -4963,4 +4965,391 @@ section {
 .community-section .section-kicker {
   display: block;
   text-align: center;
+}
+
+/* ==========================================
+   SPEERS FOODS — LAYOUT AMPLO E RESPONSIVO
+   ========================================== */
+
+/* Largura total sem faixas laterais */
+html,
+body,
+#root,
+.site-shell {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: clip;
+}
+
+/* Conteúdo amplo */
+.container {
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 3vw, 64px);
+}
+
+/* Tipografia geral */
+body {
+  font-size: clamp(15px, 0.95vw, 19px);
+}
+
+.page-heading h1,
+.solutions-hero h1,
+.review-page-hero h1,
+.careers-content h1 {
+  font-size: clamp(38px, 3.5vw, 76px);
+  line-height: 1.08;
+}
+
+.section-heading h2,
+.about-numbers-copy h2 {
+  font-size: clamp(36px, 3.2vw, 68px);
+  line-height: 1.1;
+}
+
+.page-heading p,
+.section-heading p,
+.solutions-hero p,
+.review-page-hero p,
+.careers-content p {
+  font-size: clamp(16px, 1.1vw, 22px);
+  line-height: 1.65;
+}
+
+/* Página inicial */
+.hero-layout {
+  width: 100%;
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(30px, 4vw, 90px);
+}
+
+.hero-copy,
+.hero-visual {
+  min-width: 0;
+}
+
+.hero-copy h1 {
+  font-size: clamp(42px, 3.6vw, 82px);
+  line-height: 1.07;
+}
+
+.hero-copy p {
+  font-size: clamp(17px, 1.15vw, 23px);
+  line-height: 1.6;
+}
+
+.hero-visual img {
+  width: 100%;
+  height: clamp(380px, 34vw, 680px);
+  object-fit: cover;
+}
+
+/* Nossa trajetória */
+.about-numbers {
+  width: 100%;
+  max-width: none;
+}
+
+.about-numbers-grid {
+  width: 100%;
+  max-width: none;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+}
+
+.about-numbers-copy p {
+  font-size: clamp(16px, 1.05vw, 21px);
+}
+
+.about-stat strong {
+  font-size: clamp(22px, 1.6vw, 34px);
+}
+
+/* Marcas e compromisso */
+.community-grid,
+.featured-brands {
+  width: 100%;
+  max-width: none;
+}
+
+.community-card-content h3 {
+  font-size: clamp(22px, 1.5vw, 32px);
+}
+
+.community-card-content p {
+  font-size: clamp(16px, 1vw, 20px);
+}
+
+/* Trabalhe conosco */
+.careers-page {
+  width: 100%;
+  max-width: none;
+  min-height: 650px;
+  display: grid;
+  grid-template-columns: 54% 46%;
+  align-items: stretch;
+}
+
+.careers-visual {
+  width: 100%;
+  min-height: 650px;
+}
+
+.careers-content {
+  width: 100%;
+  max-width: none;
+  padding: clamp(36px, 4vw, 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.careers-content p {
+  max-width: 850px;
+}
+
+/* Catálogo */
+.page-section .container {
+  max-width: none;
+}
+
+.catalog-toolbar {
+  width: 100%;
+  max-width: none;
+}
+
+.product-grid {
+  width: 100%;
+  max-width: none;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(16px, 1.4vw, 28px);
+}
+
+.product-card {
+  min-width: 0;
+}
+
+.product-card-art {
+  min-height: clamp(190px, 15vw, 290px);
+}
+
+.product-photo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-card-content h2 {
+  font-size: clamp(16px, 1.05vw, 22px);
+}
+
+/* Soluções para seu negócio */
+.solutions-container,
+.review-page-container {
+  width: 100%;
+  max-width: none;
+}
+
+.customer-form-layout {
+  width: 100%;
+  max-width: 1500px;
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(30px, 5vw, 100px);
+}
+
+.customer-form {
+  width: 100%;
+  max-width: none;
+}
+
+/* Avaliações */
+.review-benefits,
+.review-form-card {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+}
+
+.review-benefits {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.review-benefits article {
+  padding: clamp(24px, 2vw, 42px);
+}
+
+.review-benefits h2 {
+  font-size: clamp(20px, 1.4vw, 28px);
+}
+
+/* Rodapé */
+.footer-main {
+  width: 100%;
+  max-width: none;
+}
+
+/* ==========================================
+   TABLET
+   ========================================== */
+
+@media (max-width: 1100px) {
+  .hero-layout,
+  .about-numbers-grid,
+  .customer-form-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .careers-page {
+    grid-template-columns: 50% 50%;
+  }
+
+  .careers-visual {
+    min-height: 520px;
+  }
+}
+
+/* ==========================================
+   CELULAR
+   ========================================== */
+
+@media (max-width: 700px) {
+  .container {
+    padding-inline: 16px;
+  }
+
+  .hero-layout,
+  .about-numbers-grid,
+  .customer-form-layout,
+  .careers-page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+
+  .hero-visual img {
+    height: 320px;
+  }
+
+  .careers-visual {
+    min-height: 340px;
+  }
+
+  .careers-content {
+    padding: 32px 20px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .product-card-art {
+    min-height: 160px;
+  }
+
+  .product-card-content h2 {
+    font-size: 15px;
+  }
+
+  .review-benefits {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .review-form-card {
+    max-width: none;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 380px) {
+  .product-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+
+
+/* =====================================
+   AJUSTE DE ESCALA - SPEERS FOODS
+   ===================================== */
+
+/* Reduzir altura da seção inicial */
+.hero {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+/* Reduzir título principal */
+.hero-copy h1 {
+  font-size: clamp(34px, 2.6vw, 52px);
+  line-height: 1.1;
+}
+
+/* Reduzir descrição */
+.hero-copy p {
+  font-size: clamp(15px, 0.9vw, 18px);
+  line-height: 1.5;
+}
+
+/* Reduzir imagem */
+.hero-visual img {
+  height: clamp(320px, 26vw, 480px);
+  object-fit: cover;
+}
+
+/* Reduzir espaçamento entre texto e imagem */
+.hero-layout {
+  gap: clamp(24px, 2.5vw, 48px);
+}
+
+/* Ajustar textos menores */
+.hero-copy .eyebrow,
+.hero-copy small {
+  font-size: 12px;
+}
+
+/* Manter proporções no celular */
+@media (max-width: 700px) {
+  .hero {
+    padding: 28px 0;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(30px, 8vw, 40px);
+  }
+
+  .hero-visual img {
+    height: 280px;
+  }
+}
+
+/* ===== CABEÇALHO FIXO AO ROLAR ===== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }

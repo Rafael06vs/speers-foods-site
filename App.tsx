@@ -316,25 +316,6 @@ export default function App() {
           </div>
         </div>
       )}
-      <div className="topbar">
-        <div className="container topbar-inner">
-          <p className="topbar-tag">
-            <span className="topbar-mark">✳</span> Distribuição de alimentos
-            congelados e perecíveis
-          </p>
-          <div className="topbar-benefits">
-            <span>
-              <i className="fa-solid fa-truck-fast" /> Logística eficiente
-            </span>
-            <span>
-              <i className="fa-solid fa-shield-halved" /> Qualidade e segurança
-            </span>
-            <span>
-              <i className="fa-solid fa-handshake" /> Parcerias de longo prazo
-            </span>
-          </div>
-        </div>
-      </div>
 
       <header className="site-header">
         <div className="container header-inner">
