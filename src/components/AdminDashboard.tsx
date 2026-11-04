@@ -1,4 +1,5 @@
-import type { AdminStats } from "../../analytics";
+import { useEffect, useState } from "react";
+import { fetchQuotes, type QuoteRecord, type AdminStats } from "../../analytics.ts";
 
 type Props = {
   stats: AdminStats | null;
@@ -7,12 +8,23 @@ type Props = {
   onRefresh: () => void;
   onClose: () => void;
   onLogout: () => void;
+  token: string;
 };
 
 const format = (n: number) => new Intl.NumberFormat("pt-BR").format(n);
 const rating = (n: number | null) => n == null ? "—" : Number(n).toLocaleString("pt-BR", { maximumFractionDigits: 2 });
 
-export default function AdminDashboard({ stats, error, loading, onRefresh, onClose, onLogout }: Props) {
+export default function AdminDashboard({ stats, error, loading, onRefresh, onClose, onLogout, token }: Props) {
+  const [quotes, setQuotes] = useState<QuoteRecord[]>([]);
+  const [quotesError, setQuotesError] = useState("");
+  const [quotesLoading, setQuotesLoading] = useState(false);
+  const loadQuotes = async () => {
+    setQuotesLoading(true);
+    try { setQuotes(await fetchQuotes(token)); setQuotesError(""); }
+    catch { setQuotesError("Não foi possível carregar as cotações. Confira a configuração SQL e suas permissões."); }
+    finally { setQuotesLoading(false); }
+  };
+  useEffect(() => { void loadQuotes(); }, [token]);
   const cards = stats ? [
     { label: "Visitas registradas", value: stats.visits, symbol: "◉", hint: "Carregamentos do site" },
     { label: "Sessões distintas", value: stats.unique_sessions, symbol: "♧", hint: "Sessões de navegação" },
@@ -33,12 +45,25 @@ export default function AdminDashboard({ stats, error, loading, onRefresh, onClo
         <div className="management-sidebar-bottom"><span className="management-status-dot" /> Supabase conectado</div>
       </aside>
       <div className="management-content">
-        <header className="management-topbar"><div><span className="management-eyebrow">PAINEL ADMINISTRATIVO</span><h1>Visão geral da operação digital</h1><p>Indicadores de desempenho do site Speers Foods</p></div><div className="management-actions"><button type="button" onClick={onRefresh} disabled={loading} className="management-refresh">{loading ? "Atualizando..." : "↻ Atualizar dados"}</button><button type="button" onClick={onLogout} className="management-ghost">Sair da conta</button><button type="button" onClick={onClose} className="management-close" aria-label="Fechar painel">✕</button></div></header>
+        <header className="management-topbar"><div><span className="management-eyebrow">PAINEL ADMINISTRATIVO</span><h1>Visão geral da operação digital</h1><p>Indicadores de desempenho do site Speers Foods</p></div><div className="management-actions"><button type="button" onClick={() => { onRefresh(); void loadQuotes(); }} disabled={loading || quotesLoading} className="management-refresh">{loading ? "Atualizando..." : "↻ Atualizar dados"}</button><button type="button" onClick={onLogout} className="management-ghost">Sair da conta</button><button type="button" onClick={onClose} className="management-close" aria-label="Fechar painel">✕</button></div></header>
         {error && <div className="management-error" role="alert">{error}</div>}
         {!stats ? <div className="management-empty">{loading ? "Carregando indicadores..." : "Não foi possível carregar os indicadores. Clique em Atualizar dados."}</div> : <>
           <section className="management-kpis" aria-label="Indicadores principais">{cards.map(card => <article className="management-kpi" key={card.label}><div className="management-kpi-top"><span>{card.label}</span><span className="management-kpi-symbol">{card.symbol}</span></div><strong>{format(card.value)}</strong><small>{card.hint}</small></article>)}</section>
           <div className="management-panels"><section className="management-card management-chart"><div className="management-card-heading"><div><span className="management-eyebrow">ENGAJAMENTO</span><h2>Atividade do site</h2></div><span className="management-pill">Total acumulado</span></div><div className="management-bar-chart" role="img" aria-label="Comparação dos totais de visitas, sessões, orçamentos e avaliações">{cards.map(card => <div className="management-bar-item" key={card.label}><div className="management-bar-value">{format(card.value)}</div><div className="management-bar-track"><div className="management-bar-fill" style={{height:`${Math.max(card.value ? 5 : 0, card.value / max * 100)}%`}} /></div><span>{card.label.replace(" registradas", "").replace(" distintas", "").replace("Cliques em ", "").replace(" recebidas", "")}</span></div>)}</div><p className="management-note">Comparação entre indicadores de naturezas diferentes; não representa evolução no tempo.</p></section>
           <section className="management-card management-ratings"><div className="management-card-heading"><div><span className="management-eyebrow">SATISFAÇÃO</span><h2>Experiência dos clientes</h2></div><span className="management-pill">Escala 1–5</span></div>{scores.map(score => <div className="management-rating-row" key={score.label}><div className="management-rating-title"><span>{score.label}</span><strong>{rating(score.value)} <small>/ 5</small></strong></div><div className="management-rating-track"><div style={{width:`${Math.max(0,Math.min(100,(Number(score.value)||0)*20))}%`}} /></div><span className="management-stars" aria-label={`${rating(score.value)} de 5 estrelas`}>★★★★★</span></div>)}<div className="management-rating-footer"><strong>{format(stats.review_count)}</strong><span>avaliações recebidas desde o início da coleta</span></div></section></div>
+          <section className="management-card quote-admin-section">
+            <div className="management-card-heading"><div><span className="management-eyebrow">COMERCIAL</span><h2>Produtos solicitados para orçamento</h2></div><span className="management-pill">{quotes.length} solicitações recentes</span></div>
+            {quotesError && <p role="alert" className="management-error">{quotesError}</p>}
+            {quotesLoading && <p>Carregando cotações...</p>}
+            {!quotesLoading && quotes.length === 0 && !quotesError && <p>Nenhuma cotação registrada ainda.</p>}
+            <div className="quote-admin-list">{quotes.map(q => <article className="quote-admin-card" key={q.reference}>
+              <div className="quote-admin-title"><strong>#{q.reference}</strong><span>{new Date(q.created_at).toLocaleString("pt-BR")}</span></div>
+              <p><strong>{q.company}</strong> · {q.contact} · {q.phone}</p>
+              <ul>{q.items.map((item, index) => <li key={`${q.reference}-${item.id}-${index}`}><strong>{item.quantity} {item.unit}</strong> — {item.name} <small>(Cód. {item.id})</small></li>)}</ul>
+              {q.notes && <p><strong>Observações:</strong> {q.notes}</p>}
+              <small>Status: {q.status} · Registrado após o clique em Enviar orçamento; o envio pelo WhatsApp não pode ser confirmado automaticamente.</small>
+            </article>)}</div>
+          </section>
           <section className="management-bottom"><div><strong>Como interpretar os dados</strong><p>As visitas representam eventos registrados, não pessoas únicas. Sessões distintas não equivalem necessariamente a visitantes únicos. Cliques em orçamento não significam vendas concluídas.</p></div><div className="management-data-label">Fonte: Supabase · Dados acumulados</div></section>
         </>}
       </div>

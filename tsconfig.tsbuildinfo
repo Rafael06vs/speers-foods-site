@@ -1,1 +1,1 @@
-{"root":["./analytics.ts","./vite.config.ts","./main.tsx","./src/app.tsx","./src/components/admindashboard.tsx"],"version":"5.9.3"}
+{"root":["./analytics.ts","./vite-env.d.ts","./vite.config.ts","./main.tsx","./src/app.tsx","./src/components/admindashboard.tsx","./src/components/quotecart.tsx"],"version":"5.9.3"}

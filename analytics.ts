@@ -43,3 +43,24 @@ export async function signInAdmin(email: string, password: string): Promise<stri
 export async function fetchAdminStats(token: string): Promise<AdminStats> {
   return request("rpc/speers_admin_stats", { method: "POST", body: "{}" }, token);
 }
+
+export type QuoteInput = {
+  company: string; contact: string; phone: string; notes: string;
+  items: { id: string; name: string; brand: string; unit: string; quantity: number }[];
+};
+export type QuoteRecord = QuoteInput & { reference: string; created_at: string; status: string };
+export async function submitQuote(quote: QuoteInput): Promise<string> {
+  if (!analyticsConfigured) throw new Error("O serviço de orçamento ainda não está configurado. Contate a Speers Foods.");
+  if (!quote.company || !quote.contact || !quote.phone || quote.items.length === 0) throw new Error("Preencha seus dados e adicione produtos.");
+  const result = await request("rpc/speers_create_quote", {
+    method: "POST", body: JSON.stringify({ p_company: quote.company, p_contact: quote.contact,
+      p_phone: quote.phone, p_notes: quote.notes, p_items: quote.items })
+  });
+  if (typeof result !== "string" || !result) throw new Error("Não foi possível confirmar o registro da cotação.");
+  void trackEvent("quote_click", { source: "cart", reference: result });
+  return result;
+}
+export async function fetchQuotes(token: string): Promise<QuoteRecord[]> {
+  const result = await request("rpc/speers_list_quotes", { method: "POST", body: "{}" }, token);
+  return Array.isArray(result) ? result : [];
+}

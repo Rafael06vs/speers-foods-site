@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import productsData from "../data/products.json";
 import AdminDashboard from "./components/AdminDashboard";
+import QuoteCart, { type CartItem } from "./components/QuoteCart.tsx";
 import {
   trackEvent,
   submitReview,
   fetchAdminStats,
   signInAdmin,
   analyticsConfigured,
+  submitQuote,
   type AdminStats,
-} from "../analytics";
+} from "../analytics.ts";
 
 type Product = {
   id: string;
@@ -110,6 +112,29 @@ export default function App() {
   const [adminStats, setAdminStats] = useState<AdminStats | null>(null);
   const [adminError, setAdminError] = useState("");
   const [adminLoading, setAdminLoading] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cart, setCart] = useState<Record<string, number>>(() => {
+    try {
+      const raw = JSON.parse(localStorage.getItem("speers_quote_cart_v1") || "{}");
+      if (!raw || typeof raw !== "object" || Array.isArray(raw)) return {};
+      return Object.fromEntries(Object.entries(raw).filter(([id, qty]) =>
+        PRODUCTS.some(p => p.id === id) && typeof qty === "number" && Number.isInteger(qty) && qty > 0 && qty <= 9999
+      )) as Record<string, number>;
+    } catch { return {}; }
+  });
+  useEffect(() => {
+    try { localStorage.setItem("speers_quote_cart_v1", JSON.stringify(cart)); } catch { /* storage indisponível */ }
+  }, [cart]);
+  const cartItems: CartItem[] = PRODUCTS.filter(p => cart[p.id] > 0).map(p => ({
+    id: p.id, name: p.name, brand: p.brand, unit: p.unit, image: p.image, quantity: cart[p.id]
+  }));
+  const cartCount = cartItems.reduce((total, p) => total + p.quantity, 0);
+  const setQuantity = (id: string, quantity: number) => setCart(previous => {
+    const next = { ...previous };
+    if (quantity <= 0) delete next[id];
+    else next[id] = Math.min(9999, Math.max(1, Math.floor(quantity)));
+    return next;
+  });
   const itemsPerPage = 24;
 
   // Abertura exibida apenas ao carregar a página, nunca ao mudar de aba.
@@ -354,6 +379,10 @@ export default function App() {
             ))}
           </nav>
           <div className="header-actions">
+            <button className="quote-cart-trigger" type="button" onClick={() => setCartOpen(true)} aria-label={`Abrir carrinho de orçamento: ${cartCount} unidades`}>
+              <i className="fa-solid fa-cart-shopping" aria-hidden="true" />
+              <span>Carrinho</span><strong>{cartCount}</strong>
+            </button>
             <button
               className="search-shortcut"
               aria-label="Pesquisar produtos"
@@ -793,36 +822,11 @@ export default function App() {
                       <button
                         className="product-action"
                         type="button"
-                        aria-label={`Solicitar orçamento pelo WhatsApp: ${product.name}`}
-                        onClick={() => {
-                          const message = [
-                            "Olá! Gostaria de solicitar um orçamento para o seguinte produto:",
-                            "",
-                            `Produto: ${product.name}`,
-                            `Código: ${product.id}`,
-                            `Marca: ${product.brand}`,
-                            `Unidade: ${product.unit}`,
-                            "",
-                            "Poderiam informar o preço, a disponibilidade e as condições comerciais?",
-                          ].join("\n");
-
-                          const whatsappUrl = `https://wa.me/5511913682491?text=${encodeURIComponent(message)}`;
-                          void trackEvent("quote_click", {
-                            product_id: product.id,
-                            product_name: product.name,
-                          });
-                          window.open(
-                            whatsappUrl,
-                            "_blank",
-                            "noopener,noreferrer",
-                          );
-                        }}
+                        aria-label={`Adicionar ${product.name} ao carrinho de orçamento`}
+                        onClick={() => setQuantity(product.id, (cart[product.id] || 0) + 1)}
                       >
-                        Solicitar orçamento{" "}
-                        <i
-                          className="fa-brands fa-whatsapp"
-                          aria-hidden="true"
-                        />
+                        <i className="fa-solid fa-cart-plus" aria-hidden="true" />
+                        Adicionar ao carrinho {cart[product.id] ? `(${cart[product.id]})` : ""}
                       </button>
                     </article>
                   ))}
@@ -1140,9 +1144,13 @@ export default function App() {
           </div>
         </div>
       </footer>
+      <QuoteCart open={cartOpen} onClose={() => setCartOpen(false)} items={cartItems}
+        onQuantityChange={setQuantity} onClear={() => setCart({})}
+        onSubmit={submitQuote} />
       {adminOpen &&
         (adminToken ? (
           <AdminDashboard
+            token={adminToken}
             stats={adminStats}
             error={adminError}
             loading={adminLoading}
