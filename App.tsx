@@ -1,7 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import productsData from "./data/products.json";
 import AdminDashboard from "./AdminDashboard";
-import { trackEvent, submitReview, fetchAdminStats, signInAdmin, analyticsConfigured, type AdminStats } from "./analytics";
+import {
+  trackEvent,
+  submitReview,
+  fetchAdminStats,
+  signInAdmin,
+  analyticsConfigured,
+  type AdminStats,
+} from "./analytics";
 
 type Product = {
   id: string;
@@ -82,6 +89,8 @@ const tabLabels: Record<Tab, string> = {
 };
 
 export default function App() {
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [welcomeLeaving, setWelcomeLeaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("speers");
   const [search, setSearch] = useState("");
   const [brandFilter, setBrandFilter] = useState("ALL");
@@ -104,29 +113,64 @@ export default function App() {
   const [adminLoading, setAdminLoading] = useState(false);
   const itemsPerPage = 24;
 
-  useEffect(() => { void trackEvent("visit"); }, []);
+  // Abertura exibida apenas ao carregar a página, nunca ao mudar de aba.
+  useEffect(() => {
+    const fadeTimer = window.setTimeout(() => setWelcomeLeaving(true), 2700);
+    const removeTimer = window.setTimeout(() => setShowWelcome(false), 3300);
+    return () => {
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(removeTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    void trackEvent("visit");
+  }, []);
   const sendCustomerRequest = () => {
-    void trackEvent("contact_request", { source: "solucoes", customer_type: customerType });
+    void trackEvent("contact_request", {
+      source: "solucoes",
+      customer_type: customerType,
+    });
     const message = `Olá! Gostaria de atendimento comercial da Speers Foods.\nTipo de cliente: ${customerType}\nCidade ou bairro: ${customerRegion.trim()}\nO que preciso: ${customerNeed.trim()}`;
-    window.open(`https://wa.me/5511913682491?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    window.open(
+      `https://wa.me/5511913682491?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
   const sendReview = async () => {
     setReviewStatus("Enviando...");
     try {
       await submitReview(siteRating, purchaseRating);
       setReviewStatus("Obrigado! Sua avaliação foi registrada.");
-      setSiteRating(0); setPurchaseRating(0);
-    } catch { setReviewStatus("Não foi possível registrar. Tente novamente mais tarde."); }
+      setSiteRating(0);
+      setPurchaseRating(0);
+    } catch {
+      setReviewStatus(
+        "Não foi possível registrar. Tente novamente mais tarde.",
+      );
+    }
   };
   const loadAdmin = async (token: string) => {
     setAdminLoading(true);
-    try { setAdminStats(await fetchAdminStats(token)); setAdminError(""); }
-    catch { setAdminError("Acesso negado ou erro ao carregar os dados."); }
-    finally { setAdminLoading(false); }
+    try {
+      setAdminStats(await fetchAdminStats(token));
+      setAdminError("");
+    } catch {
+      setAdminError("Acesso negado ou erro ao carregar os dados.");
+    } finally {
+      setAdminLoading(false);
+    }
   };
   const loginAdmin = async () => {
-    try { const token = await signInAdmin(adminEmail, adminPassword); setAdminToken(token); setAdminPassword(""); await loadAdmin(token); }
-    catch { setAdminError("Não foi possível entrar. Confira o usuário e a senha."); }
+    try {
+      const token = await signInAdmin(adminEmail, adminPassword);
+      setAdminToken(token);
+      setAdminPassword("");
+      await loadAdmin(token);
+    } catch {
+      setAdminError("Não foi possível entrar. Confira o usuário e a senha.");
+    }
   };
 
   const suppliers = useMemo(() => {
@@ -190,24 +234,24 @@ export default function App() {
     });
 
     return result.sort((a, b) => {
-  if (sortOrder === "code") {
-    return String(a.id).localeCompare(String(b.id), "pt-BR", {
-      numeric: true,
-    });
-  }
+      if (sortOrder === "code") {
+        return String(a.id).localeCompare(String(b.id), "pt-BR", {
+          numeric: true,
+        });
+      }
 
-  if (sortOrder === "brand") {
-    return a.brand.localeCompare(b.brand, "pt-BR", {
-      sensitivity: "base",
-    });
-  }
+      if (sortOrder === "brand") {
+        return a.brand.localeCompare(b.brand, "pt-BR", {
+          sensitivity: "base",
+        });
+      }
 
-  // Ordenação alfabética pelo nome do produto
-  return a.name.trim().localeCompare(b.name.trim(), "pt-BR", {
-    sensitivity: "base",
-    ignorePunctuation: true,
-  });
-});
+      // Ordenação alfabética pelo nome do produto
+      return a.name.trim().localeCompare(b.name.trim(), "pt-BR", {
+        sensitivity: "base",
+        ignorePunctuation: true,
+      });
+    });
   }, [search, brandFilter, sortOrder]);
 
   const totalPages = Math.max(
@@ -244,6 +288,34 @@ export default function App() {
 
   return (
     <div className="site-shell">
+      {showWelcome && (
+        <div
+          className={`speers-welcome ${welcomeLeaving ? "speers-welcome--leaving" : ""}`}
+          role="status"
+          aria-label="Bem-vindo à Speers Foods"
+          aria-live="polite"
+        >
+          <div
+            className="speers-welcome__glow speers-welcome__glow--one"
+            aria-hidden="true"
+          />
+          <div
+            className="speers-welcome__glow speers-welcome__glow--two"
+            aria-hidden="true"
+          />
+          <div className="speers-welcome__content">
+            <p className="speers-welcome__message">
+              Bem-vindo à sua melhor escolha
+            </p>
+            <img
+              className="speers-welcome__logo"
+              src="/speers-logo.png"
+              alt="Speers Foods"
+            />
+            <span className="speers-welcome__line" aria-hidden="true" />
+          </div>
+        </div>
+      )}
       <div className="topbar">
         <div className="container topbar-inner">
           <p className="topbar-tag">
@@ -302,45 +374,51 @@ export default function App() {
               </button>
             ))}
           </nav>
-         <div className="header-actions">
-  <button
-    className="search-shortcut"
-    aria-label="Pesquisar produtos"
-    onClick={() => goToTab("produtos")}
-  >
-    <i className="fa-solid fa-magnifying-glass" />
-  </button>
+          <div className="header-actions">
+            <button
+              className="search-shortcut"
+              aria-label="Pesquisar produtos"
+              onClick={() => goToTab("produtos")}
+            >
+              <i className="fa-solid fa-magnifying-glass" />
+            </button>
 
-  <a
-  className="instagram-header-button"
-  href="https://www.instagram.com/speersfoods/"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Instagram da Speers Foods"
-  title="Siga a Speers Foods no Instagram"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="30"
-    height="30"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <rect x="2" y="2" width="20" height="20" rx="5" />
-    <circle cx="12" cy="12" r="4" />
-    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-  </svg>
-</a>
+            <a
+              className="instagram-header-button"
+              href="https://www.instagram.com/speersfoods/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram da Speers Foods"
+              title="Siga a Speers Foods no Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle
+                  cx="17.5"
+                  cy="6.5"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            </a>
 
-  <a className="button button-green" href="tel:+551125237171">
-    Fale conosco
-  </a>
-</div>
+            <a className="button button-green" href="tel:+551125237171">
+              Fale conosco
+            </a>
+          </div>
         </div>
       </header>
 
@@ -455,7 +533,7 @@ export default function App() {
                       <i className="fa-solid fa-users" />
                     </span>
                     <div>
-                      <strong>+ de 2.500 clientes</strong>
+                      <strong>+ de 3.000 clientes</strong>
                       <span>Relacionamentos que fazem a diferença</span>
                     </div>
                   </div>
@@ -700,22 +778,22 @@ export default function App() {
                       key={`${product.id}-${product.name}`}
                     >
                       <div className="product-card-art">
-  {product.image?.startsWith("/") ? (
-    <img
-      src={product.image}
-      alt={product.name}
-      className="product-photo"
-      loading="lazy"
-    />
-  ) : (
-    <span className="product-art-icon">
-      <i className="fa-solid fa-box-open" />
-    </span>
-  )}
+                        {product.image?.startsWith("/") ? (
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="product-photo"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <span className="product-art-icon">
+                            <i className="fa-solid fa-box-open" />
+                          </span>
+                        )}
 
-  <span className="product-code">Cód. {product.id}</span>
-  <span className="product-unit">{product.unit}</span>
-</div>
+                        <span className="product-code">Cód. {product.id}</span>
+                        <span className="product-unit">{product.unit}</span>
+                      </div>
                       <div className="product-card-content">
                         <span className="product-brand">{product.brand}</span>
                         <h2>{product.name}</h2>
@@ -747,12 +825,22 @@ export default function App() {
                           ].join("\n");
 
                           const whatsappUrl = `https://wa.me/5511913682491?text=${encodeURIComponent(message)}`;
-                          void trackEvent("quote_click", { product_id: product.id, product_name: product.name });
-                          window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+                          void trackEvent("quote_click", {
+                            product_id: product.id,
+                            product_name: product.name,
+                          });
+                          window.open(
+                            whatsappUrl,
+                            "_blank",
+                            "noopener,noreferrer",
+                          );
                         }}
                       >
                         Solicitar orçamento{" "}
-                        <i className="fa-brands fa-whatsapp" aria-hidden="true" />
+                        <i
+                          className="fa-brands fa-whatsapp"
+                          aria-hidden="true"
+                        />
                       </button>
                     </article>
                   ))}
@@ -808,72 +896,340 @@ export default function App() {
             <div className="container solutions-container">
               <header className="solutions-hero">
                 <span className="section-kicker">Atendimento sob medida</span>
-                <h1>Soluções para <span>o seu negócio</span></h1>
-                <p>Conte o que você procura. Nossa equipe comercial ajuda a encontrar as opções mais adequadas para sua necessidade.</p>
+                <h1>
+                  Soluções para <span>o seu negócio</span>
+                </h1>
+                <p>
+                  Conte o que você procura. Nossa equipe comercial ajuda a
+                  encontrar as opções mais adequadas para sua necessidade.
+                </p>
               </header>
               <div className="customer-form-layout">
                 <div className="customer-form-intro">
                   <span className="section-kicker">Vamos conversar?</span>
                   <h2>O que podemos fazer por você?</h2>
-                  <p>Em poucos passos, você conta o que precisa e inicia uma conversa diretamente com nossa equipe.</p>
-                  <div className="customer-steps"><span>01 · Seu perfil</span><span>02 · Sua região</span><span>03 · Sua necessidade</span></div>
+                  <p>
+                    Em poucos passos, você conta o que precisa e inicia uma
+                    conversa diretamente com nossa equipe.
+                  </p>
+                  <div className="customer-steps">
+                    <span>01 · Seu perfil</span>
+                    <span>02 · Sua região</span>
+                    <span>03 · Sua necessidade</span>
+                  </div>
                 </div>
-                <form className="customer-form" onSubmit={(event) => { event.preventDefault(); sendCustomerRequest(); }}>
-                  <label htmlFor="customer-type">Você compra para qual tipo de estabelecimento?</label>
-                  <select id="customer-type" value={customerType} onChange={(e) => setCustomerType(e.target.value)} required>
-                    {["Restaurante", "Mercado ou minimercado", "Padaria ou cafeteria", "Cozinha industrial", "Grande rede", "Comércio de bairro", "Uso pessoal", "Outro estabelecimento"].map((value) => <option key={value}>{value}</option>)}
+                <form
+                  className="customer-form"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    sendCustomerRequest();
+                  }}
+                >
+                  <label htmlFor="customer-type">
+                    Você compra para qual tipo de estabelecimento?
+                  </label>
+                  <select
+                    id="customer-type"
+                    value={customerType}
+                    onChange={(e) => setCustomerType(e.target.value)}
+                    required
+                  >
+                    {[
+                      "Restaurante",
+                      "Mercado ou minimercado",
+                      "Padaria ou cafeteria",
+                      "Cozinha industrial",
+                      "Grande rede",
+                      "Comércio de bairro",
+                      "Uso pessoal",
+                      "Outro estabelecimento",
+                    ].map((value) => (
+                      <option key={value}>{value}</option>
+                    ))}
                   </select>
-                  <label htmlFor="customer-region">Qual é sua cidade ou bairro?</label>
-                  <input id="customer-region" value={customerRegion} onChange={(e) => setCustomerRegion(e.target.value)} placeholder="Ex.: São Paulo — Tatuapé" maxLength={120} required />
+                  <label htmlFor="customer-region">
+                    Qual é sua cidade ou bairro?
+                  </label>
+                  <input
+                    id="customer-region"
+                    value={customerRegion}
+                    onChange={(e) => setCustomerRegion(e.target.value)}
+                    placeholder="Ex.: São Paulo — Tatuapé"
+                    maxLength={120}
+                    required
+                  />
                   <label htmlFor="customer-need">O que você precisa?</label>
-                  <textarea id="customer-need" value={customerNeed} onChange={(e) => setCustomerNeed(e.target.value)} placeholder="Conte quais produtos, quantidades ou frequência de abastecimento procura." maxLength={1200} rows={5} required />
-                  <button type="submit" className="button button-green"><i className="fa-brands fa-whatsapp" aria-hidden="true" /> Solicitar atendimento</button>
-                  <small>Você será direcionado ao WhatsApp. O atendimento e a disponibilidade são confirmados pela equipe comercial.</small>
+                  <textarea
+                    id="customer-need"
+                    value={customerNeed}
+                    onChange={(e) => setCustomerNeed(e.target.value)}
+                    placeholder="Conte quais produtos, quantidades ou frequência de abastecimento procura."
+                    maxLength={1200}
+                    rows={5}
+                    required
+                  />
+                  <button type="submit" className="button button-green">
+                    <i className="fa-brands fa-whatsapp" aria-hidden="true" />{" "}
+                    Solicitar atendimento
+                  </button>
+                  <small>
+                    Você será direcionado ao WhatsApp. O atendimento e a
+                    disponibilidade são confirmados pela equipe comercial.
+                  </small>
                 </form>
               </div>
             </div>
           </section>
         )}
-
       </main>
 
       {activeTab === "avaliacoes" && (
-        <section className="page-section customer-review-section review-page" aria-labelledby="review-heading">
+        <section
+          className="page-section customer-review-section review-page"
+          aria-labelledby="review-heading"
+        >
           <div className="container review-page-container">
             <header className="review-page-hero">
               <span className="section-kicker">Sua voz faz a diferença</span>
-              <h1 id="review-heading">Avalie-nos<span>.</span> Sua opinião nos faz evoluir.</h1>
-              <p>Na Speers Foods, cada experiência importa. Sua avaliação nos ajuda a identificar o que funciona bem, entender o que precisa melhorar e tornar sua jornada cada vez mais simples, segura e agradável.</p>
+              <h1 id="review-heading">
+                Avalie-nos, sua opinião nos faz evoluir.
+              </h1>
+              <p>
+                Na Speers Foods, cada experiência importa. Sua avaliação nos
+                ajuda a identificar o que funciona bem, entender o que precisa
+                melhorar e tornar sua jornada cada vez mais simples, segura e
+                agradável.
+              </p>
             </header>
-            <div className="review-benefits" aria-label="Por que sua avaliação é importante">
-              <article><i className="fa-solid fa-comments" aria-hidden="true" /><h2>Queremos ouvir você</h2><p>Seu ponto de vista nos mostra como é navegar pelo site e entrar em contato com nossa equipe.</p></article>
-              <article><i className="fa-solid fa-arrow-trend-up" aria-hidden="true" /><h2>Melhoria contínua</h2><p>Usamos as avaliações para orientar melhorias na experiência digital e nos processos de atendimento.</p></article>
-              <article><i className="fa-solid fa-handshake" aria-hidden="true" /><h2>Mais confiança e qualidade</h2><p>Nosso compromisso é evoluir para oferecer informações claras e uma experiência de compra mais confortável.</p></article>
+            <div
+              className="review-benefits"
+              aria-label="Por que sua avaliação é importante"
+            >
+              <article>
+                <h2>Queremos ouvir você</h2>
+                <p>
+                  Seu ponto de vista nos mostra como é navegar pelo site e
+                  entrar em contato com nossa equipe.
+                </p>
+              </article>
+              <article>
+                <h2>Melhoria contínua</h2>
+                <p>
+                  Usamos as avaliações para orientar melhorias na experiência
+                  digital e nos processos de atendimento.
+                </p>
+              </article>
+              <article>
+                <h2>Mais confiança e qualidade</h2>
+                <p>
+                  Nosso compromisso é evoluir para oferecer informações claras e
+                  uma experiência de compra mais confortável.
+                </p>
+              </article>
             </div>
             <div className="review-form-card">
-              <div className="review-form-intro"><span className="section-kicker">Leva menos de um minuto</span><h2>Como foi sua experiência?</h2><p>Avalie de 1 a 5 estrelas. Suas respostas nos ajudam a definir nossas próximas melhorias.</p></div>
+              <div className="review-form-intro">
+                <span className="section-kicker">Leva menos de um minuto</span>
+                <h2>Como foi sua experiência?</h2>
+                <p>
+                  Avalie de 1 a 5 estrelas. Suas respostas nos ajudam a definir
+                  nossas próximas melhorias.
+                </p>
+              </div>
               <div className="review-controls">
-                <div className="star-rating"><span>Facilidade de uso do site</span><div role="group" aria-label="Nota de facilidade de uso">{[1,2,3,4,5].map(n => <button type="button" key={n} onClick={() => setSiteRating(n)} aria-label={`${n} estrela${n > 1 ? "s" : ""} para o site`} aria-pressed={siteRating === n} className={n <= siteRating ? "selected" : ""}>★</button>)}</div></div>
-                <div className="star-rating"><span>Você se sentiu confortável para comprar conosco?</span><div role="group" aria-label="Nota de confiança para comprar">{[1,2,3,4,5].map(n => <button type="button" key={n} onClick={() => setPurchaseRating(n)} aria-label={`${n} estrela${n > 1 ? "s" : ""} para confiança`} aria-pressed={purchaseRating === n} className={n <= purchaseRating ? "selected" : ""}>★</button>)}</div></div>
-                <button className="review-submit" type="button" disabled={!siteRating || !purchaseRating || !analyticsConfigured} onClick={() => void sendReview()}>Enviar avaliação</button>
-                <small role="status">{reviewStatus || (!analyticsConfigured ? "Para enviar avaliações, é necessário configurar o banco de dados." : "Sua avaliação é anônima e não exige dados pessoais.")}</small>
+                <div className="star-rating">
+                  <span>Facilidade de uso do site</span>
+                  <div role="group" aria-label="Nota de facilidade de uso">
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <button
+                        type="button"
+                        key={n}
+                        onClick={() => setSiteRating(n)}
+                        aria-label={`${n} estrela${n > 1 ? "s" : ""} para o site`}
+                        aria-pressed={siteRating === n}
+                        className={n <= siteRating ? "selected" : ""}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="star-rating">
+                  <span>Você se sentiu confortável para comprar conosco?</span>
+                  <div role="group" aria-label="Nota de confiança para comprar">
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <button
+                        type="button"
+                        key={n}
+                        onClick={() => setPurchaseRating(n)}
+                        aria-label={`${n} estrela${n > 1 ? "s" : ""} para confiança`}
+                        aria-pressed={purchaseRating === n}
+                        className={n <= purchaseRating ? "selected" : ""}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  className="review-submit"
+                  type="button"
+                  disabled={
+                    !siteRating || !purchaseRating || !analyticsConfigured
+                  }
+                  onClick={() => void sendReview()}
+                >
+                  Enviar avaliação
+                </button>
+                <small role="status">
+                  {reviewStatus ||
+                    (!analyticsConfigured
+                      ? "Para enviar avaliações, é necessário configurar o banco de dados."
+                      : "Sua avaliação é anônima e não exige dados pessoais.")}
+                </small>
               </div>
             </div>
-            <p className="review-page-closing">Obrigado por fazer parte da nossa evolução. Cada estrela é uma oportunidade de melhorar para você.</p>
+            <p className="review-page-closing">
+              Obrigado por fazer parte da nossa evolução. Cada estrela é uma
+              oportunidade de melhorar para você.
+            </p>
           </div>
         </section>
       )}
       <footer className="site-footer">
         <div className="container footer-main footer-main-expanded">
-          <div className="footer-brand"><img src="/speers-logo.png" alt="Speers Foods" /><p>Distribuição de alimentos congelados e perecíveis.</p></div>
-          <div className="footer-nav"><span>Navegue</span>{(Object.keys(tabLabels) as Tab[]).map(tab => <button key={tab} onClick={() => goToTab(tab)}>{tabLabels[tab]}</button>)}</div>
-          <div className="footer-nav"><span>Conheça mais</span><button onClick={() => goToTab("speers")}>Nossa história</button><button onClick={() => goToTab("speers")}>Marcas parceiras</button><button onClick={() => goToTab("produtos")}>Catálogo de produtos</button><button onClick={() => goToTab("solucoes")}>Atendimento comercial</button><button onClick={() => goToTab("fornecedores")}>Faça parte da equipe</button><button onClick={() => goToTab("avaliacoes")}>Compartilhe sua avaliação</button></div>
-          <div className="footer-contact"><span>Contato e localização</span><p><i className="fa-solid fa-location-dot" aria-hidden="true" /> São Paulo — SP · Endereço completo a confirmar</p><p><i className="fa-solid fa-phone" aria-hidden="true" /> <a href="tel:+551125237171">(11) 2523-7171</a></p><p><i className="fa-brands fa-whatsapp" aria-hidden="true" /> <a href="https://wa.me/5511913682491" target="_blank" rel="noreferrer">Atendimento pelo WhatsApp</a></p></div>
+          <div className="footer-brand">
+            <img src="/speers-logo.png" alt="Speers Foods" />
+            <p>Distribuição de alimentos congelados e perecíveis.</p>
+          </div>
+          <div className="footer-nav">
+            <span>Navegue</span>
+            {(Object.keys(tabLabels) as Tab[]).map((tab) => (
+              <button key={tab} onClick={() => goToTab(tab)}>
+                {tabLabels[tab]}
+              </button>
+            ))}
+          </div>
+          <div className="footer-nav">
+            <span>Conheça mais</span>
+            <button onClick={() => goToTab("speers")}>Nossa história</button>
+            <button onClick={() => goToTab("speers")}>Marcas parceiras</button>
+            <button onClick={() => goToTab("produtos")}>
+              Catálogo de produtos
+            </button>
+            <button onClick={() => goToTab("solucoes")}>
+              Atendimento comercial
+            </button>
+            <button onClick={() => goToTab("fornecedores")}>
+              Faça parte da equipe
+            </button>
+            <button onClick={() => goToTab("avaliacoes")}>
+              Compartilhe sua avaliação
+            </button>
+          </div>
+          <div className="footer-contact">
+            <span>Contato e localização</span>
+            <p>
+              <i className="fa-solid fa-location-dot" aria-hidden="true" /> São
+              Paulo — SP · Endereço completo a confirmar
+            </p>
+            <p>
+              <i className="fa-solid fa-phone" aria-hidden="true" />{" "}
+              <a href="tel:+551125237171">(11) 2523-7171</a>
+            </p>
+            <p>
+              <i className="fa-brands fa-whatsapp" aria-hidden="true" />{" "}
+              <a
+                href="https://wa.me/5511913682491"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Atendimento pelo WhatsApp
+              </a>
+            </p>
+          </div>
         </div>
-        <div className="footer-bottom"><div className="container"><span>© {new Date().getFullYear()} Speers Foods</span><button className="admin-link" onClick={() => setAdminOpen(true)}>Área administrativa</button></div></div>
+        <div className="footer-bottom">
+          <div className="container">
+            <span>© {new Date().getFullYear()} Speers Foods</span>
+            <button className="admin-link" onClick={() => setAdminOpen(true)}>
+              Área administrativa
+            </button>
+          </div>
+        </div>
       </footer>
-      {adminOpen && (adminToken ? <AdminDashboard stats={adminStats} error={adminError} loading={adminLoading} onRefresh={() => void loadAdmin(adminToken)} onClose={() => setAdminOpen(false)} onLogout={() => { setAdminToken(""); setAdminStats(null); setAdminError(""); }} /> : <div className="admin-overlay" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) setAdminOpen(false); }}><section className="admin-panel" role="dialog" aria-modal="true" aria-label="Acesso administrativo"><button className="admin-close" onClick={() => setAdminOpen(false)} aria-label="Fechar">×</button><h2>Área administrativa</h2>{!analyticsConfigured ? <p>Configure o Supabase para ativar o painel.</p> : <form onSubmit={(e) => { e.preventDefault(); void loginAdmin(); }}><label>E-mail de administrador<input type="email" required value={adminEmail} onChange={e => setAdminEmail(e.target.value)} /></label><label>Senha<input type="password" required value={adminPassword} onChange={e => setAdminPassword(e.target.value)} /></label><button type="submit" className="button button-green">Entrar no painel</button></form>}{adminError && <p role="alert">{adminError}</p>}</section></div>)}
-
+      {adminOpen &&
+        (adminToken ? (
+          <AdminDashboard
+            stats={adminStats}
+            error={adminError}
+            loading={adminLoading}
+            onRefresh={() => void loadAdmin(adminToken)}
+            onClose={() => setAdminOpen(false)}
+            onLogout={() => {
+              setAdminToken("");
+              setAdminStats(null);
+              setAdminError("");
+            }}
+          />
+        ) : (
+          <div
+            className="admin-overlay"
+            role="presentation"
+            onMouseDown={(e) => {
+              if (e.target === e.currentTarget) setAdminOpen(false);
+            }}
+          >
+            <section
+              className="admin-panel"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Acesso administrativo"
+            >
+              <button
+                className="admin-close"
+                onClick={() => setAdminOpen(false)}
+                aria-label="Fechar"
+              >
+                ×
+              </button>
+              <h2>Área administrativa</h2>
+              {!analyticsConfigured ? (
+                <p>Configure o Supabase para ativar o painel.</p>
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    void loginAdmin();
+                  }}
+                >
+                  <label>
+                    E-mail de administrador
+                    <input
+                      type="email"
+                      required
+                      value={adminEmail}
+                      onChange={(e) => setAdminEmail(e.target.value)}
+                    />
+                  </label>
+                  <label>
+                    Senha
+                    <input
+                      type="password"
+                      required
+                      value={adminPassword}
+                      onChange={(e) => setAdminPassword(e.target.value)}
+                    />
+                  </label>
+                  <button type="submit" className="button button-green">
+                    Entrar no painel
+                  </button>
+                </form>
+              )}
+              {adminError && <p role="alert">{adminError}</p>}
+            </section>
+          </div>
+        ))}
     </div>
   );
 }
