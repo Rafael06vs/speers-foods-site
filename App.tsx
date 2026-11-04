@@ -331,15 +331,16 @@ export default function App() {
             />
           </button>
           <button
-            className="mobile-menu-toggle"
-            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={mobileMenuOpen}
-            onClick={() => setMobileMenuOpen((open) => !open)}
-          >
-            <i
-              className={`fa-solid ${mobileMenuOpen ? "fa-xmark" : "fa-bars"}`}
-            />
-          </button>
+  type="button"
+  className="mobile-menu-toggle"
+  aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+  aria-expanded={mobileMenuOpen}
+  onClick={() => setMobileMenuOpen((open) => !open)}
+>
+  <span aria-hidden="true">
+    {mobileMenuOpen ? "✕" : "☰"}
+  </span>
+</button>
           <nav
             className={`main-nav ${mobileMenuOpen ? "is-open" : ""}`}
             aria-label="Menu principal"
@@ -396,9 +397,12 @@ export default function App() {
               </svg>
             </a>
 
-            <a className="button button-green" href="tel:+551125237171">
-              Fale conosco
-            </a>
+            <a
+  className="button button-green header-contact"
+  href="tel:+551125237171"
+>
+  Fale conosco
+</a>
           </div>
         </div>
       </header>
