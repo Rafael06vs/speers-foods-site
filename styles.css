@@ -20,10 +20,6 @@
   --shadow: 0 16px 45px rgba(8, 55, 39, 0.08);
 }
 
-* {
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -60,7 +56,6 @@ img {
 
 .container {
   width: min(1480px, calc(100% - 80px));
-  margin-inline: auto;
 }
 
 /* ===== 02 — CABEÇALHO E NAVEGAÇÃO ===== */
@@ -106,14 +101,8 @@ img {
   margin-right: 6px;
 }
 
-/* ===== MENU FIXO AO ROLAR A PÁGINA ===== */
-
 .site-header {
-  position: sticky;
-  top: 0;
   z-index: 1000;
-  width: 100%;
-  background: #ffffff;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
@@ -135,7 +124,6 @@ img {
 .site-logo {
   width: 140px;
   max-height: 200px;
-  object-fit: contain;
   object-position: left center;
 }
 
@@ -219,10 +207,6 @@ img {
     color 0.2s;
 }
 
-.button:hover {
-  transform: translateY(-2px);
-}
-
 .button-green {
   background: var(--green-800);
   color: white;
@@ -291,9 +275,7 @@ img {
 .hero-layout {
   min-height: 490px;
   padding-block: 48px;
-  display: grid;
   grid-template-columns: 0.98fr 1.02fr;
-  align-items: center;
   gap: clamp(32px, 5vw, 78px);
 }
 
@@ -500,21 +482,14 @@ img {
 }
 
 .featured-brands {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 14px;
 }
 
 .featured-brand {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
   min-height: 130px;
   padding: 20px 14px 14px;
   border: 1px solid #e7e8e0;
-  border-radius: 16px;
   background: #fff;
   transition:
     transform 0.2s,
@@ -532,7 +507,6 @@ img {
   width: 115%;
   max-width: none;
   height: 100px;
-  object-fit: contain;
   object-position: center;
 }
 
@@ -554,8 +528,6 @@ img {
 }
 
 .intro-band-inner {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
   gap: 32px;
 }
@@ -692,8 +664,6 @@ img {
   max-height: 100%;
   object-fit: contain;
 }
-
-/* Títulos dos fornecedores */
 .supplier-card h2,
 .supplier-card h3 {
   font-size: 24px;
@@ -755,7 +725,6 @@ img {
   gap: 14px;
   padding: 18px;
   border: 1px solid var(--line);
-  border-radius: 18px;
   background: white;
   box-shadow: 0 8px 24px rgba(8, 55, 39, 0.035);
 }
@@ -822,15 +791,12 @@ img {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
   border: 1px solid #e4e9e3;
   border-radius: 17px;
   background: #fff;
@@ -851,7 +817,6 @@ img {
   display: grid;
   place-items: center;
   min-height: 105px;
-  overflow: hidden;
   background: linear-gradient(135deg, #f2f6ef, #e5eee5);
 }
 
@@ -917,7 +882,6 @@ img {
 
 .product-brand {
   overflow: hidden;
-  color: #c66a1e;
   font-size: 10px;
   font-weight: 800;
   text-overflow: ellipsis;
@@ -1097,7 +1061,6 @@ img {
 .quality-brand-card {
   padding: 22px;
   border: 1px solid var(--line);
-  border-radius: 18px;
   background: white;
 }
 
@@ -1642,7 +1605,6 @@ img {
 }
 
 /* ===== 10 — TRAJETÓRIA, COMUNIDADE E TRABALHE CONOSCO ===== */
-/* === Novas seções institucionais Speers Foods === */
 .about-numbers {
   background: #fff;
   border-top: 1px solid var(--line);
@@ -1662,7 +1624,6 @@ img {
 }
 .about-numbers-copy h2 {
   font-size: clamp(35px, 3.8vw, 55px);
-  line-height: 1.12;
   letter-spacing: -0.045em;
   color: var(--green-950);
   max-width: 560px;
@@ -1672,7 +1633,6 @@ img {
   color: var(--green-700);
 }
 .about-numbers-copy p {
-  font-size: 16px;
   line-height: 1.7;
   color: var(--ink);
   max-width: 690px;
@@ -1812,7 +1772,6 @@ img {
   max-width: 570px;
 }
 .careers-page {
-  display: grid;
   grid-template-columns: 56% 44%;
   min-height: 610px;
   background: var(--green-900);
@@ -1823,16 +1782,10 @@ img {
   background-image:
     linear-gradient(135deg, rgba(6, 63, 47, 0.13), rgba(6, 63, 47, 0.4)),
     url("/trabalhe-conosco.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   clip-path: ellipse(105% 112% at 0% 50%);
 }
 .careers-content {
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
   padding: 85px clamp(35px, 6vw, 110px) 85px 24px;
 }
 .careers-kicker {
@@ -1840,7 +1793,6 @@ img {
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 .careers-content h1 {
   font-size: clamp(44px, 5.5vw, 78px);
@@ -1859,17 +1811,13 @@ img {
   margin: 0 0 32px;
 }
 .careers-cta {
-  display: inline-flex;
   gap: 13px;
-  align-items: center;
-  justify-content: center;
   padding: 16px 25px;
   border: 2px solid var(--orange);
   border-radius: 60px;
   text-decoration: none;
   color: #fff;
   font-size: 12px;
-  font-weight: 800;
   transition: background 0.2s;
 }
 .careers-cta:hover {
@@ -1879,7 +1827,6 @@ img {
 .careers-cta .fa-whatsapp {
   font-size: 20px;
 }
-/* CONTATO DO RH */
 
 .careers-phone {
   display: block;
@@ -1958,7 +1905,6 @@ img {
 }
 
 /* ===== 11 — AJUSTES DE IMAGEM ===== */
-/* IMAGEM DO MCDIA FELIZ */
 
 .initiative-card img {
   display: block;
@@ -1971,17 +1917,10 @@ img {
 }
 
 /* ===== 12 — CAMADA DE PERSONALIZAÇÕES: CORES ===== */
-/* =========================================
-   SPEERS FOODS — VISUAL MAIS COLORIDO
-   ========================================= */
-
-/* FUNDO GERAL */
 
 body {
   background: #fbfaf7;
 }
-
-/* TÍTULOS E DETALHES */
 
 .section-kicker {
   color: #e67816;
@@ -1993,29 +1932,16 @@ body {
   color: #063f2f;
 }
 
-/* LINHA DECORATIVA NOS TÍTULOS */
-
 .section-heading::before {
-  content: "";
-  display: block;
   width: 55px;
-  height: 5px;
   background: linear-gradient(90deg, #ff8a24, #b9d84c);
-  border-radius: 10px;
-  margin-bottom: 20px;
 }
-
-/* SEÇÃO DAS MARCAS */
 
 .brand-section {
   background: linear-gradient(135deg, #f0f7f1 0%, #ffffff 55%, #fff5e9 100%);
 }
 
-/* CAIXAS DAS MARCAS */
-
 .featured-brand {
-  background: #ffffff;
-  border: 1px solid #dce8df;
   box-shadow: 0 8px 22px rgba(6, 63, 47, 0.05);
   transition: all 0.3s ease;
 }
@@ -2027,28 +1953,20 @@ body {
   box-shadow: 0 16px 35px rgba(6, 63, 47, 0.12);
 }
 
-/* SEÇÃO DE QUALIDADE */
-
 .quality-page {
   background: linear-gradient(180deg, #fbfaf7 0%, #edf6ef 100%);
 }
-
-/* CARDS DE QUALIDADE */
 
 .quality-brand-card {
   background: #ffffff;
   border: 1px solid #dce8df;
   box-shadow: 0 8px 24px rgba(6, 63, 47, 0.04);
-  transition: all 0.3s ease;
 }
 
 .quality-brand-card:hover {
   border-color: #ff8a24;
   background: #fffaf4;
-  transform: translateY(-5px);
 }
-
-/* DESTAQUE DO RELACIONAMENTO */
 
 .quality-intro {
   background: linear-gradient(120deg, #063f2f, #08734c);
@@ -2056,24 +1974,17 @@ body {
   box-shadow: 0 15px 35px rgba(6, 63, 47, 0.12);
 }
 
-/* EMOJI DE JOINHA */
-
 .quality-intro-icon {
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-/* CATÁLOGO DE PRODUTOS */
 
 .catalog-toolbar {
   background: #f0f7f1;
   border: 1px solid #d8e8dc;
 }
 
-/* CARDS DOS PRODUTOS */
-
 .product-card {
-  border: 1px solid #dce8df;
   box-shadow: 0 8px 22px rgba(6, 63, 47, 0.04);
 }
 
@@ -2082,13 +1993,9 @@ body {
   box-shadow: 0 15px 35px rgba(6, 63, 47, 0.12);
 }
 
-/* ÁREA SUPERIOR DOS PRODUTOS */
-
 .product-card-art {
   background: linear-gradient(135deg, #e8f3ec, #fff0dc);
 }
-
-/* BOTÃO CONSULTAR PRODUTO */
 
 .product-action {
   background: #e8f3ec;
@@ -2099,8 +2006,6 @@ body {
   background: #08734c;
   color: #ffffff;
 }
-
-/* BOTÕES PRINCIPAIS */
 
 .button-green,
 .careers-cta {
@@ -2116,14 +2021,10 @@ body {
   transform: translateY(-3px);
 }
 
-/* RODAPÉ */
-
 .site-footer {
   background: linear-gradient(120deg, #052f25, #07513c);
   border-top: 5px solid #ff8a24;
 }
-
-/* ANIMAÇÕES SUAVES */
 
 .featured-brand,
 .quality-brand-card,
@@ -2133,8 +2034,6 @@ body {
     box-shadow 0.3s ease,
     border-color 0.3s ease;
 }
-
-/* ACESSIBILIDADE */
 
 @media (prefers-reduced-motion: reduce) {
   .featured-brand,
@@ -2146,59 +2045,34 @@ body {
 }
 
 /* ===== 13 — CAMADA DE PERSONALIZAÇÕES: DEGRADÊS ===== */
-/* =========================================
-   SPEERS FOODS — DEGRADÊ MODERNO
-   ========================================= */
-
-/* FUNDO GERAL DO SITE */
 
 body {
   background: linear-gradient(135deg, #ffffff 0%, #f2f8f3 50%, #fff5e9 100%);
 }
 
-/* SEÇÃO DAS MARCAS */
-
 .brand-section {
   background: linear-gradient(120deg, #e8f3ec 0%, #ffffff 55%, #fff0dc 100%);
 }
-
-/* SEÇÃO DE QUALIDADE */
 
 .quality-page {
   background: linear-gradient(145deg, #ffffff 0%, #edf7ef 50%, #fff3e4 100%);
 }
 
-/* CARDS DE QUALIDADE */
-
 .quality-brand-card {
   background: linear-gradient(145deg, #ffffff 0%, #f5faf5 100%);
 }
-
-/* CARDS DE PRODUTOS */
 
 .product-card {
   background: linear-gradient(145deg, #ffffff 0%, #f1f8f2 100%);
 }
 
-/* FUNDO DOS PRODUTOS */
-
 .product-card-art {
   background: linear-gradient(135deg, #e2f1e5 0%, #fff0dc 100%);
 }
 
-/* RELACIONAMENTOS DE LONGO PRAZO */
-
-.quality-intro {
-  background: linear-gradient(115deg, #063f2f 0%, #08734c 65%, #119263 100%);
-}
-
-/* TRABALHE CONOSCO */
-
 .careers-page {
   background: linear-gradient(120deg, #e8f3ec 0%, #ffffff 55%, #fff0dc 100%);
 }
-
-/* BOTÕES VERDES */
 
 .button-green {
   background: linear-gradient(120deg, #08734c, #0b9664);
@@ -2208,30 +2082,19 @@ body {
   background: linear-gradient(120deg, #ff8a24, #ffb347);
 }
 
-/* RODAPÉ */
-
 .site-footer {
   background: linear-gradient(120deg, #052f25 0%, #07513c 60%, #08734c 100%);
 }
 
 /* ===== 14 — CAMADA DE PERSONALIZAÇÕES: CARREIRAS ===== */
-/* =========================================
-   TRABALHE CONOSCO — CORES MAIS VIVAS
-   ========================================= */
-
-/* FUNDO DA SEÇÃO */
 
 .careers-page {
   background: linear-gradient(125deg, #e4f5e9 0%, #ffffff 45%, #fff0d9 100%);
 }
 
-/* ÁREA DOS TEXTOS */
-
 .careers-content {
   color: #063f2f;
 }
-
-/* TEXTO PEQUENO SUPERIOR */
 
 .careers-kicker {
   color: #e66b00;
@@ -2240,54 +2103,30 @@ body {
   text-transform: uppercase;
 }
 
-/* TÍTULO TRABALHE CONOSCO */
-
 .careers-content h1 {
   color: #005c3b;
-  font-weight: 900;
   letter-spacing: -2px;
 }
-
-/* PALAVRA CONOSCO */
 
 .careers-content h1 span {
   color: #79b900;
 }
 
-/* TEXTO DESCRITIVO */
-
 .careers-content p {
   color: #234c3e;
-  font-size: 17px;
-  line-height: 1.8;
   font-weight: 500;
 }
-
-/* BOTÃO DO RH */
 
 .careers-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  background: linear-gradient(120deg, #008a54, #00a86b);
-
-  color: #ffffff;
   border: 2px solid #ff8a00;
-  border-radius: 50px;
-
-  font-weight: 800;
 
   box-shadow: 0 8px 22px rgba(0, 138, 84, 0.22);
-
-  transition: all 0.3s ease;
 }
 
-/* EFEITO AO PASSAR O MOUSE */
-
 .careers-cta:hover {
-  background: linear-gradient(120deg, #ff8500, #ffad33);
-
   color: #063f2f;
 
   transform: translateY(-4px);
@@ -2295,15 +2134,11 @@ body {
   box-shadow: 0 12px 28px rgba(255, 138, 0, 0.3);
 }
 
-/* NÚMERO DO RH */
-
 .careers-contact,
 .careers-contact a {
   color: #08734c;
   font-weight: 700;
 }
-
-/* FOTO TRABALHE CONOSCO */
 
 .careers-visual {
   background-image:
@@ -2316,9 +2151,6 @@ body {
 }
 
 /* ===== 15 — CAMADA DE PERSONALIZAÇÕES: TIPOGRAFIA E CARDS ===== */
-/* =========================================
-   SPEERS FOODS — IDENTIDADE VISUAL MODERNA
-   ========================================= */
 
 :root {
   --speers-dark: #005c3b;
@@ -2327,8 +2159,6 @@ body {
   --speers-orange: #ff8a00;
   --speers-text: #234c3e;
 }
-
-/* TIPOGRAFIA DOS TÍTULOS */
 
 .section-heading h2,
 .page-heading h1,
@@ -2339,7 +2169,6 @@ body {
   font-weight: 900;
   opacity: 1;
 }
-/* TÍTULOS PRINCIPAIS */
 
 .section-heading h2 {
   font-size: clamp(32px, 3.5vw, 48px);
@@ -2349,8 +2178,6 @@ body {
   font-size: clamp(36px, 4vw, 56px);
 }
 
-/* PEQUENOS TÍTULOS SUPERIORES */
-
 .section-kicker,
 .quality-brand-card .eyebrow {
   color: #d96500;
@@ -2359,25 +2186,16 @@ body {
   text-transform: uppercase;
 }
 
-/* TEXTOS DESCRITIVOS */
-
 .section-heading p,
 .page-heading p {
   color: var(--speers-text);
-  font-size: 16px;
   font-weight: 500;
   line-height: 1.8;
 }
 
-/* =========================================
-   QUEM SOMOS
-   ========================================= */
-
 .brand-section {
   background: linear-gradient(125deg, #e4f5e9 0%, #ffffff 50%, #fff0d9 100%);
 }
-
-/* DESTAQUE NAS MARCAS */
 
 .featured-brand {
   border: 1px solid #dce8df;
@@ -2388,14 +2206,9 @@ body {
 }
 
 .featured-brand:hover {
-  transform: translateY(-5px);
   border-color: var(--speers-orange);
   box-shadow: 0 15px 30px rgba(0, 92, 59, 0.13);
 }
-
-/* =========================================
-   PRODUTOS
-   ========================================= */
 
 .product-card {
   border: 1px solid #dce8df;
@@ -2405,12 +2218,9 @@ body {
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
   border-color: var(--speers-orange);
   box-shadow: 0 15px 30px rgba(0, 92, 59, 0.12);
 }
-
-/* NOMES DOS PRODUTOS */
 
 .product-card h3 {
   color: var(--speers-dark);
@@ -2418,21 +2228,13 @@ body {
   letter-spacing: -0.5px;
 }
 
-/* ÁREA DAS IMAGENS DOS PRODUTOS */
-
 .product-card-art {
   background: linear-gradient(135deg, #e4f5e9 0%, #fff0d9 100%);
 }
 
-/* =========================================
-   QUALIDADE
-   ========================================= */
-
 .quality-page {
   background: linear-gradient(135deg, #ffffff 0%, #edf7ef 55%, #fff0d9 100%);
 }
-
-/* TÍTULOS DOS CARDS */
 
 .quality-brand-card h3 {
   color: var(--speers-dark);
@@ -2440,16 +2242,10 @@ body {
   letter-spacing: -0.5px;
 }
 
-/* RELACIONAMENTOS DE LONGO PRAZO */
-
 .quality-intro {
   background: linear-gradient(115deg, #063f2f 0%, #08734c 65%, #119263 100%);
   border-left: 5px solid var(--speers-orange);
 }
-
-/* =========================================
-   BOTÕES E INTERAÇÕES
-   ========================================= */
 
 .button-green {
   background: linear-gradient(120deg, #008a54, #00a86b);
@@ -2464,10 +2260,6 @@ body {
   transform: translateY(-3px);
 }
 
-/* =========================================
-   DETALHES DECORATIVOS
-   ========================================= */
-
 .section-heading::before {
   content: "";
   display: block;
@@ -2477,10 +2269,6 @@ body {
   border-radius: 10px;
   background: linear-gradient(90deg, #ff8a00, #79b900);
 }
-
-/* =========================================
-   RESPONSIVIDADE
-   ========================================= */
 
 @media (max-width: 768px) {
   .section-heading h2 {
@@ -2506,17 +2294,10 @@ body {
 }
 
 /* ===== 16 — AJUSTES DE TRAJETÓRIA (VERSÕES POSTERIORES) ===== */
-/* =========================================
-   SPEERS FOODS — NOSSA TRAJETÓRIA
-   ========================================= */
-
-/* FUNDO DA SEÇÃO */
 
 .history-section {
   background: linear-gradient(120deg, #e4f5e9 0%, #ffffff 50%, #fff0d9 100%);
 }
-
-/* TÍTULO PRINCIPAL */
 
 .history-section h2 {
   color: #005c3b;
@@ -2525,13 +2306,9 @@ body {
   line-height: 1.12;
 }
 
-/* DESTAQUE NO TÍTULO */
-
 .history-section h2 span {
   color: #79b900;
 }
-
-/* TEXTO DESCRITIVO */
 
 .history-section p {
   color: #234c3e;
@@ -2539,16 +2316,12 @@ body {
   line-height: 1.8;
 }
 
-/* INFORMAÇÕES DA DIREITA */
-
 .history-stats {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 20px;
 }
-
-/* CADA INDICADOR */
 
 .history-stat {
   background: linear-gradient(120deg, #ffffff 0%, #e8f7eb 100%);
@@ -2563,8 +2336,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/* EFEITO AO PASSAR O MOUSE */
-
 .history-stat:hover {
   transform: translateX(5px);
 
@@ -2573,8 +2344,6 @@ body {
   box-shadow: 0 12px 28px rgba(0, 92, 59, 0.12);
 }
 
-/* NÚMEROS GRANDES */
-
 .history-stat strong {
   color: #008a54;
   font-size: 28px;
@@ -2582,21 +2351,15 @@ body {
   letter-spacing: -0.8px;
 }
 
-/* TEXTO ABAIXO DOS NÚMEROS */
-
 .history-stat p {
   color: #47695b;
   font-size: 14px;
   font-weight: 500;
 }
 
-/* TERCEIRO INDICADOR */
-
 .history-stat:nth-child(3) {
   border-left-color: #79b900;
 }
-
-/* BOTÃO */
 
 .history-section .button {
   border: 2px solid #ff8a00;
@@ -2612,8 +2375,6 @@ body {
   transform: translateY(-3px);
 }
 
-/* CELULAR */
-
 @media (max-width: 768px) {
   .history-stats {
     padding: 15px;
@@ -2628,12 +2389,6 @@ body {
   }
 }
 
-/* =========================================
-   SPEERS FOODS — NOSSA TRAJETÓRIA
-   ========================================= */
-
-/* ÁREA DA NOSSA TRAJETÓRIA */
-
 .about-numbers-grid {
   background: linear-gradient(120deg, #e4f5e9 0%, #ffffff 48%, #fff0d9 100%);
 
@@ -2641,13 +2396,9 @@ body {
   overflow: hidden;
 }
 
-/* ÁREA DO TEXTO */
-
 .about-numbers-copy {
   padding: 55px 45px;
 }
-
-/* NOSSA TRAJETÓRIA */
 
 .about-numbers-copy .section-kicker {
   color: #e66b00;
@@ -2656,32 +2407,17 @@ body {
   text-transform: uppercase;
 }
 
-/* TÍTULO PRINCIPAL */
-
 .about-numbers-copy h2 {
   color: #005c3b;
-  font-weight: 900;
   font-size: clamp(36px, 4vw, 56px);
   line-height: 1.12;
-  letter-spacing: -2px;
 }
-
-/* DESTAQUE NOS 20 ANOS */
-
-.about-numbers-copy h2 span {
-  color: #79b900;
-}
-
-/* TEXTO DESCRITIVO */
 
 .about-numbers-copy p {
   color: #234c3e;
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.8;
 }
-
-/* BOTÃO CONHEÇA NOSSO COMPROMISSO */
 
 .about-numbers-copy .button {
   border: 2px solid #ff8a00;
@@ -2697,8 +2433,6 @@ body {
   transform: translateY(-3px);
 }
 
-/* RESPONSIVIDADE */
-
 @media (max-width: 768px) {
   .about-numbers-copy {
     padding: 35px 25px;
@@ -2709,42 +2443,24 @@ body {
   }
 }
 
-/* =========================================
-   NOSSA TRAJETÓRIA — LARGURA TOTAL
-   ========================================= */
-
 .about-numbers-grid {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  border-radius: 0;
   overflow: visible;
 
   background: linear-gradient(110deg, #e4f5e9 0%, #ffffff 52%, #fff0d9 100%);
 }
 
-/* MANTÉM O TEXTO BEM DISTRIBUÍDO */
-
 .about-numbers-copy {
   padding: 65px 55px;
 }
 
-/* TÍTULO GRANDE */
-
 .about-numbers-copy h2 {
   font-size: clamp(40px, 4vw, 60px);
-  font-weight: 900;
   line-height: 1.1;
-  letter-spacing: -2px;
 }
-
-/* DESTAQUE DOS 20 ANOS */
 
 .about-numbers-copy h2 span {
   color: #79b900;
 }
-
-/* CELULAR */
 
 @media (max-width: 768px) {
   .about-numbers-copy {
@@ -2757,9 +2473,6 @@ body {
 }
 
 /* ===== 17 — LAYOUT AMPLO E RESPONSIVIDADE FINAL ===== */
-/* ============================================
-   SPEERS FOODS — LAYOUT AMPLO E MODERNO
-   ============================================ */
 
 :root {
   --sf-dark: #005c3b;
@@ -2769,10 +2482,6 @@ body {
   --sf-text: #234c3e;
   --sf-border: #dce8df;
 }
-
-/* ============================================
-   1. ESTRUTURA GERAL
-   ============================================ */
 
 html,
 body {
@@ -2785,15 +2494,10 @@ body {
   background: #fbfcf9;
 }
 
-/* APROVEITAR MELHOR A LARGURA */
-
 .container {
   width: calc(100% - 80px);
   max-width: 1680px;
-  margin-inline: auto;
 }
-
-/* ESPAÇAMENTO PADRONIZADO */
 
 section {
   scroll-margin-top: 90px;
@@ -2806,8 +2510,6 @@ section {
   text-align: left;
 }
 
-/* TÍTULOS GRANDES */
-
 .section-heading h2,
 .page-heading h1 {
   font-size: clamp(36px, 3.8vw, 60px);
@@ -2817,8 +2519,6 @@ section {
   color: var(--sf-dark);
 }
 
-/* TEXTOS MAIS LEGÍVEIS */
-
 .section-heading p,
 .page-heading p {
   max-width: 850px;
@@ -2827,27 +2527,15 @@ section {
   color: var(--sf-text);
 }
 
-/* ============================================
-   2. QUEM SOMOS — NOSSA TRAJETÓRIA
-   ============================================ */
-
 .about-numbers-grid {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-
   border-radius: 0;
 
   background: linear-gradient(115deg, #e1f4e6 0%, #ffffff 48%, #fff0da 100%);
 }
 
-/* TEXTO DA TRAJETÓRIA */
-
 .about-numbers-copy {
   padding: clamp(40px, 5vw, 85px);
 }
-
-/* TÍTULO */
 
 .about-numbers-copy h2 {
   font-size: clamp(40px, 4.2vw, 66px);
@@ -2859,17 +2547,11 @@ section {
   color: var(--sf-lime);
 }
 
-/* DESCRIÇÃO */
-
 .about-numbers-copy p {
   max-width: 800px;
   font-size: 17px;
   line-height: 1.8;
 }
-
-/* ============================================
-   3. MARCAS PARCEIRAS
-   ============================================ */
 
 .brand-section {
   padding: 65px 0 75px;
@@ -2877,15 +2559,11 @@ section {
   background: linear-gradient(120deg, #edf8ef 0%, #ffffff 55%, #fff5e8 100%);
 }
 
-/* GRADE DE MARCAS */
-
 .featured-brands {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 16px;
 }
-
-/* CAIXAS */
 
 .featured-brand {
   min-width: 0;
@@ -2904,8 +2582,6 @@ section {
   transition: all 0.3s ease;
 }
 
-/* LOGOS */
-
 .featured-brand img {
   display: block;
   width: 100%;
@@ -2914,8 +2590,6 @@ section {
   object-fit: contain;
 }
 
-/* EFEITO AO PASSAR O MOUSE */
-
 .featured-brand:hover {
   transform: translateY(-5px);
   border-color: var(--sf-orange);
@@ -2923,14 +2597,7 @@ section {
   box-shadow: 0 15px 30px rgba(0, 92, 59, 0.12);
 }
 
-/* ============================================
-   4. PRODUTOS
-   ============================================ */
-
-/* ÁREA DO CATÁLOGO */
-
 .catalog-toolbar {
-  width: 100%;
   padding: 22px;
 
   border-radius: 18px;
@@ -2938,11 +2605,7 @@ section {
   background: linear-gradient(120deg, #e8f5eb, #fff4e5);
 }
 
-/* CARDS DOS PRODUTOS */
-
 .product-card {
-  min-width: 0;
-
   border-radius: 18px;
   border: 1px solid var(--sf-border);
 
@@ -2960,28 +2623,18 @@ section {
   box-shadow: 0 15px 35px rgba(0, 92, 59, 0.12);
 }
 
-/* IMAGENS DOS PRODUTOS */
-
 .product-card-art {
   background: linear-gradient(135deg, #e7f5eb, #fff0dc);
 }
-
-/* TÍTULOS */
 
 .product-card h3 {
   color: var(--sf-dark);
   font-weight: 850;
 }
 
-/* ============================================
-   5. QUALIDADE
-   ============================================ */
-
 .quality-page {
   background: linear-gradient(125deg, #ffffff 0%, #edf8ef 55%, #fff4e5 100%);
 }
-
-/* CARDS DAS MARCAS */
 
 .quality-brand-card {
   min-width: 0;
@@ -3001,25 +2654,15 @@ section {
   box-shadow: 0 15px 35px rgba(0, 92, 59, 0.12);
 }
 
-/* RELACIONAMENTOS */
-
 .quality-intro {
   background: linear-gradient(115deg, #063f2f, #08734c, #119263);
 
   border-left: 5px solid var(--sf-orange);
 }
 
-/* ============================================
-   6. TRABALHE CONOSCO
-   ============================================ */
-
 .careers-page {
-  width: 100%;
-
   background: linear-gradient(120deg, #e4f5e9 0%, #ffffff 48%, #fff0d9 100%);
 }
-
-/* TEXTO */
 
 .careers-content {
   padding: clamp(35px, 4vw, 75px);
@@ -3042,8 +2685,6 @@ section {
   color: var(--sf-text);
 }
 
-/* BOTÃO RH */
-
 .careers-cta {
   background: linear-gradient(120deg, #008a54, #00a86b);
 
@@ -3064,10 +2705,6 @@ section {
   transform: translateY(-3px);
 }
 
-/* ============================================
-   7. BOTÕES
-   ============================================ */
-
 .button {
   font-weight: 800;
   transition: all 0.3s ease;
@@ -3076,12 +2713,6 @@ section {
 .button:hover {
   transform: translateY(-2px);
 }
-
-/* ============================================
-   8. RESPONSIVIDADE
-   ============================================ */
-
-/* NOTEBOOKS */
 
 @media (max-width: 1200px) {
   .container {
@@ -3092,8 +2723,6 @@ section {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
-
-/* TABLETS */
 
 @media (max-width: 900px) {
   .container {
@@ -3108,8 +2737,6 @@ section {
     padding: 45px 35px;
   }
 }
-
-/* CELULARES */
 
 @media (max-width: 600px) {
   .container {
@@ -3156,8 +2783,6 @@ section {
   }
 }
 
-/* ACESSIBILIDADE */
-
 @media (prefers-reduced-motion: reduce) {
   .featured-brand,
   .product-card,
@@ -3169,7 +2794,6 @@ section {
 }
 
 /* ===== 18 — CONTATO DO RH ===== */
-/* CONTATO DO RH — TEXTO MAIS ESCURO */
 
 .careers-contact,
 .careers-contact a {
@@ -3177,11 +2801,6 @@ section {
   font-size: 15px;
   font-weight: 800;
 }
-
-/* ===== CORREÇÃO MOBILE — NOSSA TRAJETÓRIA SEM FAIXAS LATERAIS =====
-   A seção usa .container, que no celular reserva 14px de cada lado.
-   O fundo do gradiente estava no elemento interno, deixando faixas brancas.
-   Esta alteração é restrita a celulares e não afeta o desktop. */
 @media (max-width: 600px) {
   .about-numbers > .container {
     width: 100%;
@@ -3206,65 +2825,42 @@ section {
     min-width: 0;
   }
 }
-
-/* Diminuir a área da imagem */
 .product-card-art {
   height: 170px;
   min-height: 170px;
   overflow: hidden;
 }
-
-/* Mostrar a imagem inteira, sem cortes */
 .product-card-art .product-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   max-width: none;
-  object-fit: contain;
   object-position: center;
   margin: 0;
 }
-
-/* ===== CARDS DE PRODUTOS — NOVAS CORES ===== */
-
-/* Fundo branco na área da fotografia */
 .product-card-art {
   background: #ffffff !important;
 }
-
-/* Remover círculos decorativos */
 .product-card-art::before,
 .product-card-art::after {
   display: none !important;
 }
-
-/* Imagem inteira, sem cortes */
 .product-card-art .product-photo {
   object-fit: contain;
 }
-
-/* Fundo verde-claro na descrição */
 .product-card-content {
   background: #e8f0e9;
 }
-
-/* Cor do nome do produto */
 .product-card h2 {
   color: #063f2f;
 }
-
-/* Cor da marca */
 .product-brand {
   color: #c66a1e;
 }
-
-/* Cor das informações */
 .product-card-content p {
   color: #536b5d;
 }
-
-/* Fundo do botão */
 .product-card .product-action {
   background: #d2e5d8;
   color: #063f2f;
@@ -3272,49 +2868,23 @@ section {
   border-radius: 0;
   padding: 13px 15px;
 }
-
-/* Efeito ao passar o mouse */
 .product-card .product-action:hover {
   background: #bddbc7;
 }
-
-/* ===== INSTAGRAM NO CABEÇALHO ===== */
-
-/* Instagram — apenas a logo */
 .instagram-header-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  width: 42px;
-  height: 42px;
-  padding: 0;
-
   background: transparent;
   border: none;
-  border-radius: 0;
 
   color: #08734c;
-  text-decoration: none;
-
-  transition:
-    transform 0.2s ease,
-    color 0.2s ease;
 }
 
 .instagram-header-button i {
   font-size: 30px;
   line-height: 1;
 }
-
-/* Efeito ao passar o mouse */
 .instagram-header-button:hover {
   color: #e4405f;
-  transform: scale(1.1);
 }
-
-/* Ajuste para celular */
 @media (max-width: 768px) {
   .instagram-header-button {
     width: 36px;
@@ -3325,8 +2895,6 @@ section {
     font-size: 26px;
   }
 }
-
-/* Instagram no cabeçalho */
 .instagram-header-button {
   display: inline-flex;
   align-items: center;
@@ -3360,8 +2928,6 @@ section {
   color: #e4405f !important;
   transform: scale(1.1);
 }
-
-/* Celular */
 @media (max-width: 768px) {
   .instagram-header-button {
     width: 36px;
@@ -3373,7 +2939,6 @@ section {
     height: 26px;
   }
 }
-/* ===== SOLUÇÕES PARA SEU NEGÓCIO ===== */
 .solutions-page {
   background: linear-gradient(145deg, #f1f8f3 0%, #fffaf2 100%);
   padding: 54px 0 76px;
@@ -3543,8 +3108,6 @@ section {
     text-align: center;
   }
 }
-
-/* ===== SPEERS 2026 — formulário, avaliações, rodapé compacto ===== */
 .main-nav .nav-link {
   font-size: clamp(14px, 1.15vw, 17px);
   font-weight: 750;
@@ -3866,8 +3429,6 @@ section {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* Página exclusiva de avaliações */
 .review-page {
   background: linear-gradient(145deg, #f1f8f3 0%, #fffdf7 100%);
   padding: 72px 0 84px;
@@ -3898,7 +3459,6 @@ section {
 }
 .review-benefits {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   margin-bottom: 38px;
 }
@@ -4011,8 +3571,6 @@ section {
     padding: 22px;
   }
 }
-
-/* Painel gerencial em tela cheia */
 .management-dashboard {
   position: fixed;
   inset: 0;
@@ -4417,8 +3975,6 @@ section {
     font-size: 9px;
   }
 }
-
-/* ===== ANIMAÇÃO DE ENTRADA SPEERS FOODS ===== */
 .speers-welcome {
   position: fixed;
   inset: 0;
@@ -4574,9 +4130,6 @@ section {
     animation: none;
   }
 }
-
-/* ===== SPEERS FOODS — REFINAMENTO RESPONSIVO GLOBAL (NOV/2026) ===== */
-/* Regras ao final para prevalecer sobre as personalizações anteriores. */
 :root {
   --sf-page-gutter: clamp(20px, 3.1vw, 68px);
 }
@@ -4595,7 +4148,6 @@ section {
 .page-heading h1 {
   text-wrap: balance;
 }
-/* Cabeçalho com mais presença, sem esmagar os links */
 .header-inner {
   gap: clamp(16px, 2vw, 36px);
 }
@@ -4610,7 +4162,6 @@ section {
   font-size: clamp(12px, 0.9vw, 15px);
   white-space: nowrap;
 }
-/* Inicial: imagem e texto maiores, sem grandes laterais vazias */
 .hero-layout {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: clamp(30px, 4vw, 76px);
@@ -4626,7 +4177,6 @@ section {
 .featured-brands {
   grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
 }
-/* Catálogo: mais área útil e cartões com leitura confortável */
 .page-section {
   padding: clamp(36px, 4vw, 66px) 0 clamp(50px, 5vw, 80px);
 }
@@ -4646,7 +4196,6 @@ section {
 .product-card h2 {
   font-size: 15px;
 }
-/* Soluções: remover o corredor estreito no meio da página */
 .solutions-page {
   padding: clamp(38px, 4vw, 68px) 0 clamp(48px, 5vw, 80px);
 }
@@ -4660,7 +4209,6 @@ section {
 }
 .customer-form-layout {
   max-width: 1540px;
-  width: 100%;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(28px, 5vw, 100px);
   margin: 0 auto;
@@ -4671,7 +4219,6 @@ section {
 .customer-form {
   padding: clamp(24px, 3vw, 44px);
 }
-/* Avaliações: cartões e formulário com melhor distribuição horizontal */
 .review-page {
   padding: clamp(38px, 4vw, 68px) 0 clamp(48px, 5vw, 80px);
 }
@@ -4693,7 +4240,6 @@ section {
   grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
   gap: clamp(22px, 3vw, 54px);
 }
-/* Trabalhe conosco: foto dominante e texto mais largo */
 .careers-page {
   grid-template-columns: minmax(0, 58%) minmax(0, 42%);
   min-height: 540px;
@@ -4714,7 +4260,6 @@ section {
   font-size: clamp(15px, 1.12vw, 18px);
   line-height: 1.65;
 }
-/* Rodapé compacto em todas as abas, sem espaços verticais artificiais */
 .site-footer .footer-main-expanded {
   grid-template-columns: 1.1fr 0.85fr 0.95fr 1.15fr;
   gap: clamp(18px, 2.8vw, 52px);
@@ -4739,7 +4284,6 @@ section {
 .site-footer .footer-bottom .container {
   padding-block: 7px;
 }
-/* Abertura: logo sem cartão branco */
 .speers-welcome__logo {
   width: clamp(270px, 34vw, 520px);
   max-height: 330px;
@@ -4936,23 +4480,15 @@ section {
   }
 }
 
-/* ===== CORREÇÃO: FAIXAS BRANCAS NA SEÇÃO NOSSA TRAJETÓRIA ===== */
-
 .about-numbers {
-  width: 100%;
-  max-width: none;
   margin: 0;
   padding: 0;
   background: linear-gradient(90deg, #e5f5e9 0%, #ffffff 50%, #fff3e3 100%);
 }
 
 .about-numbers-grid {
-  width: 100%;
-  max-width: none;
   margin: 0;
 }
-
-/* CENTRALIZAR TÍTULO DA SEÇÃO NOSSO COMPROMISSO */
 
 .community-section .section-heading {
   width: 100%;
@@ -4977,12 +4513,6 @@ section {
   display: block;
   text-align: center;
 }
-
-/* ==========================================
-   SPEERS FOODS — LAYOUT AMPLO E RESPONSIVO
-   ========================================== */
-
-/* Largura total sem faixas laterais */
 html,
 body,
 #root,
@@ -4999,16 +4529,12 @@ body,
 body {
   overflow-x: clip;
 }
-
-/* Conteúdo amplo */
 .container {
   width: 100%;
   max-width: none;
   margin-inline: auto;
   padding-inline: clamp(20px, 3vw, 64px);
 }
-
-/* Tipografia geral */
 body {
   font-size: clamp(15px, 0.95vw, 19px);
 }
@@ -5035,8 +4561,6 @@ body {
   font-size: clamp(16px, 1.1vw, 22px);
   line-height: 1.65;
 }
-
-/* Página inicial */
 .hero-layout {
   width: 100%;
   max-width: none;
@@ -5064,10 +4588,7 @@ body {
 .hero-visual img {
   width: 100%;
   height: clamp(380px, 34vw, 680px);
-  object-fit: cover;
 }
-
-/* Nossa trajetória */
 .about-numbers {
   width: 100%;
   max-width: none;
@@ -5086,8 +4607,6 @@ body {
 .about-stat strong {
   font-size: clamp(22px, 1.6vw, 34px);
 }
-
-/* Marcas e compromisso */
 .community-grid,
 .featured-brands {
   width: 100%;
@@ -5101,8 +4620,6 @@ body {
 .community-card-content p {
   font-size: clamp(16px, 1vw, 20px);
 }
-
-/* Trabalhe conosco */
 .careers-page {
   width: 100%;
   max-width: none;
@@ -5129,8 +4646,6 @@ body {
 .careers-content p {
   max-width: 850px;
 }
-
-/* Catálogo */
 .page-section .container {
   max-width: none;
 }
@@ -5164,8 +4679,6 @@ body {
 .product-card-content h2 {
   font-size: clamp(16px, 1.05vw, 22px);
 }
-
-/* Soluções para seu negócio */
 .solutions-container,
 .review-page-container {
   width: 100%;
@@ -5184,8 +4697,6 @@ body {
   width: 100%;
   max-width: none;
 }
-
-/* Avaliações */
 .review-benefits,
 .review-form-card {
   width: 100%;
@@ -5205,16 +4716,10 @@ body {
 .review-benefits h2 {
   font-size: clamp(20px, 1.4vw, 28px);
 }
-
-/* Rodapé */
 .footer-main {
   width: 100%;
   max-width: none;
 }
-
-/* ==========================================
-   TABLET
-   ========================================== */
 
 @media (max-width: 1100px) {
   .hero-layout,
@@ -5235,10 +4740,6 @@ body {
     min-height: 520px;
   }
 }
-
-/* ==========================================
-   CELULAR
-   ========================================== */
 
 @media (max-width: 700px) {
   .container {
@@ -5289,57 +4790,34 @@ body {
     max-width: none;
   }
 }
-
-/* Celulares pequenos */
 @media (max-width: 380px) {
   .product-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
-
-
-
-
-/* =====================================
-   AJUSTE DE ESCALA - SPEERS FOODS
-   ===================================== */
-
-/* Reduzir altura da seção inicial */
 .hero {
   padding-top: 32px;
   padding-bottom: 32px;
 }
-
-/* Reduzir título principal */
 .hero-copy h1 {
   font-size: clamp(34px, 2.6vw, 52px);
   line-height: 1.1;
 }
-
-/* Reduzir descrição */
 .hero-copy p {
   font-size: clamp(15px, 0.9vw, 18px);
   line-height: 1.5;
 }
-
-/* Reduzir imagem */
 .hero-visual img {
   height: clamp(320px, 26vw, 480px);
   object-fit: cover;
 }
-
-/* Reduzir espaçamento entre texto e imagem */
 .hero-layout {
   gap: clamp(24px, 2.5vw, 48px);
 }
-
-/* Ajustar textos menores */
 .hero-copy .eyebrow,
 .hero-copy small {
   font-size: 12px;
 }
-
-/* Manter proporções no celular */
 @media (max-width: 700px) {
   .hero {
     padding: 28px 0;
@@ -5354,8 +4832,6 @@ body {
   }
 }
 
-/* ===== CABEÇALHO FIXO AO ROLAR ===== */
-
 .site-header {
   position: sticky;
   top: 0;
@@ -5364,8 +4840,6 @@ body {
   background: #ffffff;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
-
-/* ===== CATÁLOGO RESPONSIVO ===== */
 
 @media (max-width: 700px) {
   .product-grid {
@@ -5419,8 +4893,6 @@ body {
   }
 }
 
-/* ===== CABEÇALHO NO CELULAR ===== */
-
 @media (max-width: 700px) {
   .header-inner {
     display: flex;
@@ -5446,8 +4918,6 @@ body {
   }
 }
 
-/* ===== BOTÃO FALE CONOSCO NO CELULAR ===== */
-
 @media (max-width: 700px) {
   .site-header .header-contact {
     display: inline-flex;
@@ -5469,8 +4939,6 @@ body {
     border-radius: 999px;
   }
 }
-
-/* Faz o rodapé terminar a página sem espaço vazio abaixo */
 
 html,
 body,

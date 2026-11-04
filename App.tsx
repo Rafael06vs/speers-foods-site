@@ -96,7 +96,6 @@ export default function App() {
   const [brandFilter, setBrandFilter] = useState("ALL");
   const [sortOrder, setSortOrder] = useState("name");
   const [currentPage, setCurrentPage] = useState(1);
-  const [supplierSearch, setSupplierSearch] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [customerType, setCustomerType] = useState("Restaurante");
   const [customerRegion, setCustomerRegion] = useState("");
@@ -331,16 +330,14 @@ export default function App() {
             />
           </button>
           <button
-  type="button"
-  className="mobile-menu-toggle"
-  aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
-  aria-expanded={mobileMenuOpen}
-  onClick={() => setMobileMenuOpen((open) => !open)}
->
-  <span aria-hidden="true">
-    {mobileMenuOpen ? "✕" : "☰"}
-  </span>
-</button>
+            type="button"
+            className="mobile-menu-toggle"
+            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            <span aria-hidden="true">{mobileMenuOpen ? "✕" : "☰"}</span>
+          </button>
           <nav
             className={`main-nav ${mobileMenuOpen ? "is-open" : ""}`}
             aria-label="Menu principal"
@@ -398,11 +395,11 @@ export default function App() {
             </a>
 
             <a
-  className="button button-green header-contact"
-  href="tel:+551125237171"
->
-  Fale conosco
-</a>
+              className="button button-green header-contact"
+              href="tel:+551125237171"
+            >
+              Fale conosco
+            </a>
           </div>
         </div>
       </header>
