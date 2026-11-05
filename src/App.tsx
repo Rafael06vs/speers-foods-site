@@ -403,15 +403,18 @@ export default function App() {
           </nav>
           <div className="header-actions">
             <button
-              className="quote-cart-trigger"
-              type="button"
-              onClick={() => setCartOpen(true)}
-              aria-label={`Abrir carrinho de orçamento: ${cartCount} unidades`}
-            >
-              <i className="fa-solid fa-cart-shopping" aria-hidden="true" />
-              <span>Carrinho</span>
-              <strong>{cartCount}</strong>
-            </button>
+  className="quote-cart-trigger"
+  type="button"
+  onClick={() => setCartOpen(true)}
+  aria-label={`Abrir carrinho de orçamento: ${cartCount} unidades`}
+  title="Meu carrinho"
+>
+  <i
+    className="fa-solid fa-cart-shopping"
+    aria-hidden="true"
+  />
+  <strong>{cartCount}</strong>
+</button>
             <button
               className="search-shortcut"
               aria-label="Pesquisar produtos"
@@ -1151,8 +1154,7 @@ export default function App() {
           <div className="footer-contact">
             <span>Contato e localização</span>
             <p>
-              <i className="fa-solid fa-location-dot" aria-hidden="true" /> São
-              Paulo — SP · Endereço completo a confirmar
+              <i className="fa-solid fa-location-dot" aria-hidden="true" /> R. John Speers, 270 - Fazenda Caguaçu, São Paulo - SP, 08265-040
             </p>
             <p>
               <i className="fa-solid fa-phone" aria-hidden="true" />{" "}

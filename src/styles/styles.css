@@ -4963,18 +4963,65 @@ body,
 }
 
 /* Carrinho de orçamento — Speers Foods */
+/* Botão do carrinho no cabeçalho */
+
+/* CARRINHO — IGUAL EM TODOS OS DISPOSITIVOS */
 .quote-cart-trigger {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   gap: 8px;
+
+  width: 68px;
+  height: 42px;
+  min-width: 68px;
+  box-sizing: border-box;
+  padding: 0 10px;
+
   border: 1px solid #b6d0c3;
-  background: #fff;
-  color: #07513c;
   border-radius: 12px;
-  padding: 10px 12px;
-  font-weight: 750;
+  background: #ffffff;
+  color: #07513c;
+
+  cursor: pointer;
   white-space: nowrap;
+  transition: background 0.2s ease;
 }
+
+.quote-cart-trigger:hover {
+  background: #e8f3ec;
+}
+
+/* Ícone do carrinho */
+.quote-cart-trigger i {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Contador laranja */
+.quote-cart-trigger strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  min-width: 19px;
+  height: 19px;
+  box-sizing: border-box;
+  padding: 0 4px;
+
+  background: #ff8a24;
+  color: #17372e;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+
 .quote-cart-trigger strong {
   background: #ff8a24;
   color: #17372e;
@@ -5196,13 +5243,6 @@ body,
 .quote-admin-card small {
   color: #65756e;
 }
-@media (max-width: 700px) {
-  .quote-cart-trigger {
-    padding: 8px;
-  }
-  .quote-cart-trigger span {
-    display: none;
-  }
   .quote-cart-head {
     padding: 18px;
   }
@@ -5213,4 +5253,5 @@ body,
     flex-basis: 58px;
     height: 58px;
   }
-}
+
+
