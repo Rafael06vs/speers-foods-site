@@ -260,6 +260,18 @@ img {
   .mobile-menu-toggle {
     display: flex;
     flex-shrink: 0;
+    
+    .quote-cart-head {
+    padding: 18px;
+  }
+  .quote-cart-scroll {
+    padding: 16px;
+  }
+  .quote-cart-thumb {
+    flex-basis: 58px;
+    height: 58px;
+  }
+
   }
 }
 
@@ -4966,69 +4978,49 @@ body,
 /* Botão do carrinho no cabeçalho */
 
 /* CARRINHO — IGUAL EM TODOS OS DISPOSITIVOS */
+
+/* CARRINHO — ÍCONE SIMPLES EM TODOS OS DISPOSITIVOS */
 .quote-cart-trigger {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  gap: 8px;
 
-  width: 68px;
-  height: 42px;
-  min-width: 68px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  padding: 0;
   box-sizing: border-box;
-  padding: 0 10px;
 
-  border: 1px solid #b6d0c3;
-  border-radius: 12px;
-  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
   color: #07513c;
 
   cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.2s ease;
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
-.quote-cart-trigger:hover {
-  background: #e8f3ec;
-}
-
-/* Ícone do carrinho */
+/* Ícone verde */
 .quote-cart-trigger i {
   display: inline-block;
-  font-size: 20px;
+  font-size: 23px;
   line-height: 1;
-  flex-shrink: 0;
+  color: inherit;
 }
 
-/* Contador laranja */
-.quote-cart-trigger strong {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  min-width: 19px;
-  height: 19px;
-  box-sizing: border-box;
-  padding: 0 4px;
-
-  background: #ff8a24;
-  color: #17372e;
-  border-radius: 99px;
-  font-size: 11px;
-  font-weight: 800;
-  line-height: 1;
+/* Efeito ao passar o mouse */
+.quote-cart-trigger:hover {
+  color: #009b62;
+  background: #edf6f0;
 }
 
-
-.quote-cart-trigger strong {
-  background: #ff8a24;
-  color: #17372e;
-  border-radius: 99px;
-  padding: 1px 7px;
-  font-size: 12px;
+/* Foco ao navegar pelo teclado */
+.quote-cart-trigger:focus-visible {
+  outline: 2px solid #009b62;
+  outline-offset: 2px;
 }
+
 .quote-cart-backdrop {
   position: fixed;
   inset: 0;
@@ -5243,15 +5235,33 @@ body,
 .quote-admin-card small {
   color: #65756e;
 }
-  .quote-cart-head {
-    padding: 18px;
-  }
-  .quote-cart-scroll {
-    padding: 16px;
-  }
-  .quote-cart-thumb {
-    flex-basis: 58px;
-    height: 58px;
-  }
+  
+
+/* ÍCONE DO TELEFONE */
+.header-phone-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+  color: #07513c;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.header-phone-icon i {
+  font-size: 22px;
+}
+
+.header-phone-icon:hover {
+  color: #009b62;
+}
 
 

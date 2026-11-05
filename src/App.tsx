@@ -403,18 +403,15 @@ export default function App() {
           </nav>
           <div className="header-actions">
             <button
-  className="quote-cart-trigger"
-  type="button"
-  onClick={() => setCartOpen(true)}
-  aria-label={`Abrir carrinho de orçamento: ${cartCount} unidades`}
-  title="Meu carrinho"
->
-  <i
-    className="fa-solid fa-cart-shopping"
-    aria-hidden="true"
-  />
-  <strong>{cartCount}</strong>
-</button>
+              className="quote-cart-trigger"
+              type="button"
+              onClick={() => setCartOpen(true)}
+              aria-label={`Abrir carrinho de orçamento: ${cartCount} unidades`}
+              title="Meu carrinho"
+            >
+              <i className="fa-solid fa-cart-shopping" aria-hidden="true" />
+            </button>
+
             <button
               className="search-shortcut"
               aria-label="Pesquisar produtos"
@@ -456,10 +453,12 @@ export default function App() {
             </a>
 
             <a
-              className="button button-green header-contact"
+              className="header-phone-icon"
               href="tel:+551125237171"
+              aria-label="Ligar para Speers Foods"
+              title="Fale conosco"
             >
-              Fale conosco
+              <i className="fa-solid fa-phone" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -1154,7 +1153,8 @@ export default function App() {
           <div className="footer-contact">
             <span>Contato e localização</span>
             <p>
-              <i className="fa-solid fa-location-dot" aria-hidden="true" /> R. John Speers, 270 - Fazenda Caguaçu, São Paulo - SP, 08265-040
+              <i className="fa-solid fa-location-dot" aria-hidden="true" /> R.
+              John Speers, 270 - Fazenda Caguaçu, São Paulo - SP, 08265-040
             </p>
             <p>
               <i className="fa-solid fa-phone" aria-hidden="true" />{" "}
