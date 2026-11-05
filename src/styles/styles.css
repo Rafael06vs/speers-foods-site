@@ -341,7 +341,7 @@ img {
 
 .hero-actions {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
 }
 
@@ -5548,14 +5548,6 @@ body,
   }
 }
 
-
-/* LOGO GRANDE NO ESPAÇO VERDE DA CAPA */
-.hero {
-  position: relative;
-}
-
-
-
 /* LOGO SPEERS FOODS — GRANDE E DESTACADA */
 .hero-speers-brand {
   position: absolute;
@@ -5620,14 +5612,9 @@ body,
 
 
 /* NOVO FUNDO DA CAPA — MAIS CONTRASTE PARA A LOGO */
+
 .hero {
-  background: linear-gradient(
-    115deg,
-    #063f2f 0%,
-    #07513c 43%,
-    #b8d9c0 75%,
-    #e5f0df 100%
-  );
+  background: linear-gradient(115deg,#cce7ef 0%,#e7f5f7 52%,#f8fcfa 100%);
 }
 
 /* MELHORA O DESTAQUE DA LOGO */
@@ -5636,4 +5623,111 @@ body,
   filter: drop-shadow(
     0 8px 15px rgba(0, 0, 0, 0.12)
   );
+}
+
+
+/* CAPA CLARA — TEXTOS COM MAIS CONTRASTE */
+
+/* Título principal */
+.hero .hero-copy h1 {
+  color: #123e35;
+}
+
+/* Destaque "20 anos" */
+.hero .hero-copy h1 span {
+  color: #08734c;
+}
+
+/* Parágrafos e textos menores */
+.hero .hero-copy p {
+  color: #345b55;
+}
+
+/* Botão "Conheça nossas marcas" */
+.hero .hero-copy .button-outline {
+  color: #07513c;
+  border-color: #07513c;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Texto pequeno abaixo dos botões */
+.hero .hero-copy .hero-note {
+  color: #345b55;
+}
+
+
+/* CARDS MENORES E CENTRALIZADOS */
+.brand-flip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* REDUZIR ALTURA DOS CARDS */
+.brand-flip-card {
+  height: 320px;
+}
+
+/* TABLET */
+@media (max-width: 950px) {
+  .brand-flip-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 720px;
+  }
+}
+
+/* CELULAR */
+@media (max-width: 650px) {
+  .brand-flip-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+
+  .brand-flip-card {
+    height: 310px;
+  }
+}
+
+/* SELO — PARCEIROS DOS MELHORES SABORES */
+.hero .hero-copy .eyebrow {
+  color: #07513c;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(7, 81, 60, 0.25);
+
+  font-weight: 800;
+  opacity: 1;
+}
+
+/* BOLINHA LARANJA */
+.hero .hero-copy .eyebrow-dot {
+  background: #ff8a24;
+  opacity: 1;
+}
+
+
+/* TÍTULO DOS CARDS */
+.brand-cards-title {
+  width: 100%;
+  max-width: 1080px;
+  margin: 35px auto 24px;
+
+  text-align: center;
+  color: #07513c;
+
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 850;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+}
+
+/* CELULAR */
+@media (max-width: 650px) {
+  .brand-cards-title {
+    margin: 28px auto 20px;
+    font-size: 26px;
+  }
 }

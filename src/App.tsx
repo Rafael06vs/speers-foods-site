@@ -90,7 +90,6 @@ const tabLabels: Record<Tab, string> = {
   avaliacoes: "Avalie-nos",
 };
 
-
 /* Cards interativos das marcas na página inicial */
 type BrandFlipCardProps = {
   name: string;
@@ -99,13 +98,7 @@ type BrandFlipCardProps = {
   description: string;
 };
 
-
-function BrandFlipCard({
-  name,
-  image,
-  logo,
-  description,
-}: BrandFlipCardProps) {
+function BrandFlipCard({ name, image, logo, description }: BrandFlipCardProps) {
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -117,17 +110,15 @@ function BrandFlipCard({
       aria-pressed={flipped}
     >
       <span className="brand-flip-inner">
-
         {/* FRENTE — SOMENTE A FOTO */}
-        
-<span className="brand-flip-front">
-  <img src={image} alt="" loading="eager" />
 
-  <span className="brand-flip-center" aria-hidden="true">
-    <i className="fa-solid fa-rotate" />
-  </span>
-</span>
+        <span className="brand-flip-front">
+          <img src={image} alt="" loading="eager" />
 
+          <span className="brand-flip-center" aria-hidden="true">
+            <i className="fa-solid fa-rotate" />
+          </span>
+        </span>
 
         {/* VERSO — INFORMAÇÕES DA EMPRESA */}
         <span className="brand-flip-back">
@@ -141,19 +132,15 @@ function BrandFlipCard({
           <span className="brand-flip-content">
             <strong>{name}</strong>
 
-            <span className="brand-flip-description">
-              {description}
-            </span>
+            <span className="brand-flip-description">{description}</span>
 
             <small>Clique para voltar ↩</small>
           </span>
         </span>
-
       </span>
     </button>
   );
 }
-
 
 export default function App() {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -536,14 +523,13 @@ export default function App() {
               <div className="hero-shape hero-shape-one" />
               <div className="hero-shape hero-shape-two" />
               <div className="container hero-layout">
-                
-<div className="hero-speers-brand" aria-hidden="true">
-  <img
-    src="/speers-logo.png"
-    alt=""
-    className="hero-speers-logo"
-  />
-</div>
+                <div className="hero-speers-brand" aria-hidden="true">
+                  <img
+                    src="/speers-logo.png"
+                    alt=""
+                    className="hero-speers-logo"
+                  />
+                </div>
 
                 <div className="hero-copy">
                   <span className="eyebrow">
@@ -571,19 +557,18 @@ export default function App() {
                       Conheça nossas marcas{" "}
                       <i className="fa-solid fa-arrow-right" />
                     </button>
-                    <button
-                      className="button button-orange"
-                      onClick={() => goToTab("produtos")}
-                    >
-                      Ver produtos
-                    </button>
-                  </div>
-                  <div className="hero-note">
-                    <i className="fa-solid fa-snowflake" /> Um portfólio pensado
-                    para diferentes necessidades do mercado.
+            
                   </div>
                 </div>
-                <div className="brand-flip-grid" aria-label="Conheça nossas marcas parceiras">
+
+                <h2 className="brand-cards-title">
+                  Alguns dos nossos sucessos
+                </h2>
+
+                <div
+                  className="brand-flip-grid"
+                  aria-label="Conheça nossas marcas parceiras"
+                >
                   <BrandFlipCard
                     name="Fazenda Futuro"
                     image="/fazenda-futuro-card.webp"
