@@ -90,6 +90,71 @@ const tabLabels: Record<Tab, string> = {
   avaliacoes: "Avalie-nos",
 };
 
+
+/* Cards interativos das marcas na página inicial */
+type BrandFlipCardProps = {
+  name: string;
+  image: string;
+  logo: string;
+  description: string;
+};
+
+
+function BrandFlipCard({
+  name,
+  image,
+  logo,
+  description,
+}: BrandFlipCardProps) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <button
+      type="button"
+      className={`brand-flip-card ${flipped ? "is-flipped" : ""}`}
+      onClick={() => setFlipped((value) => !value)}
+      aria-label={`${name}: ${flipped ? "voltar à foto" : "ler sobre a marca"}`}
+      aria-pressed={flipped}
+    >
+      <span className="brand-flip-inner">
+
+        {/* FRENTE — SOMENTE A FOTO */}
+        
+<span className="brand-flip-front">
+  <img src={image} alt="" loading="eager" />
+
+  <span className="brand-flip-center" aria-hidden="true">
+    <i className="fa-solid fa-rotate" />
+  </span>
+</span>
+
+
+        {/* VERSO — INFORMAÇÕES DA EMPRESA */}
+        <span className="brand-flip-back">
+          <img
+            className="brand-flip-watermark"
+            src={logo}
+            alt=""
+            aria-hidden="true"
+          />
+
+          <span className="brand-flip-content">
+            <strong>{name}</strong>
+
+            <span className="brand-flip-description">
+              {description}
+            </span>
+
+            <small>Clique para voltar ↩</small>
+          </span>
+        </span>
+
+      </span>
+    </button>
+  );
+}
+
+
 export default function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [welcomeLeaving, setWelcomeLeaving] = useState(false);
@@ -471,6 +536,15 @@ export default function App() {
               <div className="hero-shape hero-shape-one" />
               <div className="hero-shape hero-shape-two" />
               <div className="container hero-layout">
+                
+<div className="hero-speers-brand" aria-hidden="true">
+  <img
+    src="/speers-logo.png"
+    alt=""
+    className="hero-speers-logo"
+  />
+</div>
+
                 <div className="hero-copy">
                   <span className="eyebrow">
                     <span className="eyebrow-dot" /> Parceiros dos melhores
@@ -509,28 +583,25 @@ export default function App() {
                     para diferentes necessidades do mercado.
                   </div>
                 </div>
-                <div className="hero-visual">
-                  <img
-                    src="/docas.webp"
-                    alt="Seleção de alimentos congelados e ingredientes"
-                    onError={(event) => {
-                      event.currentTarget.style.display = "none";
-                    }}
+                <div className="brand-flip-grid" aria-label="Conheça nossas marcas parceiras">
+                  <BrandFlipCard
+                    name="Fazenda Futuro"
+                    image="/fazenda-futuro-card.webp"
+                    logo="/fazenda futuro.png"
+                    description="A Fazenda Futuro é uma foodtech brasileira fundada em 2019, pioneira no desenvolvimento de alternativas vegetais à carne. Com foco em sabor, textura e inovação, produz hambúrgueres e outros alimentos à base de plantas."
                   />
-                  <div className="visual-caption">
-                    <span className="caption-icon">
-                      <i className="fa-solid fa-boxes-stacked" />
-                    </span>
-                    <div>
-                      <strong>Variedade para o seu negócio</strong>
-                      <span>Conheça as marcas do nosso catálogo</span>
-                    </div>
-                  </div>
-                  <div className="visual-decoration">
-                    SPEERS
-                    <br />
-                    <span>FOODS</span>
-                  </div>
+                  <BrandFlipCard
+                    name="McCain"
+                    image="/mccain-card.webp"
+                    logo="/mccain-logo.png"
+                    description="A McCain é referência mundial em batatas e alimentos congelados. A marca oferece soluções para o varejo e o food service, combinando praticidade, qualidade e inovação para diferentes ocasiões de consumo."
+                  />
+                  <BrandFlipCard
+                    name="Frooty"
+                    image="/frooty-card.webp"
+                    logo="/frooty-logo.png"
+                    description="Fundada em 1994, a Frooty é uma marca brasileira especializada em açaí. Destaca-se pelo creme de açaí, pela inovação em seu portfólio e pela presença nos mercados brasileiro e internacional."
+                  />
                 </div>
               </div>
             </section>

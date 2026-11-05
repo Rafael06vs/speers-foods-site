@@ -260,8 +260,8 @@ img {
   .mobile-menu-toggle {
     display: flex;
     flex-shrink: 0;
-    
-    .quote-cart-head {
+  }
+  .quote-cart-head {
     padding: 18px;
   }
   .quote-cart-scroll {
@@ -270,8 +270,6 @@ img {
   .quote-cart-thumb {
     flex-basis: 58px;
     height: 58px;
-  }
-
   }
 }
 
@@ -4998,7 +4996,9 @@ body,
   color: #07513c;
 
   cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
 /* Ícone verde */
@@ -5235,7 +5235,6 @@ body,
 .quote-admin-card small {
   color: #65756e;
 }
-  
 
 /* ÍCONE DO TELEFONE */
 .header-phone-icon {
@@ -5264,4 +5263,377 @@ body,
   color: #009b62;
 }
 
+/* ===== CARDS GIRATÓRIOS — HOME ===== */
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 34px;
+  padding-block: 56px 66px;
+}
+.hero-copy {
+  max-width: 930px;
+}
+.hero-copy > p {
+  max-width: 780px;
+}
+.brand-flip-grid {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+}
+.brand-flip-card {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: clamp(330px, 33vw, 465px);
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1400px;
+  text-align: left;
+  font: inherit;
+}
+.brand-flip-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 720ms cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+.brand-flip-card.is-flipped .brand-flip-inner {
+  transform: rotateY(180deg);
+}
+.brand-flip-front,
+.brand-flip-back {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: 20px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+.brand-flip-front {
+  background: #07513c;
+}
+.brand-flip-front > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.brand-flip-hint {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 11px;
+  color: #fff;
+  background: rgba(3, 47, 31, 0.75);
+  backdrop-filter: blur(7px);
+  font-size: 12px;
+  font-weight: 750;
+}
+.brand-flip-hint span {
+  font-size: 20px;
+  color: #ffb04e;
+}
+.brand-flip-back {
+  transform: rotateY(180deg);
+  background: #fff;
+  color: #17372e;
+  border: 1px solid #cfe3d5;
+}
+.brand-flip-back::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 9px;
+  background: linear-gradient(90deg, #07513c 72%, #ff8a24 72%);
+}
+.brand-flip-watermark {
+  position: absolute;
+  width: 82%;
+  height: 55%;
+  top: 24%;
+  left: 9%;
+  object-fit: contain;
+  opacity: 0.065;
+  pointer-events: none;
+}
+.brand-flip-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 17px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: clamp(18px, 2.3vw, 32px);
+}
+.brand-flip-content > strong {
+  color: #07513c;
+  font-size: clamp(20px, 2.2vw, 29px);
+  font-weight: 850;
+  line-height: 1.12;
+}
+.brand-flip-description {
+  display: block;
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.65;
+}
+.brand-flip-content small {
+  color: #08734c;
+  font-weight: 800;
+  font-size: 12px;
+}
+.brand-flip-card:focus-visible {
+  outline: 3px solid #ff8a24;
+  outline-offset: 5px;
+}
+@media (max-width: 760px) {
+  .hero-layout {
+    padding-block: 35px 48px;
+  }
+  .brand-flip-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+  .brand-flip-card {
+    height: 420px;
+  }
+  .brand-flip-description {
+    font-size: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-flip-inner {
+    transition-duration: 0.01ms;
+  }
+}
 
+
+/* DESTAQUE SUAVE AO PASSAR O MOUSE */
+.brand-flip-card {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+/* SOMENTE DISPOSITIVOS COM MOUSE */
+@media (hover: hover) and (pointer: fine) {
+  .brand-flip-card:hover {
+    transform: translateY(-8px) scale(1.025);
+    filter: drop-shadow(
+      0 18px 22px rgba(0, 50, 30, 0.22)
+    );
+    z-index: 5;
+  }
+}
+
+/* VIRADA 3D APENAS NO CLIQUE */
+.brand-flip-inner {
+  transition: transform 0.7s cubic-bezier(
+    0.2, 0.75, 0.25, 1
+  );
+}
+
+.brand-flip-card.is-flipped .brand-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* RESPEITA PREFERÊNCIA POR MENOS ANIMAÇÃO */
+@media (prefers-reduced-motion: reduce) {
+  .brand-flip-card,
+  .brand-flip-inner {
+    transition: none;
+  }
+}
+
+
+/* FOTO DO CARD */
+.brand-flip-front {
+  position: absolute;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.brand-flip-front > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    filter 0.35s ease,
+    transform 0.4s ease;
+}
+
+/* ÍCONE CENTRAL */
+.brand-flip-center {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 72px;
+  height: 72px;
+
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.92);
+  color: #07513c;
+
+  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+
+  opacity: 0;
+  transform: translate(-50%, -45%) scale(0.7);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s ease;
+
+  pointer-events: none;
+}
+
+.brand-flip-center i {
+  font-size: 27px;
+}
+
+/* EFEITO AO PASSAR O MOUSE */
+@media (hover: hover) and (pointer: fine) {
+
+  /* Escurece levemente a fotografia */
+  .brand-flip-card:not(.is-flipped):hover
+  .brand-flip-front > img {
+    filter: brightness(0.65);
+    transform: scale(1.035);
+  }
+
+  /* Faz o ícone central aparecer */
+  .brand-flip-card:not(.is-flipped):hover
+  .brand-flip-center {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Mantém o destaque do card */
+  .brand-flip-card:hover {
+    transform: translateY(-7px) scale(1.02);
+    z-index: 5;
+  }
+}
+
+/* Evita animações para quem prefere movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .brand-flip-front > img,
+  .brand-flip-center {
+    transition: none;
+  }
+}
+
+
+/* LOGO GRANDE NO ESPAÇO VERDE DA CAPA */
+.hero {
+  position: relative;
+}
+
+
+
+/* LOGO SPEERS FOODS — GRANDE E DESTACADA */
+.hero-speers-brand {
+  position: absolute;
+  top: 65px;
+  right: 5%;
+
+  width: 420px;
+  height: 260px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-speers-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  max-width: none;
+  max-height: none;
+
+  object-fit: contain;
+  transform: scale(1.8);
+  transform-origin: center;
+
+  opacity: 1;
+  filter:
+    drop-shadow(0 5px 12px rgba(0, 0, 0, 0.28))
+    brightness(1.25);
+}
+
+/* TABLET */
+@media (max-width: 950px) {
+  .hero-speers-brand {
+    right: 2%;
+    top: 85px;
+    width: 300px;
+    height: 200px;
+  }
+
+  .hero-speers-logo {
+    transform: scale(1.5);
+  }
+}
+
+/* CELULAR */
+@media (max-width: 650px) {
+  .hero-speers-brand {
+    display: none;
+  }
+}
+
+
+/* NOVO FUNDO DA CAPA — MAIS CONTRASTE PARA A LOGO */
+.hero {
+  background: linear-gradient(
+    115deg,
+    #063f2f 0%,
+    #07513c 43%,
+    #b8d9c0 75%,
+    #e5f0df 100%
+  );
+}
+
+/* MELHORA O DESTAQUE DA LOGO */
+.hero-speers-logo {
+  opacity: 1;
+  filter: drop-shadow(
+    0 8px 15px rgba(0, 0, 0, 0.12)
+  );
+}
