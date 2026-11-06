@@ -41,6 +41,7 @@ const BRAND_LOGOS: Record<string, string> = {
 
   bimbo: "/bimbo-logo.jpg",
   grano: "/grano foods.jpg",
+  "BONDUELLE": "/logo-bonduelle.jpg",
 
   "bimbo do brasil": "/bimbo-logo.jpg",
   "lar cooperativa": "/lar cooperativa agroindustrial.png",
@@ -57,6 +58,7 @@ const FEATURED_BRANDS = [
   },
 
   { label: "Grano Foods", logo: "/grano foods.jpg", search: "grano" },
+  { label: "BONDUELLE", logo: "/logo-bonduelle.jpg", search: "BONDUELLE" },
   {
     label: "Lar Cooperativa",
     logo: "/lar cooperativa agroindustrial.png",
@@ -318,15 +320,16 @@ export default function App() {
           normalize(String(value)).replace(/\s+/g, "").includes(term),
         );
 
-      // Se o filtro for o valor padrão "ALL", exibe tudo
-      // Caso contrário, removemos os espaços de ambos os lados da comparação para bater certinho
+      // Filtra pela marca comercial, sem misturar marcas do mesmo fornecedor.
+      // Para opções que representam apenas fornecedores, mantém o filtro por fornecedor.
+      const isBrandOption = brandOptions.some(
+        (brand) => normalize(brand).replace(/\s+/g, "") === brandTerm,
+      );
       const matchesBrand =
         brandFilterValue === "ALL" ||
-        normalize(product.brand).replace(/\s+/g, "").includes(brandTerm) ||
-        normalize(product.supplierName)
-          .replace(/\s+/g, "")
-          .includes(brandTerm) ||
-        normalize(product.name).replace(/\s+/g, "").includes(brandTerm);
+        (isBrandOption
+          ? normalize(product.brand).replace(/\s+/g, "") === brandTerm
+          : normalize(product.supplierName || "").replace(/\s+/g, "") === brandTerm);
 
       return matchesTerm && matchesBrand;
     });

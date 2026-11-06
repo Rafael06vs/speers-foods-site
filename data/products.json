@@ -33,7 +33,6 @@
     "supplierName": "ALIBEM ALIMENTOS S.A",
     "priceRegion": "SAO PAULO CAPITAL"
   },
-  
   {
     "id": "30169",
     "name": "POSTAS DE CACAO CONG. ATENAS",
@@ -102,7 +101,6 @@
     "supplierName": "BH FOODS COMERCIO E INDUSTRIA LTDA",
     "priceRegion": "SAO PAULO CAPITAL"
   },
-
   {
     "id": "4004",
     "name": "PAO CLASS BRIOCHE 120P 7,700 KG BIMBO",
@@ -214,7 +212,7 @@
     "available": true,
     "image": "/PAO HB SMART CGERG. 15P BIMBO.png",
     "barcode": "",
-    "supplierCode": "674",                        
+    "supplierCode": "674",
     "department": "22",
     "section": "10025",
     "netWeight": 0.75,
@@ -3080,7 +3078,7 @@
   {
     "id": "220447",
     "name": "BROCOLIS 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "PCT",
     "price": 6.45,
     "available": true,
@@ -3097,7 +3095,7 @@
   {
     "id": "20446",
     "name": "BROCOLIS 10 X 1,00 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 189,
     "available": true,
@@ -3131,7 +3129,7 @@
   {
     "id": "20447",
     "name": "BROCOLIS 30 X 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 193.5,
     "available": true,
@@ -3182,7 +3180,7 @@
   {
     "id": "20550",
     "name": "COUVE - FLOR 30 X 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 208.5,
     "available": true,
@@ -3216,7 +3214,7 @@
   {
     "id": "220554",
     "name": "ERVILHA 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "PCT",
     "price": 7.45,
     "available": true,
@@ -3250,7 +3248,7 @@
   {
     "id": "20554",
     "name": "ERVILHA 16 X 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 119.2,
     "available": true,
@@ -3301,7 +3299,7 @@
   {
     "id": "20562",
     "name": "ESPINAFRE EM FOLHAS 10 X 1,00 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 199,
     "available": true,
@@ -3318,7 +3316,7 @@
   {
     "id": "20563",
     "name": "ESPINAFRE EM FOLHAS 16 X 0,400 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 158.4,
     "available": true,
@@ -3335,7 +3333,7 @@
   {
     "id": "20561",
     "name": "ESPINAFRE PICADO 16 X 0,400 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 158.4,
     "available": true,
@@ -3352,7 +3350,7 @@
   {
     "id": "20564",
     "name": "FAVAS 16 X 0,400 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 174.4,
     "available": true,
@@ -3369,7 +3367,7 @@
   {
     "id": "20553",
     "name": "FUNDO DE ALCACHOFRA 16 X 0,400 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 318.4,
     "available": true,
@@ -3539,7 +3537,7 @@
   {
     "id": "220558",
     "name": "MILHO VERDE 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "PCT",
     "price": 8.95,
     "available": true,
@@ -3556,7 +3554,7 @@
   {
     "id": "20558",
     "name": "MILHO VERDE 16 X 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 143.2,
     "available": true,
@@ -3573,7 +3571,7 @@
   {
     "id": "220566",
     "name": "MISTURA ORIENTAL 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "PCT",
     "price": 6.9,
     "available": true,
@@ -3590,7 +3588,7 @@
   {
     "id": "20566",
     "name": "MISTURA ORIENTAL 20 X 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 138,
     "available": true,
@@ -3777,7 +3775,7 @@
   {
     "id": "220567",
     "name": "VAGEM FINA 0,400 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "PCT",
     "price": 9.9,
     "available": true,
@@ -3794,7 +3792,7 @@
   {
     "id": "20567",
     "name": "VAGEM FINA 16 X 0,400 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 158.4,
     "available": true,
@@ -3811,7 +3809,7 @@
   {
     "id": "20571",
     "name": "VEGETAIS A RUSSA 20 X 0,300 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 109,
     "available": true,
@@ -3828,7 +3826,7 @@
   {
     "id": "20572",
     "name": "VEGETAIS MACED H.CHEF10 X0,750 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 189,
     "available": true,
@@ -3845,7 +3843,7 @@
   {
     "id": "20573",
     "name": "VEGETAIS MEXIC H.CHEF16 X0,400 BONDUELLE",
-    "brand": "GRANO ALIMENTOS S/A",
+    "brand": "BONDUELLE",
     "unit": "CX",
     "price": 190.4,
     "available": true,
@@ -4167,7 +4165,7 @@
   },
   {
     "id": "30195",
-    "name" : "FILE DE TILAPIA CONG. EMP. 12 X0,400 LAR",
+    "name": "FILE DE TILAPIA CONG. EMP. 12 X0,400 LAR",
     "brand": "LAR COOPERATIVA AGROINDUSTRIAL",
     "image": "/FILE DE TILAPIA CONG. EMP. 12 X0,400 LAR..png",
     "available": true,
