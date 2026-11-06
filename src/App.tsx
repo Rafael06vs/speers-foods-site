@@ -439,7 +439,7 @@ export default function App() {
             </p>
             <img
               className="speers-welcome__logo"
-              src="/speers-logo.png"
+              src="/logo-speers.png"
               alt="Speers Foods"
             />
             <span className="speers-welcome__line" aria-hidden="true" />
@@ -455,7 +455,7 @@ export default function App() {
             onClick={() => goToTab("speers")}
           >
             <img
-              src="/speers-logo.png"
+              src="/logo-speers.png"
               alt="Speers Foods"
               className="site-logo"
             />
@@ -556,7 +556,7 @@ export default function App() {
               <div className="container hero-layout">
                 <div className="hero-speers-brand" aria-hidden="true">
                   <img
-                    src="/speers-logo.png"
+                    src="/logo-speers.png"
                     alt=""
                     className="hero-speers-logo"
                   />
@@ -1209,7 +1209,7 @@ export default function App() {
       <footer className="site-footer">
         <div className="container footer-main footer-main-expanded">
           <div className="footer-brand">
-            <img src="/speers-logo.png" alt="Speers Foods" />
+            <img src="/logo-speers.png" alt="Speers Foods" />
             <p>Distribuição de alimentos congelados e perecíveis.</p>
           </div>
           <div className="footer-nav">
