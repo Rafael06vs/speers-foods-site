@@ -5746,3 +5746,53 @@ body,
   line-height: 1.2;
   letter-spacing: -0.8px;
 }
+
+
+/* ÍCONE DE VIRAR — SOMENTE CELULAR */
+
+.brand-flip-mobile-icon {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .brand-flip-front {
+    position: relative;
+  }
+
+  .brand-flip-mobile-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.95);
+    color: #07513c;
+
+    font-size: 23px;
+
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.18);
+    pointer-events: none;
+
+    z-index: 5;
+  }
+
+  /* Escurece levemente a imagem para destacar o ícone */
+  .brand-flip-front::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
