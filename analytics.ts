@@ -179,4 +179,3 @@ export async function fetchQuotes(token: string): Promise<QuoteRecord[]> {
 
   return Array.isArray(result) ? result : [];
 }
-

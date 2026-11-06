@@ -5730,7 +5730,6 @@ body,
   letter-spacing: -0.8px;
 }
 
-
 /* CLOUDFLARE TURNSTILE — CARRINHO */
 
 .quote-cart-turnstile {
@@ -5746,7 +5745,6 @@ body,
   opacity: 0.55;
   cursor: not-allowed;
 }
-
 
 /* ===== LOGO PRINCIPAL NO CELULAR ===== */
 
@@ -5796,11 +5794,9 @@ body,
   }
 }
 
-
 /* ===== CORREÇÃO: CELULAR NA HORIZONTAL ===== */
 
 @media (orientation: landscape) and (max-height: 600px) and (max-width: 1100px) {
-
   .hero-layout {
     display: flex !important;
     flex-direction: column !important;

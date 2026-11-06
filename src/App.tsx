@@ -50,7 +50,6 @@ const BRAND_LOGOS: Record<string, string> = {
   "fazenda futuro": "/fazenda futuro.png",
 };
 
-
 const FEATURED_BRANDS = [
   {
     label: "Forno de Minas",
@@ -103,7 +102,6 @@ const FEATURED_BRANDS = [
     search: "FAZENDA FUTURO PRODUTOS ALIMENTICIOS SA",
   },
 ];
-
 
 const normalize = (value = "") =>
   value
@@ -488,7 +486,7 @@ export default function App() {
             <button
               className="quote-cart-trigger"
               type="button"
-              onClick={() => setCartOpen(true)}
+              onClick={() => setCartOpen((prev) => !prev)}
               aria-label={`Abrir carrinho de orçamento: ${cartCount} unidades`}
               title="Meu carrinho"
             >
