@@ -50,32 +50,60 @@ const BRAND_LOGOS: Record<string, string> = {
   "fazenda futuro": "/fazenda futuro.png",
 };
 
+
 const FEATURED_BRANDS = [
   {
     label: "Forno de Minas",
     logo: "/forno-de-minas-logo.jpg",
-    search: "forno de minas",
+    search: "FORNO DE MINAS ALIMENTOS S/A",
   },
-
-  { label: "Grano Foods", logo: "/grano foods.jpg", search: "grano" },
-  { label: "BONDUELLE", logo: "/logo-bonduelle.jpg", search: "BONDUELLE" },
+  {
+    label: "Grano Foods",
+    logo: "/grano foods.jpg",
+    search: "GRANO ALIMENTOS S/A",
+  },
+  {
+    label: "BONDUELLE",
+    logo: "/logo-bonduelle.jpg",
+    search: "BONDUELLE",
+  },
   {
     label: "Lar Cooperativa",
     logo: "/lar cooperativa agroindustrial.png",
-    search: "lar cooperativa",
+    search: "LAR COOPERATIVA AGROINDUSTRIAL",
   },
-
-  { label: "McCain", logo: "/mccain-logo.png", search: "mccain" },
-  { label: "Franui", logo: "/franui-logo.png", search: "franui" },
-  { label: "Minerva", logo: "/minerva-foods-logo.jpg", search: "minerva" },
-  { label: "Bimbo", logo: "/bimbo-logo.jpg", search: "bimbo" },
-  { label: "Frooty", logo: "/frooty-logo.png", search: "frooty" },
+  {
+    label: "McCain",
+    logo: "/mccain-logo.png",
+    search: "MC CAIN DO BRASIL ALIMENTOS LTDA",
+  },
+  {
+    label: "Franui",
+    logo: "/franui-logo.png",
+    search: "FRANUÍ",
+  },
+  {
+    label: "Minerva",
+    logo: "/minerva-foods-logo.jpg",
+    search: "MINERVA S/A",
+  },
+  {
+    label: "Bimbo",
+    logo: "/bimbo-logo.jpg",
+    search: "BIMBO DO BRASIL",
+  },
+  {
+    label: "Frooty",
+    logo: "/frooty-logo.png",
+    search: "FROOTY COMERCIO E INDUSTRIA DE ALIMENTOS S.A.",
+  },
   {
     label: "Fazenda Futuro",
     logo: "/fazenda futuro.png",
-    search: "fazenda futuro",
+    search: "FAZENDA FUTURO PRODUTOS ALIMENTICIOS SA",
   },
 ];
+
 
 const normalize = (value = "") =>
   value
