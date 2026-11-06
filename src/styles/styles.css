@@ -5713,12 +5713,12 @@ body,
 .brand-cards-title {
   width: 100%;
   max-width: 1080px;
-  margin: 35px auto 24px;
+  margin: 35px auto 4px;
 
   text-align: center;
   color: #07513c;
 
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(35px, 5vw, 50px);
   font-weight: 850;
   line-height: 1.2;
   letter-spacing: -0.8px;
@@ -5730,4 +5730,19 @@ body,
     margin: 28px auto 20px;
     font-size: 26px;
   }
+}
+
+/* SUBTÍTULO DOS CARDS */
+.brand-cards-subtitle {
+  width: 100%;
+  max-width: 1080px;
+  margin: 35px auto 2px;
+
+  text-align: center;
+  color: black;
+
+  font-size: clamp(20px, 3vw, 20px);
+  font-weight: 850;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
 }

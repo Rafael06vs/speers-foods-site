@@ -564,6 +564,9 @@ export default function App() {
                 <h2 className="brand-cards-title">
                   Alguns dos nossos sucessos
                 </h2>
+                <p className="brand-cards-subtitle">
+                  Clique nos cards para conhecer mais sobre cada marca.
+                </p>
 
                 <div
                   className="brand-flip-grid"
@@ -714,7 +717,7 @@ export default function App() {
                   <span className="section-kicker">Nossas parcerias</span>
                   <h2>Marcas que fazem parte da nossa história</h2>
                   <p>
-                    Explore as marcas presentes no catálogo da Speers Foods.
+                    Clique nos cards para ver os produtos de cada marca.
                   </p>
                 </div>
                 <div className="featured-brands">
