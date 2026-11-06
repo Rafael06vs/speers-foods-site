@@ -41,7 +41,7 @@ const BRAND_LOGOS: Record<string, string> = {
 
   bimbo: "/bimbo-logo.jpg",
   grano: "/grano foods.jpg",
-  "BONDUELLE": "/logo-bonduelle.jpg",
+  BONDUELLE: "/logo-bonduelle.jpg",
 
   "bimbo do brasil": "/bimbo-logo.jpg",
   "lar cooperativa": "/lar cooperativa agroindustrial.png",
@@ -115,7 +115,7 @@ function BrandFlipCard({ name, image, logo, description }: BrandFlipCardProps) {
         {/* FRENTE — SOMENTE A FOTO */}
 
         <span className="brand-flip-front">
-          <img src={image} alt="" loading="eager" /> 
+          <img src={image} alt="" loading="eager" />
           <span className="brand-flip-center" aria-hidden="true">
             <i className="fa-solid fa-rotate" />
           </span>
@@ -329,7 +329,8 @@ export default function App() {
         brandFilterValue === "ALL" ||
         (isBrandOption
           ? normalize(product.brand).replace(/\s+/g, "") === brandTerm
-          : normalize(product.supplierName || "").replace(/\s+/g, "") === brandTerm);
+          : normalize(product.supplierName || "").replace(/\s+/g, "") ===
+            brandTerm);
 
       return matchesTerm && matchesBrand;
     });
@@ -559,7 +560,6 @@ export default function App() {
                       Conheça nossas marcas{" "}
                       <i className="fa-solid fa-arrow-right" />
                     </button>
-            
                   </div>
                 </div>
 
@@ -718,9 +718,7 @@ export default function App() {
                 <div className="section-heading">
                   <span className="section-kicker">Nossas parcerias</span>
                   <h2>Marcas que fazem parte da nossa história</h2>
-                  <p>
-                    Clique nos cards para ver os produtos de cada marca.
-                  </p>
+                  <p>Clique nos cards para ver os produtos de cada marca.</p>
                 </div>
                 <div className="featured-brands">
                   {FEATURED_BRANDS.map((brand) => (

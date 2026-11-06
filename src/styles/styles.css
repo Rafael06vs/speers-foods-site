@@ -5425,7 +5425,6 @@ body,
   }
 }
 
-
 /* DESTAQUE SUAVE AO PASSAR O MOUSE */
 .brand-flip-card {
   transition:
@@ -5437,18 +5436,14 @@ body,
 @media (hover: hover) and (pointer: fine) {
   .brand-flip-card:hover {
     transform: translateY(-8px) scale(1.025);
-    filter: drop-shadow(
-      0 18px 22px rgba(0, 50, 30, 0.22)
-    );
+    filter: drop-shadow(0 18px 22px rgba(0, 50, 30, 0.22));
     z-index: 5;
   }
 }
 
 /* VIRADA 3D APENAS NO CLIQUE */
 .brand-flip-inner {
-  transition: transform 0.7s cubic-bezier(
-    0.2, 0.75, 0.25, 1
-  );
+  transition: transform 0.7s cubic-bezier(0.2, 0.75, 0.25, 1);
 }
 
 .brand-flip-card.is-flipped .brand-flip-inner {
@@ -5462,7 +5457,6 @@ body,
     transition: none;
   }
 }
-
 
 /* FOTO DO CARD */
 .brand-flip-front {
@@ -5494,13 +5488,13 @@ body,
   width: 72px;
   height: 72px;
 
-  border: 1px solid rgba(255,255,255,0.65);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 50%;
 
-  background: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.92);
   color: #07513c;
 
-  box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
 
   opacity: 0;
   transform: translate(-50%, -45%) scale(0.7);
@@ -5518,17 +5512,14 @@ body,
 
 /* EFEITO AO PASSAR O MOUSE */
 @media (hover: hover) and (pointer: fine) {
-
   /* Escurece levemente a fotografia */
-  .brand-flip-card:not(.is-flipped):hover
-  .brand-flip-front > img {
+  .brand-flip-card:not(.is-flipped):hover .brand-flip-front > img {
     filter: brightness(0.65);
     transform: scale(1.035);
   }
 
   /* Faz o ícone central aparecer */
-  .brand-flip-card:not(.is-flipped):hover
-  .brand-flip-center {
+  .brand-flip-card:not(.is-flipped):hover .brand-flip-center {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
@@ -5584,9 +5575,7 @@ body,
   transform-origin: center;
 
   opacity: 1;
-  filter:
-    drop-shadow(0 5px 12px rgba(0, 0, 0, 0.28))
-    brightness(1.25);
+  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.28)) brightness(1.25);
 }
 
 /* TABLET */
@@ -5610,21 +5599,17 @@ body,
   }
 }
 
-
 /* NOVO FUNDO DA CAPA — MAIS CONTRASTE PARA A LOGO */
 
 .hero {
-  background: linear-gradient(115deg,#cce7ef 0%,#e7f5f7 52%,#f8fcfa 100%);
+  background: linear-gradient(115deg, #cce7ef 0%, #e7f5f7 52%, #f8fcfa 100%);
 }
 
 /* MELHORA O DESTAQUE DA LOGO */
 .hero-speers-logo {
   opacity: 1;
-  filter: drop-shadow(
-    0 8px 15px rgba(0, 0, 0, 0.12)
-  );
+  filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.12));
 }
-
 
 /* CAPA CLARA — TEXTOS COM MAIS CONTRASTE */
 
@@ -5654,7 +5639,6 @@ body,
 .hero .hero-copy .hero-note {
   color: #345b55;
 }
-
 
 /* CARDS MENORES E CENTRALIZADOS */
 .brand-flip-grid {
@@ -5708,7 +5692,6 @@ body,
   opacity: 1;
 }
 
-
 /* TÍTULO DOS CARDS */
 .brand-cards-title {
   width: 100%;
@@ -5748,3 +5731,18 @@ body,
 }
 
 
+/* CLOUDFLARE TURNSTILE — CARRINHO */
+
+.quote-cart-turnstile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 75px;
+  margin: 10px 0;
+}
+
+.quote-cart-send:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

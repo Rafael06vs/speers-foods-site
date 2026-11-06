@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 import type { QuoteInput } from "../../analytics.ts";
 
 export type CartItem = {
@@ -32,18 +33,26 @@ export default function QuoteCart({
   const [notes, setNotes] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef<TurnstileInstance>(null);
   if (!open) return null;
   const total = items.reduce((sum, item) => sum + item.quantity, 0);
   const send = async (event: FormEvent) => {
     event.preventDefault();
     if (!items.length || sending) return;
+    if (!turnstileToken) {
+      setError("Aguarde a verificação de segurança.");
+      return;
+    }
     setSending(true);
     setError("");
+
     const quote: QuoteInput = {
       company: company.trim(),
       contact: contact.trim(),
       phone: phone.trim(),
       notes: notes.trim(),
+      turnstileToken,
       items: items.map(({ id, name, brand, unit, quantity }) => ({
         id,
         name,
@@ -52,6 +61,7 @@ export default function QuoteCart({
         quantity,
       })),
     };
+
     // Abre uma aba imediatamente para evitar bloqueio de pop-up após a chamada assíncrona.
     const whatsappTab = window.open("about:blank", "_blank");
     try {
@@ -86,6 +96,8 @@ export default function QuoteCart({
       );
     } finally {
       setSending(false);
+      setTurnstileToken("");
+      turnstileRef.current?.reset();
     }
   };
   return (
@@ -222,6 +234,29 @@ export default function QuoteCart({
                     rows={3}
                   />
                 </label>
+
+                <div className="quote-cart-turnstile">
+                  <Turnstile
+                    ref={turnstileRef}
+                    siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY || ""}
+                    options={{
+                      theme: "light",
+                      size: "normal",
+                    }}
+                    onSuccess={(token) => {
+                      setTurnstileToken(token);
+                      setError("");
+                    }}
+                    onExpire={() => setTurnstileToken("")}
+                    onError={() => {
+                      setTurnstileToken("");
+                      setError(
+                        "Falha na verificação de segurança. Tente novamente.",
+                      );
+                    }}
+                  />
+                </div>
+
                 {error && (
                   <p role="alert" className="quote-cart-error">
                     {error}
@@ -236,7 +271,7 @@ export default function QuoteCart({
                 <button
                   type="submit"
                   className="quote-cart-send"
-                  disabled={sending}
+                  disabled={sending || !turnstileToken}
                 >
                   {sending
                     ? "Registrando cotação..."
