@@ -5748,22 +5748,24 @@ body,
 }
 
 
-/* ÍCONE DE VIRAR — SOMENTE CELULAR */
+/* INDICADOR DE VIRAR — SEM ALTERAR OS CARDS */
 
 .brand-flip-mobile-icon {
   display: none;
 }
 
 @media (max-width: 700px) {
+
+  /* Cada card mantém seu tamanho original */
   .brand-flip-front {
     position: relative;
   }
 
+  /* Indicador individual de cada card */
   .brand-flip-mobile-icon {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
 
     display: flex;
     align-items: center;
@@ -5771,28 +5773,27 @@ body,
 
     width: 56px;
     height: 56px;
-    border-radius: 50%;
+    padding: 0;
 
-    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.94);
     color: #07513c;
 
     font-size: 23px;
+    line-height: 1;
 
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.18);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+
     pointer-events: none;
-
     z-index: 5;
   }
 
-  /* Escurece levemente a imagem para destacar o ícone */
-  .brand-flip-front::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.12);
-    pointer-events: none;
-    z-index: 2;
+  /* Leve escurecimento apenas da foto */
+  .brand-flip-front > img {
+    filter: brightness(0.88);
   }
+
+  /* Não modificar a grade ou a largura dos cards */
 }
 
