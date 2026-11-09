@@ -215,7 +215,7 @@ export default function App() {
           1 + Math.floor(Math.random() * (successSlides.length - 1));
         return (previous + offset) % successSlides.length;
       });
-    }, 3000);
+    }, 1250);
     return () => window.clearInterval(timer);
   }, [successSlides]);
   const [showWelcome, setShowWelcome] = useState(true);
