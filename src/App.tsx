@@ -141,7 +141,16 @@ function BrandFlipCard({ name, image, logo, description }: BrandFlipCardProps) {
         {/* FRENTE — SOMENTE A FOTO */}
 
         <span className="brand-flip-front">
-          <img src={image} alt="" loading="eager" />
+          <img
+            src={image}
+            alt=""
+            loading="eager"
+            className={
+              name === "Franuí" || name === "Grupo Bimbo"
+                ? "brand-flip-image--contain"
+                : undefined
+            }
+          />
           <span className="brand-flip-center" aria-hidden="true">
             <i className="fa-solid fa-rotate" />
           </span>
@@ -604,19 +613,31 @@ export default function App() {
                     name="Fazenda Futuro"
                     image="/fazenda-futuro-card.webp"
                     logo="/fazenda futuro.png"
-                    description="A Fazenda Futuro é uma foodtech brasileira fundada em 2019, pioneira no desenvolvimento de alternativas vegetais à carne. Com foco em sabor, textura e inovação, produz hambúrgueres e outros alimentos à base de plantas."
+                    description="A Fazenda Futuro é uma foodtech brasileira fundada em 2019, pioneira no desenvolvimento de alternativas como carne"
                   />
                   <BrandFlipCard
                     name="McCain"
                     image="/mccain-card.webp"
                     logo="/mccain-logo.png"
-                    description="A McCain é referência mundial em batatas e alimentos congelados. A marca oferece soluções para o varejo e o food service, combinando praticidade, qualidade e inovação para diferentes ocasiões de consumo."
+                    description="A McCain é referência mundial em batatas e alimentos congelados."
                   />
                   <BrandFlipCard
                     name="Frooty"
                     image="/frooty-card.webp"
                     logo="/frooty-logo.png"
-                    description="Fundada em 1994, a Frooty é uma marca brasileira especializada em açaí. Destaca-se pelo creme de açaí, pela inovação em seu portfólio e pela presença nos mercados brasileiro e internacional."
+                    description="Fundada em 1994, a Frooty é uma marca brasileira especializada em açaí."
+                  />
+                  <BrandFlipCard
+                    name="Franuí"
+                    image="/card-franui.png"
+                    logo="/franui-logo.png"
+                    description="A Franuí é referência em sobremesas premium, combinando o frescor da fruta com a sofisticação do chocolate."
+                  />
+                  <BrandFlipCard
+                    name="Grupo Bimbo"
+                    image="/card-bimbo.png"
+                    logo="/bimbo-logo.jpg"
+                    description="O Grupo Bimbo é a maior empresa de panificação do mundo e referência em alimentos de qualidade."
                   />
                 </div>
               </div>
