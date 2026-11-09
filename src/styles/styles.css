@@ -5993,3 +5993,74 @@ body,
     overflow: hidden !important;
   }
 }
+
+
+/* VERSO DOS CARDS - MARCAS */
+.brand-flip-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px !important;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Conteúdo centralizado verticalmente */
+.brand-flip-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-height: 100%;
+  gap: 9px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Título centralizado */
+.brand-flip-content strong {
+  display: block;
+  width: 100%;
+  text-align: center !important;
+  font-size: clamp(16px, 1.4vw, 22px) !important;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #00523d;
+}
+
+/* Descrição maior e legível */
+.brand-flip-description {
+  display: block;
+  font-size: clamp(12px, 0.95vw, 15px) !important;
+  line-height: 1.5 !important;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* Botão de voltar */
+.brand-flip-content small {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* Celular */
+@media (max-width: 768px) {
+  .brand-flip-back {
+    padding: 12px !important;
+  }
+
+  .brand-flip-content strong {
+    font-size: 17px !important;
+  }
+
+  .brand-flip-description {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+}

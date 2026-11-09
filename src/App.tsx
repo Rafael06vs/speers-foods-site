@@ -619,13 +619,13 @@ export default function App() {
                     name="McCain"
                     image="/mccain-card.webp"
                     logo="/mccain-logo.png"
-                    description="A McCain é referência mundial em batatas e alimentos congelados."
+                    description="A McCain é referência mundial em batatas e alimentos congelados. Com mais de 65 anos de história, oferece produtos da melhor qualidade."
                   />
                   <BrandFlipCard
                     name="Frooty"
                     image="/frooty-card.webp"
                     logo="/frooty-logo.png"
-                    description="Fundada em 1994, a Frooty é uma marca brasileira especializada em açaí."
+                    description="Fundada em 1994, a Frooty é uma marca brasileira referência em açaí. Oferece produtos à base de frutas, como açaí e pitaya."
                   />
                   <BrandFlipCard
                     name="Franuí"
