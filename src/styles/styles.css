@@ -6025,7 +6025,7 @@ body,
   display: block;
   width: 100%;
   text-align: center !important;
-  font-size: clamp(16px, 1.4vw, 22px) !important;
+  font-size: clamp(20px, 1.4vw, 22px) !important;
   line-height: 1.2;
   font-weight: 800;
   color: #00523d;
@@ -6034,7 +6034,7 @@ body,
 /* Descrição maior e legível */
 .brand-flip-description {
   display: block;
-  font-size: clamp(12px, 0.95vw, 15px) !important;
+  font-size: clamp(20px, 0.95vw, 15px) !important;
   line-height: 1.5 !important;
   text-align: center;
   overflow-wrap: anywhere;
