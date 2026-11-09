@@ -74,7 +74,7 @@ const FEATURED_BRANDS = [
   {
     label: "McCain",
     logo: "/mccain-logo.png",
-    search: "MC CAIN DO BRASIL ALIMENTOS LTDA",
+    search: "MC CAIN DO BRASIL ALIMENTOS",
   },
   {
     label: "Franui",
