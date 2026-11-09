@@ -243,7 +243,7 @@ export default function QuoteCart({
                       theme: "light",
                       size: "normal",
                     }}
-                    onSuccess={(token) => {
+                    onSuccess={(token: string) => {
                       setTurnstileToken(token);
                       setError("");
                     }}

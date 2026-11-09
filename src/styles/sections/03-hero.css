@@ -1,0 +1,182 @@
+/* ===== 03 — CAPA / HERO ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(115deg, #06452f 0%, #07583c 60%, #0b6845 100%);
+  color: #fff;
+}
+
+.hero-layout {
+  min-height: 490px;
+  padding-block: 48px;
+  grid-template-columns: 0.98fr 1.02fr;
+  gap: clamp(32px, 5vw, 78px);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  padding-block: 18px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+  color: #e5f3b3;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 23px;
+}
+
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 4px rgba(255, 138, 36, 0.16);
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 680px;
+  font-size: clamp(38px, 4.1vw, 62px);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+}
+
+.hero h1 span {
+  color: var(--yellow);
+}
+
+.hero-copy > p {
+  max-width: 540px;
+  margin: 23px 0 28px;
+  color: #e1eee7;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.65;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 30px;
+  color: #d2e6dc;
+  font-size: 12px;
+}
+
+.hero-note i {
+  color: var(--yellow);
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 375px;
+  border-radius: 28px 28px 80px 28px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #dce9dc, #a8c5ac);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.22);
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(3, 39, 28, 0.55), transparent 55%);
+  pointer-events: none;
+}
+
+.hero-visual > img {
+  width: 100%;
+  height: 100%;
+  min-height: 375px;
+  object-fit: cover;
+}
+
+.visual-caption {
+  position: absolute;
+  z-index: 1;
+  left: 22px;
+  bottom: 22px;
+  right: 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--green-950);
+}
+
+.visual-caption strong,
+.visual-caption span:not(.caption-icon) {
+  display: block;
+}
+
+.visual-caption strong {
+  font-size: 14px;
+}
+
+.visual-caption div span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.visual-decoration {
+  position: absolute;
+  z-index: 1;
+  top: 22px;
+  right: 22px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.93);
+  color: var(--green-900);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+}
+
+.visual-decoration span {
+  color: var(--orange);
+}
+
+.hero-shape {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-shape-one {
+  width: 420px;
+  height: 420px;
+  border: 60px solid rgba(185, 216, 76, 0.16);
+  right: 39%;
+  top: -300px;
+}
+
+.hero-shape-two {
+  width: 280px;
+  height: 280px;
+  background: rgba(255, 138, 36, 0.09);
+  left: -190px;
+  bottom: -190px;
+}
+

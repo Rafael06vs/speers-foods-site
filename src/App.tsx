@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import productsData from "../data/products.json";
+import BrandFlipCard from "./components/BrandFlipCard";
+import { PRODUCTS, BRAND_LOGOS, FEATURED_BRANDS, normalize, tabLabels, type Tab } from "./config/catalog";
+import { useSuccessSlides } from "./hooks/useSuccessSlides";
 import AdminDashboard from "./components/AdminDashboard";
 import QuoteCart, { type CartItem } from "./components/QuoteCart.tsx";
 import {
@@ -12,212 +14,8 @@ import {
   type AdminStats,
 } from "../analytics.ts";
 
-type Product = {
-  id: string;
-  name: string;
-  brand: string;
-  unit: string;
-  price?: number;
-  available?: boolean;
-  barcode?: string;
-  supplierCode?: string;
-  supplierName?: string;
-  image?: string;
-};
-
-type Tab = "speers" | "fornecedores" | "produtos" | "solucoes" | "avaliacoes";
-
-const PRODUCTS = (productsData as Product[]).filter(
-  (product) => product.available !== false,
-);
-
-const BRAND_LOGOS: Record<string, string> = {
-  "forno de minas": "/forno-de-minas-logo.jpg",
-  mccain: "/mccain-logo.png",
-  franui: "/franui-logo.png",
-  franuí: "/franui-logo.png",
-  minerva: "/minerva-foods-logo.jpg",
-  "minerva s/a": "/minerva-foods-logo.jpg",
-
-  bimbo: "/bimbo-logo.jpg",
-  grano: "/grano foods.jpg",
-  BONDUELLE: "/logo-bonduelle.jpg",
-
-  "bimbo do brasil": "/bimbo-logo.jpg",
-  "lar cooperativa": "/lar cooperativa agroindustrial.png",
-  "grupo bimbo": "/bimbo-logo.jpg",
-  frooty: "/frooty-logo.png",
-  "fazenda futuro": "/fazenda futuro.png",
-};
-
-const FEATURED_BRANDS = [
-  {
-    label: "Forno de Minas",
-    logo: "/forno-de-minas-logo.jpg",
-    search: "FORNO DE MINAS ALIMENTOS S/A",
-  },
-  {
-    label: "Grano Foods",
-    logo: "/grano foods.jpg",
-    search: "GRANO ALIMENTOS S/A",
-  },
-  {
-    label: "BONDUELLE",
-    logo: "/logo-bonduelle.jpg",
-    search: "BONDUELLE",
-  },
-  {
-    label: "Lar Cooperativa",
-    logo: "/lar cooperativa agroindustrial.png",
-    search: "LAR COOPERATIVA AGROINDUSTRIAL",
-  },
-  {
-    label: "McCain",
-    logo: "/mccain-logo.png",
-    search: "MC CAIN DO BRASIL ALIMENTOS LTDA",
-  },
-  {
-    label: "Franui",
-    logo: "/franui-logo.png",
-    search: "FRANUÍ",
-  },
-  {
-    label: "Minerva",
-    logo: "/minerva-foods-logo.jpg",
-    search: "MINERVA S/A",
-  },
-  {
-    label: "Bimbo",
-    logo: "/bimbo-logo.jpg",
-    search: "BIMBO DO BRASIL",
-  },
-  {
-    label: "Frooty",
-    logo: "/frooty-logo.png",
-    search: "FROOTY COMERCIO E INDUSTRIA DE ALIMENTOS S.A.",
-  },
-  {
-    label: "Fazenda Futuro",
-    logo: "/fazenda futuro.png",
-    search: "FAZENDA FUTURO PRODUTOS ALIMENTICIOS SA",
-  },
-];
-
-const normalize = (value = "") =>
-  value
-    .toLocaleLowerCase("pt-BR")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
-
-const tabLabels: Record<Tab, string> = {
-  speers: "Quem somos",
-  fornecedores: "Trabalhe conosco",
-  produtos: "Produtos",
-  solucoes: "Soluções para seu negócio",
-  avaliacoes: "Avalie-nos",
-};
-
-/* Cards interativos das marcas na página inicial */
-type BrandFlipCardProps = {
-  name: string;
-  image: string;
-  logo: string;
-  description: string;
-};
-
-function BrandFlipCard({ name, image, logo, description }: BrandFlipCardProps) {
-  const [flipped, setFlipped] = useState(false);
-
-  return (
-    <button
-      type="button"
-      className={`brand-flip-card ${flipped ? "is-flipped" : ""}`}
-      onClick={() => setFlipped((value) => !value)}
-      aria-label={`${name}: ${flipped ? "voltar à foto" : "ler sobre a marca"}`}
-      aria-pressed={flipped}
-    >
-      <span className="brand-flip-inner">
-        {/* FRENTE — SOMENTE A FOTO */}
-
-        <span className="brand-flip-front">
-          <img
-            src={image}
-            alt=""
-            loading="eager"
-            className={
-              name === "Franuí" || name === "Grupo Bimbo"
-                ? "brand-flip-image--contain"
-                : undefined
-            }
-          />
-          <span className="brand-flip-center" aria-hidden="true">
-            <i className="fa-solid fa-rotate" />
-          </span>
-        </span>
-
-        {/* VERSO — INFORMAÇÕES DA EMPRESA */}
-        <span className="brand-flip-back">
-          <img
-            className="brand-flip-watermark"
-            src={logo}
-            alt=""
-            aria-hidden="true"
-          />
-
-          <span className="brand-flip-content">
-            <strong>{name}</strong>
-
-            <span className="brand-flip-description">{description}</span>
-
-            <small>Clique para voltar ↩</small>
-          </span>
-        </span>
-      </span>
-    </button>
-  );
-}
-
 export default function App() {
-  // Produtos reais das cinco marcas exibidos no centro da meia-lua.
-  const successSlides = useMemo(() => {
-    const brands = [
-      "fazenda futuro",
-      "mc cain",
-      "mccain",
-      "frooty",
-      "franui",
-      "bimbo",
-    ];
-    const seen = new Set<string>();
-    return PRODUCTS.filter((product) => {
-      const source = normalize(
-        `${product.brand} ${product.supplierName || ""}`,
-      );
-      const image = product.image?.trim();
-      if (
-        !image ||
-        image === "/logo-speers.png" ||
-        !brands.some((brand) => source.includes(brand)) ||
-        seen.has(image)
-      )
-        return false;
-      seen.add(image);
-      return true;
-    }).map((product) => ({ image: product.image!, name: product.name }));
-  }, []);
-  const [successSlideIndex, setSuccessSlideIndex] = useState(0);
-  useEffect(() => {
-    if (successSlides.length < 2) return;
-    const timer = window.setInterval(() => {
-      setSuccessSlideIndex((previous) => {
-        const offset =
-          1 + Math.floor(Math.random() * (successSlides.length - 1));
-        return (previous + offset) % successSlides.length;
-      });
-    }, 1250);
-    return () => window.clearInterval(timer);
-  }, [successSlides]);
+  const { successSlides, successSlideIndex } = useSuccessSlides();
   const [showWelcome, setShowWelcome] = useState(true);
   const [welcomeLeaving, setWelcomeLeaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("speers");
@@ -1352,7 +1150,6 @@ export default function App() {
       {adminOpen &&
         (adminToken ? (
           <AdminDashboard
-            token={adminToken}
             stats={adminStats}
             error={adminError}
             loading={adminLoading}

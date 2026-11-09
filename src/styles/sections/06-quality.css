@@ -1,0 +1,120 @@
+/* ===== 06 — QUALIDADE ===== */
+.quality-page .page-heading {
+  max-width: 760px;
+}
+
+.quality-intro {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 35px 0 24px;
+  padding: 27px;
+  border-radius: 20px;
+  background: var(--green-950);
+  color: white;
+}
+
+.quality-intro-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--yellow);
+  font-size: 26px;
+}
+
+.quality-intro h2 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  color: #ffffff;
+  font-weight: 900;
+  opacity: 1;
+}
+
+.quality-intro p {
+  max-width: 820px;
+  margin: 0;
+  color: #d5e6dc;
+  font-size: 14px;
+}
+
+.quality-brand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.quality-brand-card {
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: white;
+}
+
+.quality-brand-card > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 18px;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f9f5;
+}
+
+.quality-brand-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.quality-label {
+  color: #c66a1e;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.quality-brand-card h2 {
+  margin: 5px 0;
+  color: var(--green-950);
+  font-size: 21px;
+}
+
+.quality-brand-card p {
+  min-height: 42px;
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.quality-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px 18px;
+  border: 1px solid #e8e7d7;
+  border-radius: 12px;
+  background: #fffdf3;
+  color: #6c6c53;
+  font-size: 12px;
+}
+
+.quality-note i {
+  margin-top: 3px;
+  color: #a59a43;
+}
+
+.quality-note p {
+  margin: 0;
+}
+

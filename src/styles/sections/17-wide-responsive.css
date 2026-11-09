@@ -1,0 +1,321 @@
+/* ===== 17 — LAYOUT AMPLO E RESPONSIVIDADE FINAL ===== */
+
+:root {
+  --sf-dark: #005c3b;
+  --sf-green: #008a54;
+  --sf-lime: #79b900;
+  --sf-orange: #ff8a00;
+  --sf-text: #234c3e;
+  --sf-border: #dce8df;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  overflow-x: clip;
+}
+
+body {
+  background: #fbfcf9;
+}
+
+.container {
+  width: calc(100% - 80px);
+  max-width: 1680px;
+}
+
+section {
+  scroll-margin-top: 90px;
+}
+
+.section-heading,
+.page-heading {
+  max-width: 1100px;
+  margin-bottom: 36px;
+  text-align: left;
+}
+
+.section-heading h2,
+.page-heading h1 {
+  font-size: clamp(36px, 3.8vw, 60px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1.8px;
+  color: var(--sf-dark);
+}
+
+.section-heading p,
+.page-heading p {
+  max-width: 850px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--sf-text);
+}
+
+.about-numbers-grid {
+  border-radius: 0;
+
+  background: linear-gradient(115deg, #e1f4e6 0%, #ffffff 48%, #fff0da 100%);
+}
+
+.about-numbers-copy {
+  padding: clamp(40px, 5vw, 85px);
+}
+
+.about-numbers-copy h2 {
+  font-size: clamp(40px, 4.2vw, 66px);
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.about-numbers-copy h2 span {
+  color: var(--sf-lime);
+}
+
+.about-numbers-copy p {
+  max-width: 800px;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.brand-section {
+  padding: 65px 0 75px;
+
+  background: linear-gradient(120deg, #edf8ef 0%, #ffffff 55%, #fff5e8 100%);
+}
+
+.featured-brands {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.featured-brand {
+  min-width: 0;
+  min-height: 135px;
+  padding: 12px;
+
+  border: 1px solid var(--sf-border);
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.featured-brand img {
+  display: block;
+  width: 100%;
+  height: 105px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.featured-brand:hover {
+  transform: translateY(-5px);
+  border-color: var(--sf-orange);
+
+  box-shadow: 0 15px 30px rgba(0, 92, 59, 0.12);
+}
+
+.catalog-toolbar {
+  padding: 22px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(120deg, #e8f5eb, #fff4e5);
+}
+
+.product-card {
+  border-radius: 18px;
+  border: 1px solid var(--sf-border);
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--sf-orange);
+
+  box-shadow: 0 15px 35px rgba(0, 92, 59, 0.12);
+}
+
+.product-card-art {
+  background: linear-gradient(135deg, #e7f5eb, #fff0dc);
+}
+
+.product-card h3 {
+  color: var(--sf-dark);
+  font-weight: 850;
+}
+
+.quality-page {
+  background: linear-gradient(125deg, #ffffff 0%, #edf8ef 55%, #fff4e5 100%);
+}
+
+.quality-brand-card {
+  min-width: 0;
+
+  border-radius: 18px;
+  border: 1px solid var(--sf-border);
+
+  background: #ffffff;
+
+  transition: all 0.3s ease;
+}
+
+.quality-brand-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--sf-orange);
+
+  box-shadow: 0 15px 35px rgba(0, 92, 59, 0.12);
+}
+
+.quality-intro {
+  background: linear-gradient(115deg, #063f2f, #08734c, #119263);
+
+  border-left: 5px solid var(--sf-orange);
+}
+
+.careers-page {
+  background: linear-gradient(120deg, #e4f5e9 0%, #ffffff 48%, #fff0d9 100%);
+}
+
+.careers-content {
+  padding: clamp(35px, 4vw, 75px);
+}
+
+.careers-content h1 {
+  font-size: clamp(44px, 5vw, 76px);
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.careers-content h1 span {
+  color: var(--sf-lime);
+}
+
+.careers-content p {
+  max-width: 650px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--sf-text);
+}
+
+.careers-cta {
+  background: linear-gradient(120deg, #008a54, #00a86b);
+
+  color: #ffffff;
+
+  border: 2px solid var(--sf-orange);
+  border-radius: 50px;
+
+  font-weight: 800;
+
+  transition: all 0.3s ease;
+}
+
+.careers-cta:hover {
+  background: linear-gradient(120deg, #ff8500, #ffad33);
+
+  color: var(--sf-dark);
+  transform: translateY(-3px);
+}
+
+.button {
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: calc(100% - 56px);
+  }
+
+  .featured-brands {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .featured-brands {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-numbers-copy {
+    padding: 45px 35px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  .section-heading h2,
+  .page-heading h1 {
+    font-size: 34px;
+  }
+
+  .featured-brands {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .featured-brand {
+    min-height: 110px;
+    padding: 8px;
+  }
+
+  .featured-brand img {
+    height: 85px;
+  }
+
+  .about-numbers-copy {
+    padding: 35px 22px;
+  }
+
+  .about-numbers-copy h2 {
+    font-size: 38px;
+  }
+
+  .careers-content {
+    padding: 35px 24px;
+  }
+
+  .careers-content h1 {
+    font-size: 42px;
+  }
+
+  .careers-content p {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-brand,
+  .product-card,
+  .quality-brand-card,
+  .careers-cta,
+  .button {
+    transition: none;
+  }
+}
+

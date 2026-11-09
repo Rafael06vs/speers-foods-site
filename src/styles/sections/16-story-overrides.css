@@ -1,0 +1,179 @@
+/* ===== 16 — AJUSTES DE TRAJETÓRIA (VERSÕES POSTERIORES) ===== */
+
+.history-section {
+  background: linear-gradient(120deg, #e4f5e9 0%, #ffffff 50%, #fff0d9 100%);
+}
+
+.history-section h2 {
+  color: #005c3b;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.12;
+}
+
+.history-section h2 span {
+  color: #79b900;
+}
+
+.history-section p {
+  color: #234c3e;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.history-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+}
+
+.history-stat {
+  background: linear-gradient(120deg, #ffffff 0%, #e8f7eb 100%);
+
+  border-left: 5px solid #ff8a00;
+  border-radius: 16px;
+
+  padding: 24px 28px;
+
+  box-shadow: 0 8px 22px rgba(0, 92, 59, 0.07);
+
+  transition: all 0.3s ease;
+}
+
+.history-stat:hover {
+  transform: translateX(5px);
+
+  background: linear-gradient(120deg, #e4f5e9, #fff0d9);
+
+  box-shadow: 0 12px 28px rgba(0, 92, 59, 0.12);
+}
+
+.history-stat strong {
+  color: #008a54;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.8px;
+}
+
+.history-stat p {
+  color: #47695b;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.history-stat:nth-child(3) {
+  border-left-color: #79b900;
+}
+
+.history-section .button {
+  border: 2px solid #ff8a00;
+  color: #005c3b;
+  font-weight: 800;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.history-section .button:hover {
+  background: #ff8a00;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .history-stats {
+    padding: 15px;
+  }
+
+  .history-stat {
+    padding: 20px;
+  }
+
+  .history-stat strong {
+    font-size: 24px;
+  }
+}
+
+.about-numbers-grid {
+  background: linear-gradient(120deg, #e4f5e9 0%, #ffffff 48%, #fff0d9 100%);
+
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.about-numbers-copy {
+  padding: 55px 45px;
+}
+
+.about-numbers-copy .section-kicker {
+  color: #e66b00;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.about-numbers-copy h2 {
+  color: #005c3b;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.12;
+}
+
+.about-numbers-copy p {
+  color: #234c3e;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.about-numbers-copy .button {
+  border: 2px solid #ff8a00;
+  color: #005c3b;
+  font-weight: 800;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.about-numbers-copy .button:hover {
+  background: #ff8a00;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  .about-numbers-copy {
+    padding: 35px 25px;
+  }
+
+  .about-numbers-copy h2 {
+    font-size: 36px;
+  }
+}
+
+.about-numbers-grid {
+  overflow: visible;
+
+  background: linear-gradient(110deg, #e4f5e9 0%, #ffffff 52%, #fff0d9 100%);
+}
+
+.about-numbers-copy {
+  padding: 65px 55px;
+}
+
+.about-numbers-copy h2 {
+  font-size: clamp(40px, 4vw, 60px);
+  line-height: 1.1;
+}
+
+.about-numbers-copy h2 span {
+  color: #79b900;
+}
+
+@media (max-width: 768px) {
+  .about-numbers-copy {
+    padding: 35px 24px;
+  }
+
+  .about-numbers-copy h2 {
+    font-size: 36px;
+  }
+}
+

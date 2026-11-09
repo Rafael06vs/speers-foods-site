@@ -1,0 +1,60 @@
+/* ===== 01 — VARIÁVEIS, RESET E ESTRUTURA GLOBAL ===== */
+:root {
+  font-family: Inter, Arial, sans-serif;
+  color: #16372d;
+  background: #fbfaf7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --green-950: #063f2f;
+  --green-900: #07513c;
+  --green-800: #086044;
+  --green-700: #08734c;
+  --green-100: #e8f3ec;
+  --orange: #ff8a24;
+  --yellow: #b9d84c;
+  --ink: #17372e;
+  --muted: #65756e;
+  --line: #e5e9e4;
+  --paper: #fbfaf7;
+  --white: #fff;
+  --shadow: 0 16px 45px rgba(8, 55, 39, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(255, 138, 36, 0.45);
+  outline-offset: 3px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: min(1480px, calc(100% - 80px));
+}
+

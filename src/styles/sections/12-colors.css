@@ -1,0 +1,128 @@
+/* ===== 12 — CAMADA DE PERSONALIZAÇÕES: CORES ===== */
+
+body {
+  background: #fbfaf7;
+}
+
+.section-kicker {
+  color: #e67816;
+  font-weight: 900;
+}
+
+.section-heading h2,
+.page-heading h1 {
+  color: #063f2f;
+}
+
+.section-heading::before {
+  width: 55px;
+  background: linear-gradient(90deg, #ff8a24, #b9d84c);
+}
+
+.brand-section {
+  background: linear-gradient(135deg, #f0f7f1 0%, #ffffff 55%, #fff5e9 100%);
+}
+
+.featured-brand {
+  box-shadow: 0 8px 22px rgba(6, 63, 47, 0.05);
+  transition: all 0.3s ease;
+}
+
+.featured-brand:hover {
+  border-color: #ff8a24;
+  background: #fffaf3;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(6, 63, 47, 0.12);
+}
+
+.quality-page {
+  background: linear-gradient(180deg, #fbfaf7 0%, #edf6ef 100%);
+}
+
+.quality-brand-card {
+  background: #ffffff;
+  border: 1px solid #dce8df;
+  box-shadow: 0 8px 24px rgba(6, 63, 47, 0.04);
+}
+
+.quality-brand-card:hover {
+  border-color: #ff8a24;
+  background: #fffaf4;
+}
+
+.quality-intro {
+  background: linear-gradient(120deg, #063f2f, #08734c);
+  border-left: 6px solid #ff8a24;
+  box-shadow: 0 15px 35px rgba(6, 63, 47, 0.12);
+}
+
+.quality-intro-icon {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.catalog-toolbar {
+  background: #f0f7f1;
+  border: 1px solid #d8e8dc;
+}
+
+.product-card {
+  box-shadow: 0 8px 22px rgba(6, 63, 47, 0.04);
+}
+
+.product-card:hover {
+  border-color: #ff8a24;
+  box-shadow: 0 15px 35px rgba(6, 63, 47, 0.12);
+}
+
+.product-card-art {
+  background: linear-gradient(135deg, #e8f3ec, #fff0dc);
+}
+
+.product-action {
+  background: #e8f3ec;
+  color: #063f2f;
+}
+
+.product-action:hover {
+  background: #08734c;
+  color: #ffffff;
+}
+
+.button-green,
+.careers-cta {
+  background: #08734c;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.button-green:hover,
+.careers-cta:hover {
+  background: #ff8a24;
+  color: #063f2f;
+  transform: translateY(-3px);
+}
+
+.site-footer {
+  background: linear-gradient(120deg, #052f25, #07513c);
+  border-top: 5px solid #ff8a24;
+}
+
+.featured-brand,
+.quality-brand-card,
+.product-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-brand,
+  .quality-brand-card,
+  .product-card,
+  .careers-cta {
+    transition: none;
+  }
+}
+

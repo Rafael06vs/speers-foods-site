@@ -1,0 +1,42 @@
+/* ===== 13 — CAMADA DE PERSONALIZAÇÕES: DEGRADÊS ===== */
+
+body {
+  background: linear-gradient(135deg, #ffffff 0%, #f2f8f3 50%, #fff5e9 100%);
+}
+
+.brand-section {
+  background: linear-gradient(120deg, #e8f3ec 0%, #ffffff 55%, #fff0dc 100%);
+}
+
+.quality-page {
+  background: linear-gradient(145deg, #ffffff 0%, #edf7ef 50%, #fff3e4 100%);
+}
+
+.quality-brand-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f5faf5 100%);
+}
+
+.product-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f1f8f2 100%);
+}
+
+.product-card-art {
+  background: linear-gradient(135deg, #e2f1e5 0%, #fff0dc 100%);
+}
+
+.careers-page {
+  background: linear-gradient(120deg, #e8f3ec 0%, #ffffff 55%, #fff0dc 100%);
+}
+
+.button-green {
+  background: linear-gradient(120deg, #08734c, #0b9664);
+}
+
+.button-green:hover {
+  background: linear-gradient(120deg, #ff8a24, #ffb347);
+}
+
+.site-footer {
+  background: linear-gradient(120deg, #052f25 0%, #07513c 60%, #08734c 100%);
+}
+

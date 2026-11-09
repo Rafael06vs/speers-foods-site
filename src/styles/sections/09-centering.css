@@ -1,0 +1,14 @@
+/* ===== 09 — AJUSTES DE CENTRALIZAÇÃO ===== */
+.intro-band-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.intro-band-inner h2 {
+  text-align: center;
+}
+

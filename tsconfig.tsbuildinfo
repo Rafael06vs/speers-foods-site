@@ -1,1 +1,1 @@
-{"root":["./analytics.ts","./vite-env.d.ts","./vite.config.ts","./main.tsx","./src/app.tsx","./src/components/admindashboard.tsx","./src/components/quotecart.tsx"],"version":"5.9.3"}
+{"root":["./src/config/catalog.ts","./src/hooks/usesuccessslides.ts","./src/app.tsx","./src/components/admindashboard.tsx","./src/components/brandflipcard.tsx","./src/components/quotecart.tsx","./analytics.ts","./vite-env.d.ts","./vite.config.ts","./main.tsx"],"version":"5.9.3"}

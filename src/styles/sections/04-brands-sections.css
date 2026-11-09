@@ -1,0 +1,270 @@
+/* ===== 04 — MARCAS E SEÇÕES GERAIS ===== */
+.brand-section {
+  padding: 76px 0 82px;
+  background: #fbfaf7;
+}
+
+.section-heading {
+  text-align: center;
+  margin: 0 auto 34px;
+}
+
+.section-kicker {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #d86b14;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.section-heading h2,
+.page-heading h1 {
+  margin: 0;
+  color: var(--green-950);
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+}
+
+.section-heading p,
+.page-heading p {
+  color: var(--muted);
+  margin: 12px 0 0;
+}
+
+.featured-brands {
+  gap: 14px;
+}
+
+.featured-brand {
+  flex-direction: column;
+  min-height: 130px;
+  padding: 20px 14px 14px;
+  border: 1px solid #e7e8e0;
+  background: #fff;
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.featured-brand:hover {
+  transform: translateY(-4px);
+  border-color: #f4b36c;
+  box-shadow: var(--shadow);
+}
+
+.featured-brand img {
+  width: 115%;
+  max-width: none;
+  height: 100px;
+  object-position: center;
+}
+
+.featured-brand span {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 14px;
+  color: var(--green-800);
+  font-size: 11px;
+  font-weight: 750;
+  opacity: 0.85;
+}
+
+.intro-band {
+  padding: 44px 0;
+  background: var(--green-950);
+  color: white;
+}
+
+.intro-band-inner {
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.intro-band h2 {
+  margin: 0;
+  max-width: 470px;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+}
+
+.section-kicker-light {
+  color: var(--yellow);
+}
+
+.intro-band-inner > p {
+  max-width: 320px;
+  color: #d0e2d8;
+  font-size: 14px;
+}
+
+.page-section {
+  min-height: 65vh;
+  padding: 62px 0 84px;
+}
+
+.page-heading {
+  margin-bottom: 34px;
+}
+
+.page-heading h1 {
+  font-size: clamp(34px, 4vw, 46px);
+}
+
+.supplier-search {
+  max-width: 520px;
+  margin-bottom: 28px;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  padding: 0 16px;
+  border: 1px solid #dce5de;
+  border-radius: 12px;
+  background: white;
+  color: var(--green-800);
+}
+
+.search-field:focus-within {
+  border-color: #6ca78a;
+  box-shadow: 0 0 0 4px rgba(8, 115, 76, 0.08);
+}
+
+.search-field > i {
+  color: #7c9487;
+}
+
+.search-field input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.search-field input::placeholder {
+  color: #98a69e;
+}
+
+.search-field button {
+  border: 0;
+  background: transparent;
+  color: #809087;
+}
+
+.supplier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.supplier-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: white;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.supplier-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.supplier-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  margin-bottom: 18px;
+}
+
+.supplier-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 110px;
+  height: 64px;
+  padding: 6px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: #f7f8f4;
+  color: var(--green-800);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.supplier-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.supplier-card h2,
+.supplier-card h3 {
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 750;
+  margin-top: 0;
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
+.item-count {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #fff2e5;
+  color: #b95c12;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.supplier-card h2 {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+  color: var(--green-950);
+  font-size: 40px;
+}
+
+.supplier-card p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--green-800);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.text-link:hover {
+  color: #d86b14;
+}
+
