@@ -179,6 +179,45 @@ function BrandFlipCard({ name, image, logo, description }: BrandFlipCardProps) {
 }
 
 export default function App() {
+  // Produtos reais das cinco marcas exibidos no centro da meia-lua.
+  const successSlides = useMemo(() => {
+    const brands = [
+      "fazenda futuro",
+      "mc cain",
+      "mccain",
+      "frooty",
+      "franui",
+      "bimbo",
+    ];
+    const seen = new Set<string>();
+    return PRODUCTS.filter((product) => {
+      const source = normalize(
+        `${product.brand} ${product.supplierName || ""}`,
+      );
+      const image = product.image?.trim();
+      if (
+        !image ||
+        image === "/logo-speers.png" ||
+        !brands.some((brand) => source.includes(brand)) ||
+        seen.has(image)
+      )
+        return false;
+      seen.add(image);
+      return true;
+    }).map((product) => ({ image: product.image!, name: product.name }));
+  }, []);
+  const [successSlideIndex, setSuccessSlideIndex] = useState(0);
+  useEffect(() => {
+    if (successSlides.length < 2) return;
+    const timer = window.setInterval(() => {
+      setSuccessSlideIndex((previous) => {
+        const offset =
+          1 + Math.floor(Math.random() * (successSlides.length - 1));
+        return (previous + offset) % successSlides.length;
+      });
+    }, 3000);
+    return () => window.clearInterval(timer);
+  }, [successSlides]);
   const [showWelcome, setShowWelcome] = useState(true);
   const [welcomeLeaving, setWelcomeLeaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("speers");
@@ -606,7 +645,7 @@ export default function App() {
                 </p>
 
                 <div
-                  className="brand-flip-grid"
+                  className="brand-flip-grid brand-flip-arch"
                   aria-label="Conheça nossas marcas parceiras"
                 >
                   <BrandFlipCard
@@ -616,16 +655,16 @@ export default function App() {
                     description="A Fazenda Futuro é uma foodtech brasileira fundada em 2019, pioneira no desenvolvimento de alternativas como carne"
                   />
                   <BrandFlipCard
-                    name="McCain"
-                    image="/mccain-card.webp"
-                    logo="/mccain-logo.png"
-                    description="A McCain é referência mundial em batatas e alimentos congelados. Com mais de 65 anos de história, oferece produtos da melhor qualidade."
-                  />
-                  <BrandFlipCard
                     name="Frooty"
                     image="/frooty-card.webp"
                     logo="/frooty-logo.png"
                     description="Fundada em 1994, a Frooty é uma marca brasileira referência em açaí. Oferece produtos à base de frutas, como açaí e pitaya."
+                  />
+                  <BrandFlipCard
+                    name="McCain"
+                    image="/mccain-card.webp"
+                    logo="/mccain-logo.png"
+                    description="A McCain é referência mundial em batatas e alimentos congelados. Com mais de 65 anos de história, oferece produtos da melhor qualidade."
                   />
                   <BrandFlipCard
                     name="Franuí"
@@ -641,6 +680,21 @@ export default function App() {
                   />
                 </div>
               </div>
+
+              {/* Produtos em destaque no centro da meia-lua */}
+              {successSlides.length > 0 && (
+                <div className="success-product-showcase">
+                  <img
+                    key={successSlideIndex}
+                    src={successSlides[successSlideIndex].image}
+                    alt={successSlides[successSlideIndex].name}
+                    className="success-product-image"
+                  />
+                  <span className="success-product-label">
+                    Conheça nossos produtos
+                  </span>
+                </div>
+              )}
             </section>
 
             {/* Nossos números — inspirado no layout de referência */}
@@ -657,9 +711,9 @@ export default function App() {
                   <p>
                     Somos referência na distribuição de alimentos congelados,
                     com uma trajetória construída com confiança, eficiência e
-                    parceria. Reconhecida como a maior distribuidora da Zona
-                    Leste de São Paulo, a Speers Foods atende diferentes
-                    necessidades do mercado profissional.
+                    parceria. Reconhecida como uma das maiores distribuidoras de
+                    São Paulo, a Speers Foods atende diferentes necessidades do
+                    mercado profissional.
                   </p>
                   <button
                     className="about-numbers-button"
