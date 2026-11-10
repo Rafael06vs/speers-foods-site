@@ -24,6 +24,7 @@ import {
 export default function App() {
   const { successSlides, successSlideIndex } = useSuccessSlides();
   const [showWelcome, setShowWelcome] = useState(true);
+  const [customerIdentity, setCustomerIdentity] = useState("");
   const [welcomeLeaving, setWelcomeLeaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("speers");
   const [search, setSearch] = useState("");
@@ -110,7 +111,7 @@ export default function App() {
       source: "solucoes",
       customer_type: customerType,
     });
-    const message = `Olá! Gostaria de atendimento comercial da Speers Foods.\nTipo de cliente: ${customerType}\nCidade ou bairro: ${customerRegion.trim()}\nO que preciso: ${customerNeed.trim()}`;
+    const message = `Olá! Gostaria de atendimento comercial da Speers Foods.\nTipo de cliente: ${customerType}\nCNPJ: ${customerIdentity}\nCidade ou bairro: ${customerRegion.trim()}\nO que preciso: ${customerNeed.trim()}`;
     window.open(
       `https://wa.me/5511913682491?text=${encodeURIComponent(message)}`,
       "_blank",
@@ -902,6 +903,7 @@ export default function App() {
                   </p>
                   <div className="customer-steps">
                     <span>01 · Seu perfil</span>
+                    <span>02 · Seu CNPJ</span>
                     <span>02 · Sua região</span>
                     <span>03 · Sua necessidade</span>
                   </div>
@@ -929,12 +931,20 @@ export default function App() {
                       "Cozinha industrial",
                       "Grande rede",
                       "Comércio de bairro",
-                      "Uso pessoal",
                       "Outro estabelecimento",
                     ].map((value) => (
                       <option key={value}>{value}</option>
                     ))}
                   </select>
+                  <label htmlFor="customer-identity">CNPJ</label>
+                  <input
+                    id="customer-identity"
+                    value={customerIdentity}
+                    onChange={(e) => setCustomerIdentity(e.target.value)}
+                    placeholder="Ex.: 12.345.678/0001-90"
+                    maxLength={20}
+                    required
+                  />
                   <label htmlFor="customer-region">
                     Qual é sua cidade ou bairro?
                   </label>
