@@ -27,6 +27,29 @@ export default function App() {
   const [customerIdentity, setCustomerIdentity] = useState("");
   const [welcomeLeaving, setWelcomeLeaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("speers");
+  const navigateTo = (tab: Tab) => {
+    if (tab === activeTab) return;
+
+    window.history.pushState({ tab }, "", `#${tab}`);
+    setActiveTab(tab);
+    window.scrollTo(0, 0);
+  };
+  useEffect(() => {
+  const handlePopState = () => {
+    const tab = window.location.hash.replace("#", "") || "speers";
+
+    setActiveTab(tab as Tab);
+    window.scrollTo(0, 0);
+  };
+
+  handlePopState();
+
+  window.addEventListener("popstate", handlePopState);
+
+  return () => {
+    window.removeEventListener("popstate", handlePopState);
+  };
+}, []);
   const [search, setSearch] = useState("");
   const [brandFilter, setBrandFilter] = useState("ALL");
   const [sortOrder, setSortOrder] = useState("name");
@@ -248,10 +271,10 @@ export default function App() {
   useEffect(() => setCurrentPage(1), [search, brandFilter, sortOrder]);
 
   const goToTab = (tab: Tab) => {
-    setActiveTab(tab);
-    setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  navigateTo(tab);
+  setMobileMenuOpen(false);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
   const showBrandProducts = (brand: string) => {
     setSearch("");
