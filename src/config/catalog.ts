@@ -13,7 +13,12 @@ export type Product = {
   image?: string;
 };
 
-export type Tab = "speers" | "fornecedores" | "produtos" | "solucoes" | "avaliacoes";
+export type Tab =
+  | "speers"
+  | "fornecedores"
+  | "produtos"
+  | "solucoes"
+  | "avaliacoes";
 
 export const PRODUCTS = (productsData as Product[]).filter(
   (product) => product.available !== false,
@@ -105,4 +110,3 @@ export const tabLabels: Record<Tab, string> = {
   solucoes: "Soluções para seu negócio",
   avaliacoes: "Avalie-nos",
 };
-

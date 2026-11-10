@@ -8,7 +8,12 @@ type BrandFlipCardProps = {
   description: string;
 };
 
-export default function BrandFlipCard({ name, image, logo, description }: BrandFlipCardProps) {
+export default function BrandFlipCard({
+  name,
+  image,
+  logo,
+  description,
+}: BrandFlipCardProps) {
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -59,4 +64,3 @@ export default function BrandFlipCard({ name, image, logo, description }: BrandF
     </button>
   );
 }
-

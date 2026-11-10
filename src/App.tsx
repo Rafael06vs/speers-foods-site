@@ -1,6 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import BrandFlipCard from "./components/BrandFlipCard";
-import { PRODUCTS, BRAND_LOGOS, FEATURED_BRANDS, normalize, tabLabels, type Tab } from "./config/catalog";
+import {
+  PRODUCTS,
+  BRAND_LOGOS,
+  FEATURED_BRANDS,
+  normalize,
+  tabLabels,
+  type Tab,
+} from "./config/catalog";
 import { useSuccessSlides } from "./hooks/useSuccessSlides";
 import AdminDashboard from "./components/AdminDashboard";
 import QuoteCart, { type CartItem } from "./components/QuoteCart.tsx";
