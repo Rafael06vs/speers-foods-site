@@ -26,7 +26,11 @@ export default function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [customerIdentity, setCustomerIdentity] = useState("");
   const [welcomeLeaving, setWelcomeLeaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<Tab>("speers");
+  const [activeTab, setActiveTab] = useState<Tab>(() => {
+  const tab = window.location.hash.replace("#", "");
+
+  return tab ? (tab as Tab) : "speers";
+});
   const navigateTo = (tab: Tab) => {
     if (tab === activeTab) return;
 
@@ -35,19 +39,19 @@ export default function App() {
     window.scrollTo(0, 0);
   };
   useEffect(() => {
-  const handlePopState = () => {
+  const handleNavigation = () => {
     const tab = window.location.hash.replace("#", "") || "speers";
 
     setActiveTab(tab as Tab);
     window.scrollTo(0, 0);
   };
 
-  handlePopState();
-
-  window.addEventListener("popstate", handlePopState);
+  window.addEventListener("popstate", handleNavigation);
+  window.addEventListener("hashchange", handleNavigation);
 
   return () => {
-    window.removeEventListener("popstate", handlePopState);
+    window.removeEventListener("popstate", handleNavigation);
+    window.removeEventListener("hashchange", handleNavigation);
   };
 }, []);
   const [search, setSearch] = useState("");
