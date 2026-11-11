@@ -17,6 +17,7 @@ export type Tab =
   | "speers"
   | "fornecedores"
   | "produtos"
+  | "ondeAndamos"
   | "solucoes"
   | "avaliacoes";
 
@@ -108,5 +109,6 @@ export const tabLabels: Record<Tab, string> = {
   fornecedores: "Trabalhe conosco",
   produtos: "Produtos",
   solucoes: "Soluções para seu negócio",
+  ondeAndamos: "Por Onde Andamos",
   avaliacoes: "Avalie-nos",
 };

@@ -1,0 +1,724 @@
+.speers-route-page {
+  box-sizing: border-box;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 24px clamp(18px, 3vw, 52px) 22px;
+  background: linear-gradient(130deg, #f8f4e9 0%, #f4f0e4 56%, #edf5ed 100%);
+  color: #064c35;
+  font-family: inherit;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  column-gap: 24px;
+  row-gap: 10px;
+}
+.speers-route-page * {
+  box-sizing: border-box;
+}
+.speers-route-intro {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+}
+.speers-route-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  color: #007e59;
+}
+.speers-route-intro h1 {
+  font-size: clamp(34px, 3.4vw, 58px);
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+  margin: 8px 0;
+  color: #064c35;
+  font-weight: 900;
+}
+.speers-route-intro h1 span {
+  color: #f68a00;
+}
+.speers-route-intro p {
+  margin: 0;
+  color: #567067;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.speers-route-toolbar {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+}
+.speers-route-toolbar button {
+  border: 0;
+  border-radius: 24px;
+  padding: 12px 16px;
+  background: #006744;
+  color: #fff;
+  font: inherit;
+  font-size: 22px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.speers-route-map-area {
+  display: contents;
+}
+.speers-route-map-wrap {
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
+  border-radius: 22px;
+  background: radial-gradient(circle at 65% 35%, #f5f5e6, #e7eddb);
+  overflow: hidden;
+  box-shadow: 0 14px 40px #193b2922;
+}
+.speers-route-map {
+  display: block;
+  width: 100%;
+  height: clamp(400px, 36vw, 550px);
+  overflow: hidden;
+}
+.speers-route-zoom-layer {
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.speers-route-line {
+  fill: none;
+  stroke: #fff7c8;
+  stroke-width: 3;
+  stroke-dasharray: 9 11;
+  opacity: 0.75;
+  animation: speersDash 10s linear infinite;
+  pointer-events: none;
+}
+.speers-route-line.is-active {
+  stroke: #fff;
+  stroke-width: 4;
+  opacity: 1;
+}
+.speers-route-pin {
+  cursor: pointer;
+  outline: none;
+}
+.speers-route-pin:focus-visible {
+  filter: drop-shadow(0 0 7px #ff2e70);
+}
+.speers-route-pin-halo {
+  animation: speersPulse 2.8s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.speers-route-pin.is-active .speers-route-pin-halo {
+  fill: #ff326d;
+  opacity: 0.5;
+}
+.speers-route-map-foot {
+  text-align: center;
+  padding: 6px 10px 10px;
+  color: #667a70;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.speers-route-info {
+  grid-column: 2;
+  grid-row: 2;
+
+  background: #fff;
+  border: 2px solid #f1bf69;
+  border-radius: 23px;
+
+  min-width: 0;
+  min-height: 500px;
+  padding: 35px 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+
+  box-shadow: 0 16px 40px #173e3020;
+  color: #174a35;
+}
+.speers-route-info-tag {
+  align-self: flex-start;
+  border-radius: 22px;
+  background: #e2f7e6;
+  color: #197741;
+  padding: 9px 12px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.speers-route-info-icon {
+  font-size: 38px;
+}
+.speers-route-info h2 {
+  font-size: clamp(25px, 2.2vw, 34px);
+  line-height: 1.15;
+  margin: 0;
+  color: #064c35;
+}
+.speers-route-info p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5b7066;
+  margin: 0;
+}
+.speers-route-region-tag {
+  align-self: flex-start;
+  border-radius: 20px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #172c29;
+}
+.speers-route-info-rule {
+  height: 1px;
+  background: #e0eae4;
+  margin: 8px 0;
+}
+.speers-route-info-detail {
+  display: flex;
+  gap: 9px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #315c46;
+  font-weight: 600;
+}
+.speers-route-places {
+  grid-column: 1/-1;
+  grid-row: 3;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.speers-route-places button {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 9px 12px;
+  background: #fff;
+  border: 1px solid #d7e3d9;
+  border-radius: 30px;
+  color: #11553b;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+.speers-route-places button:hover {
+  transform: translateY(-2px);
+}
+.speers-route-places button.is-active {
+  background: #ff9c21;
+  border-color: #f7ba58;
+}
+.speers-route-places button.speers-route-more {
+  background: #e3eee6;
+}
+@keyframes speersDash {
+  to {
+    stroke-dashoffset: -160;
+  }
+}
+@keyframes speersPulse {
+  50% {
+    transform: scale(1.7);
+    opacity: 0.1;
+  }
+}
+@media (max-width: 900px) {
+  .speers-route-page {
+    grid-template-columns: 1fr;
+    padding: 20px 14px;
+  }
+  .speers-route-intro {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .speers-route-toolbar {
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+  .speers-route-map-area {
+    display: grid;
+    grid-column: 1;
+    grid-row: 3;
+    gap: 12px;
+  }
+  .speers-route-map-wrap,
+  .speers-route-info {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .speers-route-map {
+    height: auto;
+    aspect-ratio: 12/7;
+  }
+  .speers-route-info {
+    min-height: 0;
+    padding: 20px;
+  }
+  .speers-route-places {
+    grid-column: 1;
+    grid-row: 4;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .speers-route-page * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ENQUADRAMENTO TOTAL — preenche a caixa sem margens internas */
+.speers-route-map-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.speers-route-map {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: clamp(440px, 39vw, 610px);
+  max-height: none;
+}
+.speers-route-map-foot {
+  flex: none;
+  background: #f2f0e3;
+}
+.speers-route-pin {
+  transition: filter 0.2s ease;
+}
+.speers-route-pin:hover {
+  filter: drop-shadow(0 0 8px #fff);
+}
+@media (max-width: 900px) {
+  .speers-route-map {
+    height: auto;
+    aspect-ratio: 12/7;
+    min-height: 300px;
+  }
+}
+
+
+/* Mapa e cartão em proporções equilibradas */
+
+
+/* LAYOUT EQUILIBRADO — POR ONDE ANDAMOS */
+
+@media (min-width: 901px) {
+  .speers-route-page {
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 32%);
+    column-gap: 24px;
+    row-gap: 14px;
+  }
+
+  /* Mantém o mapa e o cartão no grid principal */
+  .speers-route-map-area {
+    display: contents !important;
+  }
+
+  /* Mapa */
+  .speers-route-map-wrap {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100% !important;
+    height: 500px !important;
+    min-width: 0;
+    border-radius: 22px;
+    overflow: hidden;
+  }
+
+  .speers-route-map {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 500px !important;
+  }
+
+  /* Cartão à direita */
+  .speers-route-info {
+    grid-column: 2;
+    grid-row: 2;
+    width: 100% !important;
+    min-width: 0;
+    min-height: 500px;
+    padding: 32px !important;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: #ffffff;
+    border: 2px solid #f1bf69;
+    border-radius: 23px;
+  }
+
+  .speers-route-info-tag,
+  .speers-route-region-tag {
+    align-self: center;
+  }
+
+  .speers-route-info h2,
+  .speers-route-info p {
+    text-align: center;
+  }
+
+  .speers-route-info-rule {
+    width: 100%;
+  }
+
+  .speers-route-info-detail {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+
+
+
+
+@media (min-width: 901px) {
+  .speers-route-page {
+    grid-template-columns: minmax(0, 1fr) 400px;
+    column-gap: 24px;
+  }
+
+  .speers-route-map-area {
+    display: contents;
+  }
+
+  .speers-route-map-wrap {
+    height: 500px;
+    overflow: hidden;
+    border-radius: 22px;
+  }
+
+  .speers-route-map {
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+  }
+
+  .speers-route-info {
+    min-width: 0;
+    min-height: 500px;
+  }
+}
+
+
+/* MAPA PREENCHENDO TODO O ESPAÇO */
+
+@media (min-width: 901px) {
+  .speers-route-map-wrap {
+    height: 500px !important;
+    overflow: hidden !important;
+    border-radius: 18px;
+  }
+
+  .speers-route-map {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+  }
+
+  .speers-route-map-foot {
+    display: none;
+  }
+}
+
+.speers-route-map-wrap {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Mapa com tamanho fixo na página */
+.speers-route-map-wrap {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.speers-route-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+}
+
+/* Versão para celular */
+@media (max-width: 900px) {
+  .speers-route-map-wrap {
+    height: 330px;
+  }
+}
+
+
+/* ==========================================
+   SPEERS FOODS — MAPA TECNOLÓGICO
+   ========================================== */
+
+/* Fundo do mapa */
+.speers-route-tech .speers-route-map-wrap {
+  background:
+    radial-gradient(
+      ellipse at 72% 40%,
+      rgba(12, 123, 132, 0.3),
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      #061c31 0%,
+      #082c45 50%,
+      #031525 100%
+    );
+
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Textura tecnológica */
+.speers-route-tech .speers-route-map-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(84, 236, 210, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(84, 236, 210, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size: 38px 38px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Mapa acima da textura */
+.speers-route-tech .speers-route-map {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+  width: 100%;
+  height: 450px;
+
+  max-height: 450px;
+  overflow: hidden;
+}
+
+/* Rotas animadas */
+.speers-route-tech .speers-route-line {
+  fill: none;
+
+  stroke: #ffb34c;
+  stroke-width: 2.5;
+
+  stroke-dasharray: 8 10;
+  opacity: 0.75;
+
+  animation: speersTechRoute 8s linear infinite;
+
+  pointer-events: none;
+}
+
+.speers-route-tech .speers-route-line.is-active {
+  stroke: #ffffff;
+  stroke-width: 3.5;
+  opacity: 1;
+
+  filter: drop-shadow(
+    0 0 5px rgba(255, 255, 255, 0.7)
+  );
+}
+
+@keyframes speersTechRoute {
+  to {
+    stroke-dashoffset: -180;
+  }
+}
+
+/* Marcadores */
+.speers-route-tech .speers-route-pin {
+  cursor: pointer;
+  outline: none;
+
+  transition: filter 0.25s ease;
+}
+
+.speers-route-tech .speers-route-pin:hover,
+.speers-route-tech .speers-route-pin:focus-visible {
+  filter: drop-shadow(
+    0 0 9px rgba(255, 255, 255, 0.9)
+  );
+}
+
+/* Pulso dos marcadores */
+.speers-route-tech .speers-route-pin-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: speersTechPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes speersTechPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.25;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.08;
+  }
+}
+
+/* Marcador selecionado */
+.speers-route-tech
+  .speers-route-pin.is-active
+  .speers-route-pin-halo {
+  fill: #ff326d;
+  opacity: 0.5;
+}
+
+/* Rodapé do mapa */
+.speers-route-tech .speers-route-map-foot {
+  position: relative;
+  z-index: 1;
+
+  background: #071f31;
+  color: #b6d8d6;
+
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.5;
+
+  padding: 9px 15px;
+}
+
+/* Mantém mapa e card lado a lado */
+@media (min-width: 901px) {
+  .speers-route-tech {
+    grid-template-columns:
+      minmax(0, 1fr) 360px;
+  }
+
+  .speers-route-tech .speers-route-map-area {
+    display: contents !important;
+  }
+
+  .speers-route-tech .speers-route-map-wrap {
+    grid-column: 1;
+    grid-row: 2;
+
+    width: 100%;
+    height: auto !important;
+
+    min-width: 0;
+    margin: 0;
+  }
+
+  .speers-route-tech .speers-route-info {
+    grid-column: 2;
+    grid-row: 2;
+
+    width: 100%;
+    min-height: 0;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .speers-route-tech {
+    grid-template-columns: 1fr;
+  }
+
+  .speers-route-tech .speers-route-map-area {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .speers-route-tech .speers-route-map-wrap {
+    width: 100%;
+    height: auto !important;
+  }
+
+  .speers-route-tech .speers-route-map {
+    height: 330px;
+    max-height: 330px;
+    aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .speers-route-tech .speers-route-map {
+    height: 280px;
+    max-height: 280px;
+  }
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .speers-route-tech .speers-route-line,
+  .speers-route-tech .speers-route-pin-halo {
+    animation: none !important;
+  }
+}
+
+/* ==========================================
+   ÁREAS DOS MUNICÍPIOS
+   ========================================== */
+
+/* Em repouso: tom suave. Passar o mouse intensifica. */
+.speers-route-city {
+  fill-opacity: 0.2;
+  stroke: #ffffff;
+  stroke-opacity: 0.35;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  transition:
+    fill-opacity 0.3s ease,
+    stroke-opacity 0.3s ease;
+}
+
+.speers-route-city:hover {
+  fill-opacity: 0.4;
+  stroke-opacity: 0.7;
+}
+
+/* Cidade em destaque (hover, foco ou clique): a cor "sobe" na área. */
+.speers-route-city-on {
+  fill-opacity: 0.8;
+  stroke: #ffffff;
+  stroke-opacity: 0.95;
+  stroke-width: 2.5px;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+  animation: speersCityRise 0.45s ease-out;
+}
+
+@keyframes speersCityRise {
+  from {
+    fill-opacity: 0;
+    stroke-opacity: 0;
+  }
+}

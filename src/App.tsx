@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import BrandFlipCard from "./components/BrandFlipCard";
+import PorOndeAndamos from "./components/PorOndeAndamos";
 import {
   PRODUCTS,
   BRAND_LOGOS,
@@ -27,10 +28,10 @@ export default function App() {
   const [customerIdentity, setCustomerIdentity] = useState("");
   const [welcomeLeaving, setWelcomeLeaving] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>(() => {
-  const tab = window.location.hash.replace("#", "");
+    const tab = window.location.hash.replace("#", "");
 
-  return tab ? (tab as Tab) : "speers";
-});
+    return tab ? (tab as Tab) : "speers";
+  });
   const navigateTo = (tab: Tab) => {
     if (tab === activeTab) return;
 
@@ -39,21 +40,21 @@ export default function App() {
     window.scrollTo(0, 0);
   };
   useEffect(() => {
-  const handleNavigation = () => {
-    const tab = window.location.hash.replace("#", "") || "speers";
+    const handleNavigation = () => {
+      const tab = window.location.hash.replace("#", "") || "speers";
 
-    setActiveTab(tab as Tab);
-    window.scrollTo(0, 0);
-  };
+      setActiveTab(tab as Tab);
+      window.scrollTo(0, 0);
+    };
 
-  window.addEventListener("popstate", handleNavigation);
-  window.addEventListener("hashchange", handleNavigation);
+    window.addEventListener("popstate", handleNavigation);
+    window.addEventListener("hashchange", handleNavigation);
 
-  return () => {
-    window.removeEventListener("popstate", handleNavigation);
-    window.removeEventListener("hashchange", handleNavigation);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("popstate", handleNavigation);
+      window.removeEventListener("hashchange", handleNavigation);
+    };
+  }, []);
   const [search, setSearch] = useState("");
   const [brandFilter, setBrandFilter] = useState("ALL");
   const [sortOrder, setSortOrder] = useState("name");
@@ -275,10 +276,10 @@ export default function App() {
   useEffect(() => setCurrentPage(1), [search, brandFilter, sortOrder]);
 
   const goToTab = (tab: Tab) => {
-  navigateTo(tab);
-  setMobileMenuOpen(false);
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
+    navigateTo(tab);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const showBrandProducts = (brand: string) => {
     setSearch("");
@@ -654,6 +655,7 @@ export default function App() {
                   <h2>Marcas que fazem parte da nossa história</h2>
                   <p>Clique nos cards para ver os produtos de cada marca.</p>
                 </div>
+
                 <div className="featured-brands">
                   {FEATURED_BRANDS.map((brand) => (
                     <button
@@ -669,17 +671,9 @@ export default function App() {
               </div>
             </section>
 
-            <section className="intro-band">
-              <div className="container intro-band-inner">
-                <div>
-                  <span className="section-kicker section-kicker-light">
-                    Speers Foods
-                  </span>
-                  <h2>Conectando marcas, produtos e negócios.</h2>
-                </div>
-              </div>
-            </section>
-          </>
+            {/* MAPA INTERATIVO ABAIXO DAS MARCAS */}
+            <PorOndeAndamos />
+         </>
         )}
         {activeTab === "fornecedores" && (
           <section className="careers-page" aria-labelledby="careers-title">
@@ -714,7 +708,6 @@ export default function App() {
             </div>
           </section>
         )}
-
         {activeTab === "produtos" && (
           <section className="page-section">
             <div className="container">
