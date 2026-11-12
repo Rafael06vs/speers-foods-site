@@ -149,15 +149,6 @@ const places: Place[] = [
     color: "#ed6d9c",
   },
   {
-    id: "caragua",
-    name: "Caraguatatuba",
-    lat: -23.6203,
-    lon: -45.4131,
-    region: "Litoral Norte",
-    description: "Atendimento no Litoral Norte",
-    color: "#16b7c9",
-  },
-  {
     id: "ubatuba",
     name: "Ubatuba",
     lat: -23.4332,
@@ -167,28 +158,109 @@ const places: Place[] = [
     color: "#16b7c9",
   },
   {
-    id: "santos",
-    name: "Santos",
-    lat: -23.9608,
-    lon: -46.3336,
+    id: "extra-atibaia",
+    name: "Atibaia",
+    lat: -23.117,
+    lon: -46.556,
+    region: "Jundiaí e entorno",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
+    color: "#27b77d",
+  },
+  {
+    id: "extra-braganca-paulista",
+    name: "Bragança Paulista",
+    lat: -22.952,
+    lon: -46.542,
+    region: "Jundiaí e entorno",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
+    color: "#27b77d",
+  },
+  {
+    id: "extra-indaiatuba",
+    name: "Indaiatuba",
+    lat: -23.09,
+    lon: -47.219,
+    region: "Interior paulista",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
+    color: "#27b77d",
+  },
+  {
+    id: "extra-bertioga",
+    name: "Bertioga",
+    lat: -23.854,
+    lon: -46.139,
     region: "Litoral Sul",
-    description: "Atendimento no litoral sul paulista",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
     color: "#b0784f",
   },
   {
-    id: "praia",
-    name: "Praia Grande",
-    lat: -24.0088,
-    lon: -46.4126,
-    region: "Litoral Sul",
-    description: "Atendimento no litoral sul paulista",
-    color: "#b0784f",
+    id: "extra-mogi-das-cruzes",
+    name: "Mogi das Cruzes",
+    lat: -23.523,
+    lon: -46.188,
+    region: "Grande São Paulo",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
+    color: "#ff9027",
+  },
+  {
+    id: "extra-cotia",
+    name: "Cotia",
+    lat: -23.603,
+    lon: -46.919,
+    region: "Grande São Paulo",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
+    color: "#ff9027",
+  },
+  {
+    id: "extra-barueri",
+    name: "Barueri",
+    lat: -23.511,
+    lon: -46.876,
+    region: "Grande São Paulo",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
+    color: "#ff9027",
+  },
+  {
+    id: "extra-cruzeiro",
+    name: "Cruzeiro",
+    lat: -22.576,
+    lon: -44.962,
+    region: "Vale do Paraíba",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
+    color: "#3598f4",
+  },
+  {
+    id: "extra-campos-do-jordao",
+    name: "Campos do Jordão",
+    lat: -22.739,
+    lon: -45.592,
+    region: "Vale do Paraíba",
+    description:
+      "Consulte nossa equipe para confirmar o atendimento no endereço.",
+    color: "#3598f4",
   },
 ];
 
 // Códigos IBGE dos municípios de cada ponto. O "ABC Paulista" junta os
 // sete municípios da região em uma única área.
 const cityCodes: Record<string, string[]> = {
+  "extra-atibaia": ["3504107"],
+  "extra-braganca-paulista": ["3507605"],
+  "extra-indaiatuba": ["3520509"],
+  "extra-bertioga": ["3506359"],
+  "extra-mogi-das-cruzes": ["3530607"],
+  "extra-cotia": ["3513009"],
+  "extra-barueri": ["3505708"],
+  "extra-cruzeiro": ["3513405"],
+  "extra-campos-do-jordao": ["3509700"],
   sp: ["3550308"],
   guarulhos: ["3518800"],
   osasco: ["3534401"],
@@ -212,14 +284,12 @@ const cityCodes: Record<string, string[]> = {
   sorocaba: ["3552205"],
   saoroque: ["3550605"],
   ribeirao: ["3543402"],
-  caragua: ["3510500"],
   ubatuba: ["3555406"],
-  santos: ["3548500"],
   praia: ["3541000"],
 };
 
-const IBGE_MESH =
-  "https://servicodados.ibge.gov.br/api/v3/malhas/municipios";
+// aparecem na lista, mas não recebem um pin artificial no mapa de SP.
+const IBGE_MESH = "https://servicodados.ibge.gov.br/api/v3/malhas/municipios";
 
 const STATE_GEOJSON =
   "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson";
@@ -314,8 +384,7 @@ function ringContains(ring: number[][], lon: number, lat: number) {
     const [xj, yj] = ring[j];
 
     const crosses =
-      yi > lat !== yj > lat &&
-      lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi;
+      yi > lat !== yj > lat && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi;
 
     if (crosses) inside = !inside;
   }
@@ -372,7 +441,7 @@ function spacedMarkers() {
 
   const anchors = places.map((place) => project(place.lon, place.lat));
 
-  const minimum = 30;
+  const minimum = 37;
 
   for (let iteration = 0; iteration < 110; iteration++) {
     for (let i = 0; i < pins.length; i++) {
@@ -410,6 +479,26 @@ function spacedMarkers() {
 
 const markerPositions = spacedMarkers();
 
+// Exibe polos principais, mantendo cidades próximas na lista sem sobrepor pins.
+const visiblePinIds = new Set([
+  "sp",
+  "sjc",
+  "jundiai",
+  "sorocaba",
+  "saoroque",
+  "ribeirao",
+  "campinas",
+  "guara",
+  "lorena",
+  "pinda",
+  "ubatuba",
+  "praia",
+  "extra-atibaia",
+  "extra-mogi-das-cruzes",
+  "extra-cruzeiro",
+  "extra-campos-do-jordao",
+]);
+
 // Indica se o marcador aparece no enquadramento regional (com margem).
 function isInRegionalView(id: string) {
   const pin = markerPositions.find((p) => p.id === id);
@@ -433,8 +522,6 @@ const featuredIds = [
   "sorocaba",
   "saoroque",
   "ribeirao",
-  "caragua",
-  "santos",
 ];
 
 const routeIds = featuredIds.filter((id) => id !== "sp");
@@ -448,6 +535,7 @@ export default function PorOndeAndamos() {
   const [outline, setOutline] = useState("");
   const [mapError, setMapError] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [extraSelected, setExtraSelected] = useState<string | null>(null);
   const [shapes, setShapes] = useState<Record<string, string>>({});
 
   const shownId = hovered ?? selected;
@@ -501,28 +589,26 @@ export default function PorOndeAndamos() {
     };
   }, []);
 
-  // Contornos dos municípios (carregados uma vez, para o destaque ser
-  // instantâneo). Cidades que falharem usam o círculo reserva.
+  // Busca o limite municipal apenas quando o usuário seleciona a cidade.
+  // Isso evita dezenas de requisições simultâneas ao IBGE.
   useEffect(() => {
+    if (!active || shapes[active.id] || !cityCodes[active.id]) return;
     let alive = true;
-
-    places.forEach((place) => {
-      loadCityShape(place)
-        .then((d) => {
-          if (alive) setShapes((prev) => ({ ...prev, [place.id]: d }));
-        })
-        .catch(() => {
-          /* usa o círculo reserva */
-        });
-    });
-
+    loadCityShape(active)
+      .then((d) => {
+        if (alive) setShapes((prev) => ({ ...prev, [active.id]: d }));
+      })
+      .catch(() => {
+        /* sem polígono: o pin continua selecionável */
+      });
     return () => {
       alive = false;
     };
-  }, []);
+  }, [active, shapes]);
 
   function choose(id: string) {
     setSelected(id);
+    setExtraSelected(null);
 
     // Se a cidade está fora do enquadramento regional, abre o mapa completo
     // para o destaque não acontecer fora da tela.
@@ -564,19 +650,7 @@ export default function PorOndeAndamos() {
       );
     }
 
-    return (
-      <circle
-        key={`${className}-${place.id}`}
-        className={className}
-        cx={anchor.x}
-        cy={anchor.y}
-        r={place.id === "abc" ? 30 : 24}
-        style={style}
-        {...handlers}
-      >
-        {interactive && <title>{place.name}</title>}
-      </circle>
-    );
+    return null;
   }
 
   return (
@@ -599,48 +673,42 @@ export default function PorOndeAndamos() {
         </p>
       </header>
 
-      
-<div className="speers-route-toolbar">
-  <div
-    className="speers-route-places"
-    aria-label="Selecionar cidades"
-  >
-    {(showAll
-      ? places
-      : places.filter((p) => featuredIds.includes(p.id))
-    ).map((p) => (
-      <button
-        type="button"
-        key={p.id}
-        className={selected === p.id ? "is-active" : ""}
-        onClick={() => choose(p.id)}
-        onMouseEnter={() => setHovered(p.id)}
-        onMouseLeave={() => setHovered(null)}
-      >
-        {p.name}
-      </button>
-    ))}
+      <div className="speers-route-toolbar">
+        <div className="speers-route-places" aria-label="Selecionar cidades">
+          {(showAll
+            ? places
+            : places.filter((p) => featuredIds.includes(p.id))
+          ).map((p) => (
+            <button
+              type="button"
+              key={p.id}
+              className={selected === p.id ? "is-active" : ""}
+              onClick={() => choose(p.id)}
+              onMouseEnter={() => setHovered(p.id)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              {p.name}
+            </button>
+          ))}
 
-    <button
-      type="button"
-      className="speers-route-more"
-      onClick={() => setShowAll((prev) => !prev)}
-    >
-      {showAll ? "− Menos cidades" : "+ Mais cidades"}
-    </button>
-  </div>
 
-  <button
-    type="button"
-    className="speers-route-full-button"
-    onClick={() => setFullMap((prev) => !prev)}
-  >
-    {fullMap
-      ? "↩ Voltar ao mapa regional"
-      : "↗ Ver mapa completo"}
-  </button>
-</div>
+          <button
+            type="button"
+            className="speers-route-more"
+            onClick={() => setShowAll((prev) => !prev)}
+          >
+            {showAll ? "− Menos cidades" : "+ Mais cidades"}
+          </button>
+        </div>
 
+        <button
+          type="button"
+          className="speers-route-full-button"
+          onClick={() => setFullMap((prev) => !prev)}
+        >
+          {fullMap ? "↩ Voltar ao mapa regional" : "↗ Ver mapa completo"}
+        </button>
+      </div>
 
       <div className="speers-route-map-area">
         <div className="speers-route-map-wrap">
@@ -718,8 +786,7 @@ export default function PorOndeAndamos() {
                 <g className="speers-route-cities">
                   {places.map((p) => renderArea(p, "speers-route-city", true))}
 
-                  {active &&
-                    renderArea(active, "speers-route-city-on", false)}
+                  {active && renderArea(active, "speers-route-city-on", false)}
                 </g>
 
                 <path
@@ -732,7 +799,7 @@ export default function PorOndeAndamos() {
                 />
 
                 {places
-                  .filter((p) => routeIds.includes(p.id))
+                  .filter((p) => active?.id === p.id && routeIds.includes(p.id))
                   .map((p) => {
                     const dest = project(p.lon, p.lat);
 
@@ -847,11 +914,13 @@ export default function PorOndeAndamos() {
 
           <div className="speers-route-info-icon"></div>
 
-          <h2>{active?.name ?? "Explore nossas regiões"}</h2>
+          <h2>{active?.name ?? extraSelected ?? "Explore nossas regiões"}</h2>
 
           <p>
             {active?.description ??
-              "Passe o mouse ou clique em uma cidade no mapa, ou selecione uma abaixo, para destacar a área de atuação."}
+              (extraSelected
+                ? "Cidade incluída na relação de entregas. Consulte nossa equipe para confirmar as condições de atendimento."
+                : "Passe o mouse ou clique em uma cidade no mapa, ou selecione uma abaixo, para destacar a área de atuação.")}
           </p>
 
           {active && (

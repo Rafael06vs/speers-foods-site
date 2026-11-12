@@ -302,9 +302,7 @@
   }
 }
 
-
 /* Mapa e cartão em proporções equilibradas */
-
 
 /* LAYOUT EQUILIBRADO — POR ONDE ANDAMOS */
 
@@ -379,10 +377,6 @@
   }
 }
 
-
-
-
-
 @media (min-width: 901px) {
   .speers-route-page {
     grid-template-columns: minmax(0, 1fr) 400px;
@@ -410,7 +404,6 @@
     min-height: 500px;
   }
 }
-
 
 /* MAPA PREENCHENDO TODO O ESPAÇO */
 
@@ -461,7 +454,6 @@
   }
 }
 
-
 /* ==========================================
    SPEERS FOODS — MAPA TECNOLÓGICO
    ========================================== */
@@ -474,12 +466,7 @@
       rgba(12, 123, 132, 0.3),
       transparent 55%
     ),
-    linear-gradient(
-      135deg,
-      #061c31 0%,
-      #082c45 50%,
-      #031525 100%
-    );
+    linear-gradient(135deg, #061c31 0%, #082c45 50%, #031525 100%);
 
   border-radius: 20px;
   overflow: hidden;
@@ -493,15 +480,8 @@
   inset: 0;
 
   background-image:
-    linear-gradient(
-      rgba(84, 236, 210, 0.045) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(84, 236, 210, 0.045) 1px,
-      transparent 1px
-    );
+    linear-gradient(rgba(84, 236, 210, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(84, 236, 210, 0.045) 1px, transparent 1px);
 
   background-size: 38px 38px;
   pointer-events: none;
@@ -541,9 +521,7 @@
   stroke-width: 3.5;
   opacity: 1;
 
-  filter: drop-shadow(
-    0 0 5px rgba(255, 255, 255, 0.7)
-  );
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
 }
 
 @keyframes speersTechRoute {
@@ -562,9 +540,7 @@
 
 .speers-route-tech .speers-route-pin:hover,
 .speers-route-tech .speers-route-pin:focus-visible {
-  filter: drop-shadow(
-    0 0 9px rgba(255, 255, 255, 0.9)
-  );
+  filter: drop-shadow(0 0 9px rgba(255, 255, 255, 0.9));
 }
 
 /* Pulso dos marcadores */
@@ -589,9 +565,7 @@
 }
 
 /* Marcador selecionado */
-.speers-route-tech
-  .speers-route-pin.is-active
-  .speers-route-pin-halo {
+.speers-route-tech .speers-route-pin.is-active .speers-route-pin-halo {
   fill: #ff326d;
   opacity: 0.5;
 }
@@ -614,8 +588,7 @@
 /* Mantém mapa e card lado a lado */
 @media (min-width: 901px) {
   .speers-route-tech {
-    grid-template-columns:
-      minmax(0, 1fr) 360px;
+    grid-template-columns: minmax(0, 1fr) 360px;
   }
 
   .speers-route-tech .speers-route-map-area {
@@ -723,7 +696,6 @@
   }
 }
 
-
 /* Cidades e botão do mapa completo na mesma faixa */
 .speers-route-tech .speers-route-toolbar {
   grid-column: 1 / -1;
@@ -738,8 +710,7 @@
 }
 
 /* Lista de cidades */
-.speers-route-tech .speers-route-toolbar
-.speers-route-places {
+.speers-route-tech .speers-route-toolbar .speers-route-places {
   display: flex;
   flex: 1 1 auto;
   flex-wrap: wrap;
@@ -752,8 +723,7 @@
 }
 
 /* Botões das cidades */
-.speers-route-tech .speers-route-toolbar
-.speers-route-places button {
+.speers-route-tech .speers-route-toolbar .speers-route-places button {
   font-size: 11px;
   padding: 8px 11px;
   white-space: nowrap;
@@ -795,8 +765,7 @@
     align-items: stretch;
   }
 
-  .speers-route-tech .speers-route-toolbar
-  .speers-route-places {
+  .speers-route-tech .speers-route-toolbar .speers-route-places {
     justify-content: center;
   }
 
@@ -807,5 +776,31 @@
   .speers-route-tech .speers-route-map-area {
     grid-column: 1;
     grid-row: 3;
+  }
+}
+
+/* Ajustes para lista ampliada e mapa sem excesso de marcadores */
+.speers-route-tech .speers-route-toolbar {
+  align-items: flex-start;
+}
+.speers-route-tech .speers-route-toolbar .speers-route-places {
+  max-height: 116px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding: 3px 2px 7px;
+}
+.speers-route-tech .speers-route-toolbar .speers-route-places button {
+  font-size: 11px;
+  padding: 7px 10px;
+}
+.speers-route-tech .speers-route-full-button {
+  align-self: flex-start;
+}
+.speers-route-city-on {
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .speers-route-tech .speers-route-toolbar .speers-route-places {
+    max-height: 160px;
   }
 }
