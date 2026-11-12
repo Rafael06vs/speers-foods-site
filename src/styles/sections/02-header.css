@@ -212,3 +212,35 @@
     height: 58px;
   }
 }
+
+/* Contador de produtos no carrinho */
+
+.quote-cart-trigger {
+  position: relative;
+}
+
+.quote-cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -9px;
+
+  min-width: 19px;
+  height: 19px;
+  padding: 0 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ff8b00;
+  color: #ffffff;
+
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+
+  pointer-events: none;
+}

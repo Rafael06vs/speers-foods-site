@@ -373,6 +373,12 @@ export default function App() {
               title="Meu carrinho"
             >
               <i className="fa-solid fa-cart-shopping" aria-hidden="true" />
+
+              {cartCount > 0 && (
+                <span className="quote-cart-badge" aria-hidden="true">
+                  {cartCount > 99 ? "99+" : cartCount}
+                </span>
+              )}
             </button>
 
             <button
@@ -673,7 +679,7 @@ export default function App() {
 
             {/* MAPA INTERATIVO ABAIXO DAS MARCAS */}
             <PorOndeAndamos />
-         </>
+          </>
         )}
         {activeTab === "fornecedores" && (
           <section className="careers-page" aria-labelledby="careers-title">
