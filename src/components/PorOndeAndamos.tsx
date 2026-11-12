@@ -599,11 +599,48 @@ export default function PorOndeAndamos() {
         </p>
       </header>
 
-      <div className="speers-route-toolbar">
-        <button type="button" onClick={() => setFullMap((prev) => !prev)}>
-          {fullMap ? "↩ Voltar ao mapa regional" : "↗ Ver mapa completo"}
-        </button>
-      </div>
+      
+<div className="speers-route-toolbar">
+  <div
+    className="speers-route-places"
+    aria-label="Selecionar cidades"
+  >
+    {(showAll
+      ? places
+      : places.filter((p) => featuredIds.includes(p.id))
+    ).map((p) => (
+      <button
+        type="button"
+        key={p.id}
+        className={selected === p.id ? "is-active" : ""}
+        onClick={() => choose(p.id)}
+        onMouseEnter={() => setHovered(p.id)}
+        onMouseLeave={() => setHovered(null)}
+      >
+        {p.name}
+      </button>
+    ))}
+
+    <button
+      type="button"
+      className="speers-route-more"
+      onClick={() => setShowAll((prev) => !prev)}
+    >
+      {showAll ? "− Menos cidades" : "+ Mais cidades"}
+    </button>
+  </div>
+
+  <button
+    type="button"
+    className="speers-route-full-button"
+    onClick={() => setFullMap((prev) => !prev)}
+  >
+    {fullMap
+      ? "↩ Voltar ao mapa regional"
+      : "↗ Ver mapa completo"}
+  </button>
+</div>
+
 
       <div className="speers-route-map-area">
         <div className="speers-route-map-wrap">
@@ -840,32 +877,6 @@ export default function PorOndeAndamos() {
             </span>
           </div>
         </aside>
-      </div>
-
-      <div className="speers-route-places" aria-label="Selecionar cidades">
-        {(showAll
-          ? places
-          : places.filter((p) => featuredIds.includes(p.id))
-        ).map((p) => (
-          <button
-            type="button"
-            key={p.id}
-            className={selected === p.id ? "is-active" : ""}
-            onClick={() => choose(p.id)}
-            onMouseEnter={() => setHovered(p.id)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            {p.name}
-          </button>
-        ))}
-
-        <button
-          type="button"
-          className="speers-route-more"
-          onClick={() => setShowAll((prev) => !prev)}
-        >
-          {showAll ? "− Menos cidades" : "+ Mais cidades"}
-        </button>
       </div>
     </section>
   );
