@@ -56,13 +56,6 @@
   box-shadow: var(--shadow);
 }
 
-.featured-brand img {
-  width: 115%;
-  max-width: none;
-  height: 100px;
-  object-position: center;
-}
-
 .featured-brand span {
   display: flex;
   gap: 6px;

@@ -656,7 +656,7 @@ export default function PorOndeAndamos() {
   return (
     <section
       className="speers-route-page speers-route-tech"
-      aria-label="Por Onde Andamos"
+      aria-label="Grandes Marcas, Muitos Destinos"
     >
       <header className="speers-route-intro">
         <span className="speers-route-eyebrow">
@@ -664,12 +664,11 @@ export default function PorOndeAndamos() {
         </span>
 
         <h1>
-          Por Onde <span>Andamos</span>
+          Cada Entrega, <span>Uma Nova Conexão</span>
         </h1>
 
         <p>
           Explore nosso mapa animado e conheça as regiões de distribuição.
-          Atendemos todo o Vale do Paraíba.
         </p>
       </header>
 

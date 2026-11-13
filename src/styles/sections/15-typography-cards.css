@@ -41,10 +41,6 @@
   line-height: 1.8;
 }
 
-.brand-section {
-  background: linear-gradient(125deg, #e4f5e9 0%, #ffffff 50%, #fff0d9 100%);
-}
-
 .featured-brand {
   border: 1px solid #dce8df;
   box-shadow: 0 8px 22px rgba(0, 92, 59, 0.06);
@@ -76,23 +72,10 @@
   letter-spacing: -0.5px;
 }
 
-.product-card-art {
-  background: linear-gradient(135deg, #e4f5e9 0%, #fff0d9 100%);
-}
-
-.quality-page {
-  background: linear-gradient(135deg, #ffffff 0%, #edf7ef 55%, #fff0d9 100%);
-}
-
 .quality-brand-card h3 {
   color: var(--speers-dark);
   font-weight: 850;
   letter-spacing: -0.5px;
-}
-
-.quality-intro {
-  background: linear-gradient(115deg, #063f2f 0%, #08734c 65%, #119263 100%);
-  border-left: 5px solid var(--speers-orange);
 }
 
 .button-green {
