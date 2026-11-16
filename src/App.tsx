@@ -1171,6 +1171,11 @@ export default function App() {
                 Atendimento pelo WhatsApp
               </a>
             </p>
+
+            <p>
+              <i className="fa-solid fa-envelope" aria-hidden="true" />{" "}
+              <a href="mailto:sac@speersfoods.com.br">SAC via email</a>
+            </p>
           </div>
         </div>
         <div className="footer-bottom">
