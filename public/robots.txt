@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://speers-foods-site.onrender.com/sitemap.xml
+Sitemap: https://speers-foods.onrender.com/sitemap.xml
