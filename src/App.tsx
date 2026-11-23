@@ -708,9 +708,13 @@ export default function App() {
                 <i className="fa-brands fa-whatsapp" /> FALE COM NOSSO RH{" "}
                 <i className="fa-solid fa-arrow-up-right-from-square" />
               </a>
-              <span className="careers-phone">
-                Contato do RH: (11) 98963-7374
-              </span>
+              <div className="careers-contact-text">
+                <p className="careers-contact-description">
+                  Converse com nosso RH e conheça as oportunidades
+                  disponíveis na Speers Foods.
+                  Estamos sempre em busca de novos talentos!
+                </p>
+              </div>
             </div>
           </section>
         )}
